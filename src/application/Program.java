@@ -17,14 +17,7 @@ public class Program extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Button btn = new Button("Click me");
-		btn.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent arg0) {
-				System.out.println("Button cliked");
-				
-			}
-		});
+		btn.setOnAction(e -> System.out.println("Button clicked"));
 		StackPane root = new StackPane();
 		root.getChildren().add(btn);
 		Scene scene = new Scene(root, 400, 300);
