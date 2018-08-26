@@ -1,5 +1,74 @@
 package controller;
 
-public class LoginController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import application.Home;
+import application.Login;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+
+public class LoginController implements Initializable {
+
+	@FXML
+	private TextField txtUsuario;
+
+	@FXML
+	private PasswordField txtSenha;
+
+	@FXML
+	private Button btnEntrar;
+
+	@FXML
+	private Label lblStatus;
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		btnEntrar.setOnMouseClicked(MouseEvent -> {
+			login();
+
+		});
+
+		btnEntrar.setOnKeyPressed(KeyEvent -> {
+			if(KeyEvent.getCode() == KeyCode.ENTER) {
+				login();	
+			}
+			
+
+		});	
+			
+		txtSenha.setOnKeyPressed(KeyEvent  -> {
+			if(KeyEvent.getCode() == KeyCode.ENTER) {
+				login();
+			}
+		});
+	}
+
+	public void login() {
+		if (txtUsuario.getText().equals("Alessandra") && txtSenha.getText().equals("123")) {
+			lblStatus.setText("Login efetuado com sucesso!");
+			Home home = new Home();
+			sair();
+			try {
+				home.start(new Stage());
+
+			} catch (Exception e) {
+				e.getMessage();
+			}
+		} else {
+			lblStatus.setText("Login e/ou senha incorretos.");
+		}
+
+	}
+
+	public void sair() {
+		Login.getStage().close();
+	}
 }
