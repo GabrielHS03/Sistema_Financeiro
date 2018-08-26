@@ -24,6 +24,7 @@ public class ClientController implements Initializable {
     private MenuButton btnRelatorio;
 
     @FXML
+    private TableView<?> tbCliente;
 
     @FXML
     private TableColumn<?, ?> tbColumnID;
