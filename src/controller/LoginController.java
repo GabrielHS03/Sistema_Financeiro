@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
@@ -37,15 +36,14 @@ public class LoginController implements Initializable {
 		});
 
 		btnEntrar.setOnKeyPressed(KeyEvent -> {
-			if(KeyEvent.getCode() == KeyCode.ENTER) {
-				login();	
+			if (KeyEvent.getCode() == KeyCode.ENTER) {
+				login();
 			}
-			
 
-		});	
-			
-		txtSenha.setOnKeyPressed(KeyEvent  -> {
-			if(KeyEvent.getCode() == KeyCode.ENTER) {
+		});
+
+		txtSenha.setOnKeyPressed(KeyEvent -> {
+			if (KeyEvent.getCode() == KeyCode.ENTER) {
 				login();
 			}
 		});
@@ -55,20 +53,15 @@ public class LoginController implements Initializable {
 		if (txtUsuario.getText().equals("Alessandra") && txtSenha.getText().equals("123")) {
 			lblStatus.setText("Login efetuado com sucesso!");
 			Home home = new Home();
-			sair();
+			Login.getStage().close();
 			try {
 				home.start(new Stage());
-
 			} catch (Exception e) {
 				e.getMessage();
 			}
 		} else {
-			lblStatus.setText("Login e/ou senha incorretos.");
+			lblStatus.setText("Login e/ou senha incorretos!");
 		}
-
 	}
 
-	public void sair() {
-		Login.getStage().close();
-	}
 }
