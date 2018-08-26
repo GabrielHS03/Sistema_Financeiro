@@ -23,7 +23,7 @@ public class Client extends Application {
 
 	}
 
-	public Stage getStage() {
+	public static Stage getStage() {
 		return stage;
 	}
 
