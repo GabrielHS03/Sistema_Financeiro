@@ -1,26 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="controller.HomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
-      <Button layoutX="54.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" text="Cliente" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnCliente" alignment="CENTER" layoutX="54.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Button>
-      <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" text="Boleto" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnBoleto" disable="true" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Button>
-      <Button layoutX="551.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" text="Relatório" textFill="WHITE">
+      <Button fx:id="btnRelatorio" disable="true" layoutX="551.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Button>
+      <Text fx:id="lblClient" fill="WHITE" layoutX="76.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar/Alterar/&#10;Visualizar" textAlignment="CENTER" wrappingWidth="156.314453125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblClient" disable="true" fill="WHITE" layoutX="94.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente" textAlignment="CENTER" wrappingWidth="120.13671875">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imgClient" disable="true" fitHeight="75.0" fitWidth="75.0" layoutX="117.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/group-profile-users.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="340.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boleto" textAlignment="CENTER" wrappingWidth="120.13671875">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="318.0" layoutY="368.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar/Pesquisar" textAlignment="CENTER" wrappingWidth="163.3144564628601">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="585.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relatório" textAlignment="CENTER" wrappingWidth="131.13671875">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="572.0" layoutY="367.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visualizar/Imprimir" textAlignment="CENTER" wrappingWidth="156.314453125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="363.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/file.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="614.0" layoutY="212.0">
+         <image>
+            <Image url="@../../images/progress-report.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

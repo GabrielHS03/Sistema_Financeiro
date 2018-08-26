@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuButton layoutX="95.0" layoutY="14.0" mnemonicParsing="false" text="Boleto">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Cadastrar" />
+          <MenuItem mnemonicParsing="false" text="Pesquisar" />
+        </items>
+      </MenuButton>
+      <MenuButton layoutX="171.0" layoutY="14.0" mnemonicParsing="false" text="Relatório">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Pesquisar" />
+          <MenuItem mnemonicParsing="false" text="Imprimir" />
+        </items>
+      </MenuButton>
+      <TableView layoutX="62.0" layoutY="163.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnCadastrarCliente" layoutX="62.0" layoutY="103.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" text="Cadastrar Cliente" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

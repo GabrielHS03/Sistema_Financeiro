@@ -6,28 +6,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Home extends Application {
+public class Client extends Application {
 
 	private static Stage stage;
+
 
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		Parent root = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
 		Scene scene = new Scene(root);
-		stage.setTitle("Home");
+		stage.setTitle("Client");
 		stage.setScene(scene);
 		stage.show();
 		setStage(stage);
 
 	}
 
-	public static Stage getStage() {
+	public Stage getStage() {
 		return stage;
 	}
 
 	public static void setStage(Stage stage) {
-		Home.stage = stage;
+		Client.stage = stage;
 	}
 
 }
