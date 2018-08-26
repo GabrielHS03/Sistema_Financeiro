@@ -30,8 +30,8 @@ public class Login extends Application {
 		return stage;
 	}
 
-	public void setStage(Stage stage) {
-		this.stage = stage;
+	public static void setStage(Stage stage) {
+		Login.stage = stage;
 	}
 
 }
