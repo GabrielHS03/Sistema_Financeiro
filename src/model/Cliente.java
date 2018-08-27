@@ -29,6 +29,8 @@ public class Cliente {
     private Double CNPJ;
     private String email;
     private String OBS;
+    //@OneToOne
+    //private Endereco endereco;
 
     public Integer getID() {
         return ID;

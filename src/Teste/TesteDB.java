@@ -5,7 +5,9 @@
  */
 package Teste;
 
+import DAO.ClienteDAO;
 import DAO.UsuarioDAO;
+import model.Cliente;
 import model.Usuario;
 
 /**
@@ -61,6 +63,24 @@ public class TesteDB {
          UsuarioDAO userDAO = new UsuarioDAO();
          userDAO.remove(2);
  */
+ 
+ 
+ /*=======================================================================*/
+        ClienteDAO cDAO = new ClienteDAO();
+        Cliente cliente = new Cliente();
+        
+        cliente.setCodigo(1010);
+        cliente.setNome("Paulinho");
+        cliente.setCNPJ(1010.1);
+        cliente.setCPF(159.4);
+        cliente.setEmail("paulinho@hotmail.com");
+        cliente.setTipo("Fiel");
+        cliente.setOBS("Paga em dia");
+        cliente.setTelefone("62992007442");
+        
+        cDAO.save(cliente);
+ 
+ 
  
  
     }
