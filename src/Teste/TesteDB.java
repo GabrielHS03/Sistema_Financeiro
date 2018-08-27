@@ -5,9 +5,7 @@
  */
 package Teste;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import DAO.UsuarioDAO;
 import model.Usuario;
 
 /**
@@ -17,18 +15,12 @@ import model.Usuario;
 public class TesteDB {
     public static void main(String[] args) {
         Usuario user = new Usuario();
-        user.setLogin("Alyson");
-        user.setSenha("1587");
+        user.setLogin("Alyson02");
+        user.setSenha("1587");   
         
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("FinanceiroUnit");
-        EntityManager entityManager = factory.createEntityManager();
-        
-        entityManager.getTransaction().begin();
-        entityManager.persist(user);
-        entityManager.getTransaction().commit();
-        
-        
-        entityManager.close();  
+        UsuarioDAO userDAO = new UsuarioDAO();
+        userDAO.save(user);
+
         
     }
     
