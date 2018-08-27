@@ -4,70 +4,62 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
-      <Button fx:id="btnCliente" alignment="CENTER" layoutX="54.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnBoleto" disable="true" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnRelatorio" disable="true" layoutX="551.0" layoutY="200.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4B0082;" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Button>
-      <Text fx:id="lblClient" fill="WHITE" layoutX="76.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar/Alterar/&#10;Visualizar" textAlignment="CENTER" wrappingWidth="156.314453125">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="lblClient" disable="true" fill="WHITE" layoutX="94.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente" textAlignment="CENTER" wrappingWidth="120.13671875">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Text>
-      <ImageView fx:id="imgClient" disable="true" fitHeight="75.0" fitWidth="75.0" layoutX="117.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/group-profile-users.png" />
-         </image>
-      </ImageView>
-      <Text fill="WHITE" layoutX="340.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boleto" textAlignment="CENTER" wrappingWidth="120.13671875">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="318.0" layoutY="368.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar/Pesquisar" textAlignment="CENTER" wrappingWidth="163.3144564628601">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="585.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relatório" textAlignment="CENTER" wrappingWidth="131.13671875">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="572.0" layoutY="367.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visualizar/Imprimir" textAlignment="CENTER" wrappingWidth="156.314453125">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="363.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/file.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="614.0" layoutY="212.0">
-         <image>
-            <Image url="@../../images/progress-report.png" />
-         </image>
-      </ImageView>
+      <GridPane alignment="CENTER" hgap="30.0" layoutX="56.0" layoutY="300.0" prefHeight="200.0" prefWidth="689.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnCliente" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="btn" stylesheets="@style.css" text="Cliente" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="71.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/group-profile-users.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnBoleto" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="btn" stylesheets="@style.css" text="Relatório" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="71.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/file.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnRelatorio" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="btn" stylesheets="@style.css" text="Relatório" textFill="WHITE" GridPane.columnIndex="2">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/progress-report.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+      <Pane layoutX="15.0" layoutY="8.0" prefHeight="114.0" prefWidth="777.0" style="-fx-background-color: #4B0082;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

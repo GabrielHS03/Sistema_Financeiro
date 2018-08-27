@@ -12,13 +12,13 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
    <children>
-      <MenuButton fx:id="btnBoleto" layoutX="95.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #4B0082;" text="Boleto" textFill="WHITE">
+      <MenuButton fx:id="btnBoleto" layoutX="95.0" layoutY="14.0" mnemonicParsing="false" styleClass="button" stylesheets="@style.css" text="Boleto" textFill="WHITE">
         <items>
           <MenuItem mnemonicParsing="false" text="Cadastrar" />
           <MenuItem mnemonicParsing="false" text="Pesquisar" />
         </items>
       </MenuButton>
-      <MenuButton fx:id="btnRelatorio" layoutX="171.0" layoutY="14.0" mnemonicParsing="false" text="Relatório">
+      <MenuButton fx:id="btnRelatorio" layoutX="171.0" layoutY="14.0" mnemonicParsing="false" styleClass="button" stylesheets="@style.css" text="Relatório" textFill="WHITE">
         <items>
           <MenuItem mnemonicParsing="false" text="Pesquisar" />
           <MenuItem mnemonicParsing="false" text="Imprimir" />
@@ -32,7 +32,7 @@
           
         </columns>
       </TableView>
-      <Button fx:id="btnCadastrarCliente" layoutX="42.0" layoutY="102.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" style="-fx-background-color: #4B0082;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnCadastrarCliente" layoutX="42.0" layoutY="102.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" stylesheets="@style.css" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
