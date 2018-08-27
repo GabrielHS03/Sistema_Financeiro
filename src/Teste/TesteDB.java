@@ -17,8 +17,8 @@ import model.Usuario;
 public class TesteDB {
 
     public static void main(String[] args) {
-
-        /*       Exemplo de Inserir novo Usuario! 
+/*=========================      Exemplo de Inserir novo Usuario!  ================================*/ 
+        /*        
         
         Usuario user = new Usuario();
         user.setLogin("Alyson02");
@@ -28,7 +28,9 @@ public class TesteDB {
         userDAO.save(user);
         
          */
- /*       Exemplo de Atualizar um Usuario existente! 
+        
+/*=========================      Exemplo de Atualizar um Usuario existente!  ================================*/        
+ /*       
 
         Usuario user = new Usuario();
         user.setID(2);
@@ -39,8 +41,8 @@ public class TesteDB {
         userDAO.save(user);
 
          */
-
- /*          Exemplo de Buscar o Usuario pelo ID!
+/*=========================      Exemplo de Buscar o Usuario pelo ID! ================================*/
+ /*          
 
         UsuarioDAO userDAO = new UsuarioDAO();
         Usuario user = userDAO.buscarID(2);
@@ -50,8 +52,8 @@ public class TesteDB {
 
 
          */
-
- /*         Exemplo de como Buscar e listar todos Usuario
+/*=========================      Exemplo de como Buscar e listar todos Usuario  ================================*/
+ /*         
         UsuarioDAO userDAO = new UsuarioDAO();
         for(Usuario user: userDAO.buscarTodos()){
             System.out.println("ID: "+user.getID());
@@ -59,29 +61,93 @@ public class TesteDB {
             System.out.println("Senha: "+user.getSenha());
         }
          */
- /*         Exemplo de como Remover Usuario pelo ID
-         UsuarioDAO userDAO = new UsuarioDAO();
-         userDAO.remove(2);
+/*=========================      Exemplo de como Remover Usuario  ================================*/
+ /*
+        UsuarioDAO userDAO = new UsuarioDAO();
+        userDAO.remove(2);
  */
  
  
- /*=======================================================================*/
-        ClienteDAO cDAO = new ClienteDAO();
+ /*=========================      Exemplo de Inserir novo Cliente! ================================*/
+ /*    ClienteDAO cDAO = new ClienteDAO();
         Cliente cliente = new Cliente();
         
         cliente.setCodigo(1010);
-        cliente.setNome("Paulinho");
+        cliente.setNome("Joaozinho");
         cliente.setCNPJ(1010.1);
         cliente.setCPF(159.4);
-        cliente.setEmail("paulinho@hotmail.com");
+        cliente.setEmail("Joazinho@hotmail.com");
         cliente.setTipo("Fiel");
         cliente.setOBS("Paga em dia");
         cliente.setTelefone("62992007442");
         
         cDAO.save(cliente);
+*/
+   
+  /*=========================      Exemplo de Atualizar um Cliente Existente! ================================*/
+  /*========================= Apenas tem que Mostrar o cliente pelo ID.       ================================*/
+  /*
+        ClienteDAO cDAO = new ClienteDAO();
+        Cliente cliente = new Cliente();
+        
+        cliente.setID(2);
+        cliente.setCodigo(1010);
+        cliente.setNome("Carlinhos");
+        cliente.setCNPJ(1020.1);
+        cliente.setCPF(10.1);
+        cliente.setEmail("carlinhos@hotmail.com");
+        cliente.setTipo("Fiel");
+        cliente.setOBS("Paga em dia");
+        cliente.setTelefone("629111111"); 
+  
+        cDAO.save(cliente);
+  */
+  
+ /*=========================      Exemplo Buscar o Cliente pelo ID Existente! ================================*/
+ /*========================= Apenas tem que Mostrar o cliente pelo ID.       ================================*/
+/*
+        ClienteDAO cDAO = new ClienteDAO();
+        Cliente cliente = cDAO.buscarID(2);
+        
+        
+        
+        System.out.println("Nome: "+cliente.getNome());
+        System.out.println("Codigo: "+cliente.getCodigo());
+        System.out.println("CNPJ: "+cliente.getCNPJ());
+        System.out.println("CPF: "+cliente.getCPF());
+        System.out.println("Email: "+cliente.getEmail());
+        System.out.println("Tipo: "+cliente.getTipo());
+        System.out.println("OBS: "+cliente.getOBS());
+        System.out.println("Telefone: "+cliente.getTelefone());
+
+*/
+/*=========================      Exemplo de como Buscar e listar todos Clientes  ================================*/
+/*      
+        ClienteDAO cDAO = new ClienteDAO();
+        for(Cliente cliente: cDAO.buscarTodos()){
+            System.out.println("Nome: "+cliente.getNome());
+            System.out.println("Codigo: "+cliente.getCodigo());
+            System.out.println("CNPJ: "+cliente.getCNPJ());
+            System.out.println("CPF: "+cliente.getCPF());
+            System.out.println("Email: "+cliente.getEmail());
+            System.out.println("Tipo: "+cliente.getTipo());
+            System.out.println("OBS: "+cliente.getOBS());
+            System.out.println("Telefone: "+cliente.getTelefone());
+            System.out.println("================================");
+        }
+*/      
+/*=========================      Exemplo de como Remover Usuario  ================================*/
+ /*========================= Apenas tem que Mostrar o cliente pelo ID.       ================================*/
+/*
+        ClienteDAO cDAO = new ClienteDAO();
+        cDAO.remove(2);
+*/
  
  
- 
+
+   
+   
+   
  
     }
 
