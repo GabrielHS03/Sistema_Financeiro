@@ -7,7 +7,8 @@ import model.Usuario;
 
 public class UsuarioDAO {
 
-    // Metodo para salvar no banco de dados!
+    // Metodo para salvar no banco de dados !
+    // Metodo para fazer Update so informar o ID!
     public Usuario save(Usuario usuario) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
 
@@ -44,7 +45,7 @@ public class UsuarioDAO {
         return usuario;
     }
 
-    public List<Usuario> findAll() {
+    public List<Usuario> buscarTodos() {
 
         EntityManager entityManager = new ConnectionFactory().getConnection();
         List<Usuario> usuarios = null;
