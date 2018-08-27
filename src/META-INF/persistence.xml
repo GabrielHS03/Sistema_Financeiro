@@ -6,7 +6,6 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Lista de entidades -->
     <class>model.Usuario</class>
-    <class>model.Endereco</class>
     <class>model.Cliente</class>
     <properties>
       <!-- Propriedades JDBC -->
