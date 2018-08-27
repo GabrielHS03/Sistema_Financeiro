@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import DAO.UsuarioDAO;
 import application.Home;
 import application.Login;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import model.Usuario;
 
 public class LoginController implements Initializable {
 
@@ -50,8 +52,9 @@ public class LoginController implements Initializable {
 	}
 
 	public void login() {
-		if (txtUsuario.getText().equals("Alessandra") && txtSenha.getText().equals("123")) {
+		if (txtUsuario.getText().equals(retornoLoginBD()) && txtSenha.getText().equals(retornoSenhaBD())) {
 			lblStatus.setText("Login efetuado com sucesso!");
+			retornoLoginBD();
 			Home home = new Home();
 			Login.getStage().close();
 			try {
@@ -64,4 +67,16 @@ public class LoginController implements Initializable {
 		}
 	}
 
+	public String retornoLoginBD() {
+        UsuarioDAO userDAO = new UsuarioDAO();
+        Usuario user = userDAO.buscarID(1);
+        
+        return user.getLogin();
+	}
+	public String retornoSenhaBD() {
+        UsuarioDAO userDAO = new UsuarioDAO();
+        Usuario user = userDAO.buscarID(1);
+        
+        return user.getSenha();
+	}
 }

@@ -18,16 +18,16 @@ public class TesteDB {
 
     public static void main(String[] args) {
 /*=========================      Exemplo de Inserir novo Usuario!  ================================*/ 
-        /*        
+                
         
         Usuario user = new Usuario();
-        user.setLogin("Alyson02");
-        user.setSenha("1587");   
+        user.setLogin("Franklin");
+        user.setSenha("12345");   
         
         UsuarioDAO userDAO = new UsuarioDAO();
         userDAO.save(user);
         
-         */
+         
         
 /*=========================      Exemplo de Atualizar um Usuario existente!  ================================*/        
  /*       
