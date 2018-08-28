@@ -19,16 +19,16 @@ public class ClienteDAO {
 
     // Metodo para salvar no banco de dados !
     // Metodo para fazer Update so informar o ID!
-    public Cliente save(Cliente usuario) {
+    public Cliente save(Cliente cliente) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
 
         try {
             entityManager.getTransaction().begin();
-            if (usuario.getID() == null) {
+            if (cliente.getID() == null) {
 
-                entityManager.persist(usuario);
+                entityManager.persist(cliente);
             } else {
-                entityManager.merge(usuario);
+                entityManager.merge(cliente);
             }
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -38,31 +38,31 @@ public class ClienteDAO {
         } finally {
             entityManager.close();
         }
-        return usuario;
+        return cliente;
     }
 
     public Cliente buscarID(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Cliente usuario = null;
+        Cliente cliente = null;
 
         try {
-            usuario = entityManager.find(Cliente.class, ID);
+            cliente = entityManager.find(Cliente.class, ID);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             entityManager.close();
         }
-        return usuario;
+        return cliente;
     }
 
     public List<Cliente> buscarTodos() {
 
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        List<Cliente> usuarios = null;
+        List<Cliente> clientes = null;
 
         try {
 
-            usuarios = entityManager.createQuery("from TB_Cliente").getResultList();
+            clientes = entityManager.createQuery("from TB_Cliente").getResultList();
 
         } catch (Exception e) {
             //Se der Error aqui vai aparesentar o error .
@@ -70,17 +70,17 @@ public class ClienteDAO {
         } finally {
             entityManager.close();
         }
-        return usuarios;
+        return clientes;
     }
 
     public Cliente remove(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Cliente usuario = null;
+        Cliente cliente = null;
 
         try {
-            usuario = entityManager.find(Cliente.class, ID);
+            cliente = entityManager.find(Cliente.class, ID);
             entityManager.getTransaction().begin();
-            entityManager.remove(usuario);
+            entityManager.remove(cliente);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -91,6 +91,6 @@ public class ClienteDAO {
             entityManager.close();
         }
 
-        return usuario;
+        return cliente;
     }
 }
