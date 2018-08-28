@@ -48,7 +48,7 @@ public class ClientController implements Initializable {
     @FXML
     private ImageView imgReturn;
 
-    private List<Cliente> listClientes = new ArrayList();
+    private List<Cliente> listClientes = new ArrayList<Cliente>();
     private ObservableList<Cliente> observableListClientes;
     
     

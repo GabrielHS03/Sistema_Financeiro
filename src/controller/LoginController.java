@@ -14,7 +14,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 import model.Usuario;
 
 public class LoginController implements Initializable {
@@ -54,13 +53,11 @@ public class LoginController implements Initializable {
 
 	public void login() {
 		if (txtUsuario.getText().equals(retornoLoginBD()) && txtSenha.getText().equals(retornoSenhaBD())) {
-			//lblStatus.setText("Login efetuado com sucesso!");
-			retornoLoginBD();                        
+			lblStatus.setText("Login efetuado com sucesso!");                   
 			Home home = new Home();                        
 			Login.getStage().close();
 			try {
 				home.start(new Stage());
-                                JOptionPane.showMessageDialog(null, "Bem Vindo!");
 			} catch (Exception e) {
 				e.getMessage();
 			}
