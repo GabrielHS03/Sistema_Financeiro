@@ -26,9 +26,9 @@
       </MenuButton>
       <TableView fx:id="tbCliente" layoutX="42.0" layoutY="153.0" prefHeight="419.0" prefWidth="716.0">
         <columns>
-          <TableColumn fx:id="tbColumnID" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="tbColumnName" prefWidth="333.0" text="Nome" />
-          <TableColumn fx:id="tbColumnCPF" minWidth="0.0" prefWidth="160.0" text="CPF/CNPJ" />
+          <TableColumn fx:id="tbClienteColumnID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tbClienteColumnNome" prefWidth="333.0" text="Nome" />
+          <TableColumn fx:id="tbClienteColumnCPF" minWidth="0.0" prefWidth="160.0" text="CPF/CNPJ" />
           
         </columns>
       </TableView>
