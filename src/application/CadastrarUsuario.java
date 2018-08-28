@@ -6,6 +6,7 @@
 package application;
 
 import DAO.UsuarioDAO;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Usuario;
@@ -21,6 +22,10 @@ public class CadastrarUsuario extends javax.swing.JFrame {
      */
     public CadastrarUsuario() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) jTUsuarios.getModel();
+        jTUsuarios.setRowSorter(new TableRowSorter(modelo));
+
+        readJTable();
     }
 
     /**
@@ -68,11 +73,16 @@ public class CadastrarUsuario extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTUsuariosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTUsuarios);
@@ -87,6 +97,11 @@ public class CadastrarUsuario extends javax.swing.JFrame {
         });
 
         jAlterar.setText("Alterar");
+        jAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,8 +130,8 @@ public class CadastrarUsuario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -145,54 +160,90 @@ public class CadastrarUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void jTUsuarios(){
-        initComponents();
-        DefaultTableModel modelo = (DefaultTableModel) jTUsuarios.getModel();
-        jTUsuarios.setRowSorter(new TableRowSorter(modelo));
-        
-        readJTable();
-    }
-    
-    
-    public void readJTable(){
-        DefaultTableModel modelo = (DefaultTableModel) jTUsuarios.getModel();
 
-           UsuarioDAO userDAO = new UsuarioDAO();
-        for(Usuario user: userDAO.buscarTodos()){
-           modelo.addRow(new Object[]{
+    public void readJTable() {
+        DefaultTableModel modelo = (DefaultTableModel) jTUsuarios.getModel();
+        modelo.setNumRows(0);
+        UsuarioDAO userDAO = new UsuarioDAO();
+        for (Usuario user : userDAO.buscarTodos()) {
+            modelo.addRow(new Object[]{
                 user.getID(),
                 user.getLogin(),
-                user.getSenha(),          
-           
-           });
+                user.getSenha(),});
         }
-        
+
     }
-    
-    
-    
-    
+
     private void jCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadastrarActionPerformed
-        Usuario user = new Usuario();        
-        UsuarioDAO userDAO = new UsuarioDAO();       
-        
+        Usuario user = new Usuario();
+        UsuarioDAO userDAO = new UsuarioDAO();
+
         user.setLogin(txtUsuario.getText());
-        user.setSenha(txtSenha.getText());  
-        
-        
-        userDAO.save(user);     
+        user.setSenha(txtSenha.getText());
+
+        userDAO.save(user);
+
+        txtUsuario.setText("");
+        txtSenha.setText("");
         readJTable();
-        
+
     }//GEN-LAST:event_jCadastrarActionPerformed
 
     private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
         // TODO add your handling code here:
-        
-        
-        
+
+        if (jTUsuarios.getSelectedRow() != -1) {
+
+        if (jTUsuarios.getSelectedRow() != -1) {
+
+            Usuario user = new Usuario();
+            UsuarioDAO userDAO = new UsuarioDAO();
+
+            user.setLogin(txtUsuario.getText());
+            user.setSenha(txtSenha.getText());
+            //user.setID((int)jTUsuarios.getValueAt(jTUsuarios.getSelectedRow(), 0));
+            userDAO.remove((int)jTUsuarios.getValueAt(jTUsuarios.getSelectedRow(), 0));
+
+            txtUsuario.setText("");
+            txtSenha.setText("");
+            readJTable();
+        }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um usuarios para excluir");
+        }
+
         //System.out.println("Linha Selecionada"+jTUsuarios.getSelectedRow());
-        
+
     }//GEN-LAST:event_jExcluirActionPerformed
+
+    private void jTUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTUsuariosMouseClicked
+        // TODO add your handling code here:
+        if (jTUsuarios.getSelectedRow() != -1) {
+            txtUsuario.setText(jTUsuarios.getValueAt(jTUsuarios.getSelectedRow(), 1).toString());
+            txtSenha.setText(jTUsuarios.getValueAt(jTUsuarios.getSelectedRow(), 2).toString());
+        }
+
+
+    }//GEN-LAST:event_jTUsuariosMouseClicked
+
+    private void jAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAlterarActionPerformed
+
+        if (jTUsuarios.getSelectedRow() != -1) {
+
+            Usuario user = new Usuario();
+            UsuarioDAO userDAO = new UsuarioDAO();
+
+            user.setLogin(txtUsuario.getText());
+            user.setSenha(txtSenha.getText());
+            user.setID((int)jTUsuarios.getValueAt(jTUsuarios.getSelectedRow(), 0));
+            userDAO.save(user);
+
+            txtUsuario.setText("");
+            txtSenha.setText("");
+            readJTable();
+        }
+    }//GEN-LAST:event_jAlterarActionPerformed
 
     /**
      * @param args the command line arguments

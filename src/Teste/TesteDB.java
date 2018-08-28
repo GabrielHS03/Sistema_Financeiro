@@ -69,7 +69,7 @@ public class TesteDB {
  
  
  /*=========================      Exemplo de Inserir novo Cliente! ================================*/
- /*    ClienteDAO cDAO = new ClienteDAO();
+  /* ClienteDAO cDAO = new ClienteDAO();
         Cliente cliente = new Cliente();
         
         cliente.setCodigo(1010);
