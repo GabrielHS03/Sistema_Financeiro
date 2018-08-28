@@ -3,16 +3,15 @@ package controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 import application.Client;
+import application.ClienteTableView;
 import application.Home;
-import javafx.fxml.Initializable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
@@ -54,6 +53,9 @@ public class ClientController implements Initializable {
     
 	public void initialize(URL url, ResourceBundle rb) {
 		carregarTableViewClientes();
+		tbCliente.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> abrirTableViewCompleta());
+		
 		imgReturn.setOnMouseClicked(MouseEvent -> {
 			Client.getStage().close();
 			Home home = new Home();
@@ -94,5 +96,15 @@ public class ClientController implements Initializable {
 		observableListClientes = FXCollections.observableArrayList(listClientes);
 		
 		tbCliente.setItems(observableListClientes);
+	}
+	
+	public void abrirTableViewCompleta(){
+		System.out.println("TESTE");
+		ClienteTableView clienteTableView = new ClienteTableView();
+		try {
+			clienteTableView.start(new Stage());
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 }
