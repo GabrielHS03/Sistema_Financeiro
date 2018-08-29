@@ -7,6 +7,10 @@
     <!-- Lista de entidades -->
     <class>model.Usuario</class>
     <class>model.Cliente</class>
+    <class>model.Endereco</class>
+    <class>model.Cidade</class>
+    <class>model.Estado</class>
+    <class>model.Pais</class>
     <properties>
       <!-- Propriedades JDBC -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
