@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Client;
+import application.ClienteCadastro;
 import application.ClienteTableView;
 import application.Home;
 import javafx.collections.FXCollections;
@@ -64,7 +65,16 @@ public class ClientController implements Initializable {
 			} catch (Exception e) {
 				e.getMessage();
 			}
-
+		});
+		
+		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
+			Client.getStage().close();
+			ClienteCadastro clienteCadastro = new ClienteCadastro();
+			try {
+				clienteCadastro.start(new Stage());
+			} catch (Exception e) {
+				e.getMessage();
+			}
 		});
 	}
 	
