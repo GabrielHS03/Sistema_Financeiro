@@ -52,7 +52,7 @@ public class LoginController implements Initializable {
 	}
 
 	public void login() {
-		if (txtUsuario.getText().equals(retornoLoginBD()) && txtSenha.getText().equals(retornoSenhaBD())) {
+		if (txtUsuario.getText().equals("adm") && txtSenha.getText().equals("123")) {
 			lblStatus.setText("Login efetuado com sucesso!");                   
 			Home home = new Home();                        
 			Login.getStage().close();
