@@ -14,9 +14,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -24,11 +27,6 @@ import model.Cliente;
 
 public class ClientController implements Initializable {
 
-    @FXML
-    private MenuButton btnBoleto;
-
-    @FXML
-    private MenuButton btnRelatorio;
 
     @FXML
     private TableView<Cliente> tbCliente;
@@ -41,18 +39,67 @@ public class ClientController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> tbClienteColumnCPF;
+    @FXML
+    private ImageView imgReturn;
 
     @FXML
     private Button btnCadastrarCliente;
 
     @FXML
-    private ImageView imgReturn;
+    private ComboBox<String> comboBox;
 
+    @FXML
+    private TextField txtID;
+
+    @FXML
+    private TextField txtNome;
+
+    @FXML
+    private TextField txtNomeFantasia;
+
+    @FXML
+    private TextField txtCPFCNPJ;
+
+    @FXML
+    private TextField txtTelefone;
+
+    @FXML
+    private TextField txtEndereco;
+
+    @FXML
+    private Label lblCNPJ;
+
+    @FXML
+    private TextField txtComplemento;
+
+    @FXML
+    private TextField txtBairro;
+
+    @FXML
+    private TextField txtCEP;
+
+    @FXML
+    private TextArea txtObservacao;
+
+    @FXML
+    private ImageView imgHome;
     private List<Cliente> listClientes = new ArrayList<Cliente>();
     private ObservableList<Cliente> observableListClientes;
     
     
 	public void initialize(URL url, ResourceBundle rb) {
+		//ComboBox
+		ObservableList<String> options = 
+                FXCollections.observableArrayList(
+                    "CPF",
+                    "CNPJ"
+                    
+                   
+                );
+		
+        comboBox.setItems(options);
+		
+		
 		carregarTableViewClientes();
 		tbCliente.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> abrirTableViewCompleta());
@@ -68,7 +115,6 @@ public class ClientController implements Initializable {
 		});
 		
 		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
-			Client.getStage().close();
 			ClienteCadastro clienteCadastro = new ClienteCadastro();
 			try {
 				clienteCadastro.start(new Stage());
