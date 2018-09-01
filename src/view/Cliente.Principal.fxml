@@ -24,7 +24,7 @@
             <TableColumn fx:id="tbClienteColumnEndereco" prefWidth="100.0" text="Endereço" />
             <TableColumn fx:id="tbClienteColumnTelefone" prefWidth="68.0" text="Telefone" />
             <TableColumn fx:id="tbClienteColumnEmail" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="tbClienteColumnObs" prefWidth="75.0" text="Observação" />
+            <TableColumn fx:id="tbClienteColumnOBS" prefWidth="75.0" text="Observacao" />
           
         </columns>
       </TableView>

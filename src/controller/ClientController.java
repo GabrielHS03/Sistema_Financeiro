@@ -42,6 +42,19 @@ public class ClientController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> tbClienteColumnCPF;
+    
+    @FXML
+    private TableColumn<?, ?> tbClienteColumnEndereco;
+    
+    @FXML
+    private TableColumn<?, ?> tbClienteColumnTelefone;
+    
+    @FXML
+    private TableColumn<?, ?> tbClienteColumnEmail;
+    
+    @FXML
+    private TableColumn<?, ?> tbClienteColumnOBS;
+    
     @FXML
     private ImageView imgReturn;
 
@@ -66,6 +79,9 @@ public class ClientController implements Initializable {
     @FXML
     private TextField txtTelefone;
 
+    @FXML
+    private TextField txtEmail;
+    
     @FXML
     private TextField txtEndereco;
 
@@ -96,8 +112,6 @@ public class ClientController implements Initializable {
                 FXCollections.observableArrayList(
                     "CPF",
                     "CNPJ"
-                    
-                   
                 );
 		
         comboBox.setItems(options);
@@ -125,6 +139,7 @@ public class ClientController implements Initializable {
 	        cliente.setNome(txtNome.getText());
 	        cliente.setCPF(Double.parseDouble(txtCPFCNPJ.getText()));
 	        cliente.setTelefone(txtTelefone.getText());
+	        cliente.setEmail(txtEmail.getText());
 	        cliente.setOBS(txtObservacao.getText());
 
 	        clienteDAO.save(cliente);
@@ -136,26 +151,17 @@ public class ClientController implements Initializable {
 		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("ID"));
 		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
+		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("TTTTTT"));
 		
-		Cliente c1 = new Cliente();
-		c1.setID(123);
-		c1.setNome("Franklin");
-		c1.setCPF(1234567.89);
 		
-		Cliente c2 = new Cliente();
-		c2.setID(456);
-		c2.setNome("Gabriel");
-		c2.setCPF(9876543.21);
-		
-		Cliente c3 = new Cliente();
-		c3.setID(789);
-		c3.setNome("Alyson");
-		c3.setCPF(7894561.23);
-		
-		listClientes.add(c1);
-		listClientes.add(c2);
-		listClientes.add(c3);
-		
+		ClienteDAO clienteDAO = new ClienteDAO();
+        for (Cliente cliente : clienteDAO.buscarTodos()) {  	
+        
+        	listClientes.add(cliente);
+        }
+        		
 		observableListClientes = FXCollections.observableArrayList(listClientes);
 		
 		tbCliente.setItems(observableListClientes);
