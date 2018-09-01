@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import DAO.ClienteDAO;
+import DAO.UsuarioDAO;
 import application.Client;
 import application.ClienteCadastro;
 import application.ClienteTableView;
@@ -24,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Cliente;
+import model.Usuario;
 
 public class ClientController implements Initializable {
 
@@ -115,12 +118,16 @@ public class ClientController implements Initializable {
 		});
 		
 		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
-			ClienteCadastro clienteCadastro = new ClienteCadastro();
-			try {
-				clienteCadastro.start(new Stage());
-			} catch (Exception e) {
-				e.getMessage();
-			}
+	        Cliente cliente = new Cliente();
+	        ClienteDAO clienteDAO = new ClienteDAO();
+	        
+	        cliente.setCodigo(Integer.parseInt(txtID.getText()));
+	        cliente.setNome(txtNome.getText());
+	        cliente.setCPF(Double.parseDouble(txtCPFCNPJ.getText()));
+	        cliente.setTelefone(txtTelefone.getText());
+	        cliente.setOBS(txtObservacao.getText());
+
+	        clienteDAO.save(cliente);
 		});
 	}
 	
