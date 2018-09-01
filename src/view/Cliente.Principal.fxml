@@ -12,14 +12,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="1280.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
    <children>
       <TableView fx:id="tbCliente" layoutX="695.0" prefHeight="600.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="tbClienteColumnID" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="tbClienteColumnNome" prefWidth="192.0" text="Nome" />
-          <TableColumn fx:id="tbClienteColumnCPF" minWidth="0.0" prefWidth="109.0" text="CPF/CNPJ" />
+          <TableColumn fx:id="tbClienteColumnID" prefWidth="47.0" text="ID" />
+          <TableColumn fx:id="tbClienteColumnNome" prefWidth="143.0" text="Nome" />
+          <TableColumn fx:id="tbClienteColumnCPF" minWidth="0.0" prefWidth="102.0" text="CPF/CNPJ" />
+            <TableColumn fx:id="tbClienteColumnEndereco" prefWidth="100.0" text="Endereço" />
+            <TableColumn fx:id="tbClienteColumnTelefone" prefWidth="68.0" text="Telefone" />
+            <TableColumn fx:id="tbClienteColumnEmail" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="tbClienteColumnObs" prefWidth="75.0" text="Observação" />
           
         </columns>
       </TableView>
@@ -36,15 +41,15 @@
                </font>
             </Button>
             <ComboBox fx:id="comboBox" layoutX="110.0" layoutY="72.0" prefHeight="25.0" prefWidth="74.0" />
-            <TextField fx:id="txtID" layoutX="110.0" layoutY="111.0" prefHeight="25.0" prefWidth="87.0" promptText="ID" />
-            <TextField fx:id="txtNome" layoutX="110.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" promptText="Nome" />
-            <TextField fx:id="txtNomeFantasia" layoutX="415.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" promptText="Nome Fantasia" visible="false" />
-            <TextField fx:id="txtCPFCNPJ" layoutX="110.0" layoutY="186.0" promptText="CPF" />
-            <TextField fx:id="txtTelefone" layoutX="415.0" layoutY="186.0" promptText="Telefone" />
-            <TextField fx:id="txtEndereco" layoutX="110.0" layoutY="267.0" prefHeight="25.0" prefWidth="219.0" promptText="Endereço" />
+            <TextField fx:id="txtID" layoutX="110.0" layoutY="111.0" prefHeight="25.0" prefWidth="87.0" />
+            <TextField fx:id="txtNome" layoutX="110.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" />
+            <TextField fx:id="txtNomeFantasia" layoutX="415.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" visible="false" />
+            <TextField fx:id="txtCPFCNPJ" layoutX="415.0" layoutY="103.0" />
+            <TextField fx:id="txtTelefone" layoutX="415.0" layoutY="186.0" />
+            <TextField fx:id="txtEndereco" layoutX="110.0" layoutY="267.0" prefHeight="25.0" prefWidth="219.0" />
             <Label layoutX="87.0" layoutY="115.0" text="ID:" textAlignment="RIGHT" />
             <Label layoutX="69.0" layoutY="150.0" text="Nome:" textAlignment="RIGHT" />
-            <Label fx:id="lblCNPJ" layoutX="83.0" layoutY="190.0" text="CPF:" textAlignment="RIGHT" />
+            <Label fx:id="lblCNPJ" layoutX="384.0" layoutY="107.0" text="CPF:" textAlignment="RIGHT" />
             <Label layoutX="360.0" layoutY="190.0" text="Telefone:" />
             <Label layoutX="49.0" layoutY="271.0" text="Endereço:" textAlignment="RIGHT" />
             <TextField fx:id="txtComplemento" layoutX="110.0" layoutY="300.0" />
@@ -61,7 +66,10 @@
                   <Image url="@../../images/home.png" />
                </image>
             </ImageView>
+            <TextField fx:id="txtEmail" layoutX="110.0" layoutY="186.0" prefHeight="25.0" prefWidth="203.0" />
+            <Label layoutX="73.0" layoutY="190.0" text="Email:" textAlignment="RIGHT" />
          </children>
       </Pane>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </children>
 </AnchorPane>
