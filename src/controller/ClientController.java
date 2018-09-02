@@ -146,12 +146,12 @@ public class ClientController implements Initializable {
 	
 	public void carregarTableViewClientes() {
 		
-		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
-		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("TTTTTT"));
+		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("OBS"));
 		
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
