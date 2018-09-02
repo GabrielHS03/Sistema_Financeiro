@@ -8,8 +8,6 @@ import java.util.ResourceBundle;
 import DAO.ClienteDAO;
 import DAO.UsuarioDAO;
 import application.Client;
-import application.ClienteCadastro;
-import application.ClienteTableView;
 import application.Home;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -119,7 +117,7 @@ public class ClientController implements Initializable {
 		
 		carregarTableViewClientes();
 		tbCliente.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> abrirTableViewCompleta());
+				(observable, oldValue, newValue) -> System.out.println("TESTE"));
 		
 		imgReturn.setOnMouseClicked(MouseEvent -> {
 			Client.getStage().close();
@@ -167,13 +165,4 @@ public class ClientController implements Initializable {
 		tbCliente.setItems(observableListClientes);
 	}
 	
-	public void abrirTableViewCompleta(){
-		System.out.println("TESTE");
-		ClienteTableView clienteTableView = new ClienteTableView();
-		try {
-			clienteTableView.start(new Stage());
-		} catch (Exception e) {
-			e.getMessage();
-		}
-	}
 }
