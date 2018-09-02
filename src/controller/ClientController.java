@@ -45,16 +45,12 @@ public class ClientController implements Initializable {
 	private TableColumn<?, ?> tbClienteColumnCPF;
 
 	@FXML
+	private TableColumn<?, ?> tbClienteColumnCNPJ;
+	@FXML
 	private TableColumn<?, ?> tbClienteColumnEndereco;
 
 	@FXML
 	private TableColumn<?, ?> tbClienteColumnTelefone;
-
-	@FXML
-	private TableColumn<?, ?> tbClienteColumnEmail;
-
-	@FXML
-	private TableColumn<?, ?> tbClienteColumnOBS;
 
 	@FXML
 	private ImageView imgReturn;
@@ -105,26 +101,23 @@ public class ClientController implements Initializable {
 	private TextField txtCEP;
 
 	@FXML
+	private TextField txtPesquisar;
+	
+	@FXML
 	private TextArea txtObservacao;
-
+	
 	@FXML
 	private ImageView imgHome;
+	
 	private List<Cliente> listClientes = new ArrayList<Cliente>();
 	private ObservableList<Cliente> observableListClientes;
 	
 	public void initialize(URL url, ResourceBundle rb) {
-		// ComboBox
-		/*
-		 * ObservableList<String> options = FXCollections.observableArrayList( "CPF",
-		 * "CNPJ" );
-		 * 
-		 * comboBox.setItems(options);
-		 */
-
 		comboBox.getItems().addAll("CPF", "CNPJ");
-
+		
 		choice();
 		carregarTableViewClientes();
+		
 		tbCliente.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> System.out.println("TESTE"));
 
@@ -173,14 +166,14 @@ public class ClientController implements Initializable {
 			case "CPF":
 				txtNomeFantasia.setVisible(false);
 				lblCNPJ.setVisible(false);
-				lblCPFCNPJ.setText("CPF:");
-				lblNome.setText("Nome:");
+				lblCPFCNPJ.setText("CPF:*");
+				lblNome.setText("Nome:*");
 				break;
 			case "CNPJ":
 				txtNomeFantasia.setVisible(true);
 				lblCNPJ.setVisible(true);
-				lblCPFCNPJ.setText("CNPJ:");
-				lblNome.setText("Nome Fantasia:");
+				lblCPFCNPJ.setText("CNPJ:*");
+				lblNome.setText("Nome Fantasia:*");
 				break;
 			}
 		});
@@ -191,10 +184,8 @@ public class ClientController implements Initializable {
 		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
-		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CNPJ"));
+		tbClienteColumnCNPJ.setCellValueFactory(new PropertyValueFactory<>("CNPJ"));
 		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("OBS"));
 
 		ClienteDAO clienteDAO = new ClienteDAO();
 		for (Cliente cliente : clienteDAO.buscarTodos()) {
