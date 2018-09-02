@@ -91,7 +91,10 @@ public class ClientController implements Initializable {
 
 	@FXML
 	private Label lblCNPJ;
-
+	
+	@FXML
+	private Label lblNome;
+	
 	@FXML
 	private TextField txtComplemento;
 
@@ -108,7 +111,7 @@ public class ClientController implements Initializable {
 	private ImageView imgHome;
 	private List<Cliente> listClientes = new ArrayList<Cliente>();
 	private ObservableList<Cliente> observableListClientes;
-
+	
 	public void initialize(URL url, ResourceBundle rb) {
 		// ComboBox
 		/*
@@ -141,12 +144,17 @@ public class ClientController implements Initializable {
 
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
-
-			cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
 			cliente.setTelefone(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
-
+			
+			if(comboBox.getValue() == "CPF") {
+				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
+			}else {
+				cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
+				cliente.setNomeFantasia(txtNomeFantasia.getText());
+			}
+			
 			clienteDAO.save(cliente);
 			try {
 				recarregarTela();
@@ -166,12 +174,13 @@ public class ClientController implements Initializable {
 				txtNomeFantasia.setVisible(false);
 				lblCNPJ.setVisible(false);
 				lblCPFCNPJ.setText("CPF:");
+				lblNome.setText("Nome:");
 				break;
 			case "CNPJ":
 				txtNomeFantasia.setVisible(true);
 				lblCNPJ.setVisible(true);
 				lblCPFCNPJ.setText("CNPJ:");
-
+				lblNome.setText("Nome Fantasia:");
 				break;
 			}
 		});
@@ -182,6 +191,7 @@ public class ClientController implements Initializable {
 		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
+		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CNPJ"));
 		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("OBS"));

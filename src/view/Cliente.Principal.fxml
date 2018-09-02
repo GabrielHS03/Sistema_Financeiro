@@ -54,7 +54,7 @@
             <TextField fx:id="txtTelefone" layoutX="415.0" layoutY="186.0" />
             <TextField fx:id="txtEndereco" layoutX="110.0" layoutY="267.0" prefHeight="25.0" prefWidth="219.0" />
             <Label layoutX="87.0" layoutY="115.0" text="ID:" textAlignment="RIGHT" />
-            <Label layoutX="69.0" layoutY="150.0" text="Nome:" textAlignment="RIGHT" />
+            <Label fx:id="lblNome" layoutX="69.0" layoutY="150.0" text="Nome:" textAlignment="RIGHT" />
             <Label fx:id="lblCPFCNPJ" layoutX="384.0" layoutY="107.0" text="CPF:" textAlignment="RIGHT" />
             <Label layoutX="360.0" layoutY="190.0" text="Telefone:" />
             <Label layoutX="49.0" layoutY="271.0" text="Endereço:" textAlignment="RIGHT" />
@@ -66,7 +66,7 @@
             <Label layoutX="376.0" layoutY="304.0" text="Bairro:" textAlignment="RIGHT" />
             <Label layoutX="76.0" layoutY="339.0" text="CEP:" textAlignment="RIGHT" />
             <Label layoutX="37.0" layoutY="397.0" text="Observação:" textAlignment="RIGHT" />
-            <Label fx:id="lblCNPJ" layoutX="329.0" layoutY="150.0" text="Nome Fantasia:" textAlignment="RIGHT" visible="false" />
+            <Label fx:id="lblCNPJ" layoutX="329.0" layoutY="150.0" text="Razão Social:" textAlignment="RIGHT" visible="false" />
             <ImageView fx:id="imgHome" fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/home.png" />

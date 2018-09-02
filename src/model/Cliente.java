@@ -23,6 +23,7 @@ public class Cliente {
     private Integer ID;
     private Integer codigo;
     private String nome;
+    private String nomeFantasia;
     private String telefone;
     private String tipo;
     private Long CPF;
@@ -55,7 +56,15 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
 
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+    
     public String getTelefone() {
         return telefone;
     }
