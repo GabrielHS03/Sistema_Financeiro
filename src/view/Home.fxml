@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -33,6 +34,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btnBoleto" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="btn" stylesheets="@style.css" text="Relatório" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
                <font>
@@ -45,6 +49,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btnRelatorio" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="btn" stylesheets="@style.css" text="Relatório" textFill="WHITE" GridPane.columnIndex="2">
                <font>
@@ -55,6 +62,9 @@
                      <image>
                         <Image url="@../../images/progress-report.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </graphic>
             </Button>
