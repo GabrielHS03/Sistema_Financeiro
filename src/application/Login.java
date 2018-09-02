@@ -1,5 +1,8 @@
 package application;
 
+import javax.persistence.EntityManager;
+
+import controller.ConnectionFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,11 +16,13 @@ public class Login extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+		
 	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
 
+		EntityManager entityManager = new ConnectionFactory().getConnection();
 		Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
 		Scene scene = new Scene(root);
 		Image image = new Image("file:icon.png");
