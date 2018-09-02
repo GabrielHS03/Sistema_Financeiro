@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
@@ -11,6 +9,8 @@ import application.Client;
 import application.Home;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +23,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Cliente;
@@ -31,8 +32,11 @@ public class ClientController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
-    
-	@FXML
+	
+    @FXML
+	private TextField searchBox;
+	
+    @FXML
 	private TableView<Cliente> tbCliente;
 
 	@FXML
@@ -46,6 +50,7 @@ public class ClientController implements Initializable {
 
 	@FXML
 	private TableColumn<?, ?> tbClienteColumnCNPJ;
+	
 	@FXML
 	private TableColumn<?, ?> tbClienteColumnEndereco;
 
@@ -99,9 +104,6 @@ public class ClientController implements Initializable {
 
 	@FXML
 	private TextField txtCEP;
-
-	@FXML
-	private TextField txtPesquisar;
 	
 	@FXML
 	private TextArea txtObservacao;
@@ -109,13 +111,12 @@ public class ClientController implements Initializable {
 	@FXML
 	private ImageView imgHome;
 	
-	private List<Cliente> listClientes = new ArrayList<Cliente>();
-	private ObservableList<Cliente> observableListClientes;
+	private ObservableList<Cliente> listaClientes = FXCollections.observableArrayList();;
 	
 	public void initialize(URL url, ResourceBundle rb) {
 		comboBox.getItems().addAll("CPF", "CNPJ");
-		
 		choice();
+		
 		carregarTableViewClientes();
 		
 		tbCliente.getSelectionModel().selectedItemProperty()
@@ -180,27 +181,56 @@ public class ClientController implements Initializable {
 	}
 
 	public void carregarTableViewClientes() {
+		
+		ClienteDAO clienteDAO = new ClienteDAO();
+		for (Cliente cliente : clienteDAO.buscarTodos()) {
 
+			listaClientes.add(cliente);
+		}
+		
+		tbCliente.setItems(listaClientes);
 		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 		tbClienteColumnCNPJ.setCellValueFactory(new PropertyValueFactory<>("CNPJ"));
 		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-
-		ClienteDAO clienteDAO = new ClienteDAO();
-		for (Cliente cliente : clienteDAO.buscarTodos()) {
-
-			listClientes.add(cliente);
-		}
-
-		observableListClientes = FXCollections.observableArrayList(listClientes);
-
-		tbCliente.setItems(observableListClientes);
 	}
 	
 	public void recarregarTela() throws IOException {
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
 		rootPane.getChildren().setAll(pane);
 	}
+	
+    @FXML
+    public void pesquisarTabela(KeyEvent event) {
+
+    	FilteredList<Cliente> listaClientesFiltered = new FilteredList<>(listaClientes, p -> true);
+        searchBox.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
+        	listaClientesFiltered.setPredicate(cliente -> {
+
+                if (newvalue == null || newvalue.isEmpty()) {
+                    return true;
+                }
+                String typedText = newvalue.toLowerCase();
+                
+                if (cliente.getNome().toLowerCase().indexOf(typedText) != -1) {
+
+                    return true;
+                }
+                String codigoEmString = Integer.toString(cliente.getCodigo());
+                if (codigoEmString.toLowerCase().indexOf(typedText) != -1) {
+
+                    return true;
+                }
+                
+                return false;
+            });
+            SortedList<Cliente> listaClientesSorted = new SortedList<>(listaClientesFiltered);
+            listaClientesSorted.comparatorProperty().bind(tbCliente.comparatorProperty());
+            tbCliente.setItems(listaClientesSorted);
+                       
+            
+        });
+    }
 
 }

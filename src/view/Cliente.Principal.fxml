@@ -83,7 +83,7 @@
             <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="25.0" prefWidth="35.0" />
          </children>
       </Pane>
-      <TextField fx:id="txtPesquisar" layoutX="1117.0" layoutY="27.0" AnchorPane.leftAnchor="1117.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
+      <TextField fx:id="searchBox" layoutX="1117.0" layoutY="27.0" onKeyPressed="#pesquisarTabela" AnchorPane.leftAnchor="1117.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
       <Label layoutX="1056.0" layoutY="31.0" text="Pesquisar:" AnchorPane.leftAnchor="1056.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="31.0" />
    </children>
 </AnchorPane>
