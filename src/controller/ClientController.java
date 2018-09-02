@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
-import DAO.UsuarioDAO;
 import application.Client;
 import application.Home;
 import javafx.collections.FXCollections;
@@ -24,101 +23,102 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Cliente;
-import model.Usuario;
 
 public class ClientController implements Initializable {
 
+	@FXML
+	private TableView<Cliente> tbCliente;
 
-    @FXML
-    private TableView<Cliente> tbCliente;
+	@FXML
+	private TableColumn<?, ?> tbClienteColumnID;
 
-    @FXML
-    private TableColumn<?, ?> tbClienteColumnID;
+	@FXML
+	private TableColumn<?, ?> tbClienteColumnNome;
 
-    @FXML
-    private TableColumn<?, ?> tbClienteColumnNome;
+	@FXML
+	private TableColumn<?, ?> tbClienteColumnCPF;
 
-    @FXML
-    private TableColumn<?, ?> tbClienteColumnCPF;
-    
-    @FXML
-    private TableColumn<?, ?> tbClienteColumnEndereco;
-    
-    @FXML
-    private TableColumn<?, ?> tbClienteColumnTelefone;
-    
-    @FXML
-    private TableColumn<?, ?> tbClienteColumnEmail;
-    
-    @FXML
-    private TableColumn<?, ?> tbClienteColumnOBS;
-    
-    @FXML
-    private ImageView imgReturn;
+	@FXML
+	private TableColumn<?, ?> tbClienteColumnEndereco;
 
-    @FXML
-    private Button btnCadastrarCliente;
+	@FXML
+	private TableColumn<?, ?> tbClienteColumnTelefone;
 
-    @FXML
-    private ComboBox<String> comboBox;
+	@FXML
+	private TableColumn<?, ?> tbClienteColumnEmail;
 
-    @FXML
-    private TextField txtID;
+	@FXML
+	private TableColumn<?, ?> tbClienteColumnOBS;
 
-    @FXML
-    private TextField txtNome;
+	@FXML
+	private ImageView imgReturn;
 
-    @FXML
-    private TextField txtNomeFantasia;
+	@FXML
+	private Button btnCadastrarCliente;
 
-    @FXML
-    private TextField txtCPFCNPJ;
+	@FXML
+	private ComboBox<String> comboBox;
 
-    @FXML
-    private TextField txtTelefone;
+	@FXML
+	private TextField txtID;
 
-    @FXML
-    private TextField txtEmail;
-    
-    @FXML
-    private TextField txtEndereco;
+	@FXML
+	private TextField txtNome;
 
-    @FXML
-    private Label lblCNPJ;
+	@FXML
+	private TextField txtNomeFantasia;
 
-    @FXML
-    private TextField txtComplemento;
+	@FXML
+	private TextField txtCPFCNPJ;
 
-    @FXML
-    private TextField txtBairro;
+	@FXML
+	private TextField txtTelefone;
 
-    @FXML
-    private TextField txtCEP;
+	@FXML
+	private TextField txtEmail;
 
-    @FXML
-    private TextArea txtObservacao;
+	@FXML
+	private TextField txtEndereco;
 
-    @FXML
-    private ImageView imgHome;
-    private List<Cliente> listClientes = new ArrayList<Cliente>();
-    private ObservableList<Cliente> observableListClientes;
-    
-    
+	@FXML
+	Label lblCPFCNPJ;
+
+	@FXML
+	private Label lblCNPJ;
+
+	@FXML
+	private TextField txtComplemento;
+
+	@FXML
+	private TextField txtBairro;
+
+	@FXML
+	private TextField txtCEP;
+
+	@FXML
+	private TextArea txtObservacao;
+
+	@FXML
+	private ImageView imgHome;
+	private List<Cliente> listClientes = new ArrayList<Cliente>();
+	private ObservableList<Cliente> observableListClientes;
+
 	public void initialize(URL url, ResourceBundle rb) {
-		//ComboBox
-		ObservableList<String> options = 
-                FXCollections.observableArrayList(
-                    "CPF",
-                    "CNPJ"
-                );
-		
-        comboBox.setItems(options);
-		
-		
+		// ComboBox
+		/*
+		 * ObservableList<String> options = FXCollections.observableArrayList( "CPF",
+		 * "CNPJ" );
+		 * 
+		 * comboBox.setItems(options);
+		 */
+
+		comboBox.getItems().addAll("CPF", "CNPJ");
+
+		choice();
 		carregarTableViewClientes();
-		tbCliente.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> System.out.println("TESTE"));
-		
+		tbCliente.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> System.out.println("TESTE"));
+
 		imgReturn.setOnMouseClicked(MouseEvent -> {
 			Client.getStage().close();
 			Home home = new Home();
@@ -128,41 +128,67 @@ public class ClientController implements Initializable {
 				e.getMessage();
 			}
 		});
-		
-		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
-	        Cliente cliente = new Cliente();
-	        ClienteDAO clienteDAO = new ClienteDAO();
-	        
-	        cliente.setCodigo(Integer.parseInt(txtID.getText()));
-	        cliente.setNome(txtNome.getText());
-	        cliente.setCPF(Double.parseDouble(txtCPFCNPJ.getText()));
-	        cliente.setTelefone(txtTelefone.getText());
-	        cliente.setEmail(txtEmail.getText());
-	        cliente.setOBS(txtObservacao.getText());
 
-	        clienteDAO.save(cliente);
+		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
+			Cliente cliente = new Cliente();
+			ClienteDAO clienteDAO = new ClienteDAO();
+
+			cliente.setCodigo(Integer.parseInt(txtID.getText()));
+			cliente.setNome(txtNome.getText());
+
+			cliente.setCPF(Double.parseDouble(txtCPFCNPJ.getText()));
+			cliente.setTelefone(txtTelefone.getText());
+			cliente.setEmail(txtEmail.getText());
+			cliente.setOBS(txtObservacao.getText());
+
+			clienteDAO.save(cliente);
 		});
 	}
-	
+
+	public void choice() {
+
+		comboBox.setOnAction(e -> {
+			switch (comboBox.getValue()) {
+			case "CPF":
+				txtNomeFantasia.setVisible(false);
+				lblCNPJ.setVisible(false);
+				lblCPFCNPJ.setText("CPF:");
+				break;
+			case "CNPJ":
+				txtNomeFantasia.setVisible(true);
+				lblCNPJ.setVisible(true);
+				lblCPFCNPJ.setText("CNPJ:");
+
+				break;
+			}
+		});
+	}
+
 	public void carregarTableViewClientes() {
-		
+
+		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
+		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("Observação"));
+
 		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
 		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
 		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("OBS"));
-		
-		
+
 		ClienteDAO clienteDAO = new ClienteDAO();
-        for (Cliente cliente : clienteDAO.buscarTodos()) {  	
-        
-        	listClientes.add(cliente);
-        }
-        		
+		for (Cliente cliente : clienteDAO.buscarTodos()) {
+
+			listClientes.add(cliente);
+		}
+
 		observableListClientes = FXCollections.observableArrayList(listClientes);
-		
+
 		tbCliente.setItems(observableListClientes);
 	}
-	
+
 }
