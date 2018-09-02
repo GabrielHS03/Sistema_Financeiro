@@ -25,8 +25,8 @@ public class Cliente {
     private String nome;
     private String telefone;
     private String tipo;
-    private Double CPF;
-    private Double CNPJ;
+    private Long CPF;
+    private Long CNPJ;
     private String email;
     private String OBS;
     //@OneToOne
@@ -72,19 +72,19 @@ public class Cliente {
         this.tipo = tipo;
     }
 
-    public Double getCPF() {
+    public Long getCPF() {
         return CPF;
     }
 
-    public void setCPF(Double CPF) {
+    public void setCPF(Long CPF) {
         this.CPF = CPF;
     }
 
-    public Double getCNPJ() {
+    public Long getCNPJ() {
         return CNPJ;
     }
 
-    public void setCNPJ(Double CNPJ) {
+    public void setCNPJ(Long CNPJ) {
         this.CNPJ = CNPJ;
     }
 

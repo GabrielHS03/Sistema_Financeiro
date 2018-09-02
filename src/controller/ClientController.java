@@ -136,7 +136,7 @@ public class ClientController implements Initializable {
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
 
-			cliente.setCPF(Double.parseDouble(txtCPFCNPJ.getText()));
+			cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
 			cliente.setTelefone(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
