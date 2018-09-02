@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1280.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="1280.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
    <children>
       <TableView fx:id="tbCliente" layoutX="654.0" prefHeight="600.0" prefWidth="612.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="654.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
         <columns>

@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import application.Home;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,11 +23,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Cliente;
 
 public class ClientController implements Initializable {
 
+    @FXML
+    private AnchorPane rootPane;
+    
 	@FXML
 	private TableView<Cliente> tbCliente;
 
@@ -142,6 +148,13 @@ public class ClientController implements Initializable {
 			cliente.setOBS(txtObservacao.getText());
 
 			clienteDAO.save(cliente);
+			try {
+				recarregarTela();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		});
 	}
 
@@ -166,18 +179,11 @@ public class ClientController implements Initializable {
 
 	public void carregarTableViewClientes() {
 
-		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
-		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
-		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("Observação"));
-
 		tbClienteColumnID.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
-		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
-		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+		tbClienteColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tbClienteColumnOBS.setCellValueFactory(new PropertyValueFactory<>("OBS"));
 
 		ClienteDAO clienteDAO = new ClienteDAO();
@@ -189,6 +195,11 @@ public class ClientController implements Initializable {
 		observableListClientes = FXCollections.observableArrayList(listClientes);
 
 		tbCliente.setItems(observableListClientes);
+	}
+	
+	public void recarregarTela() throws IOException {
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
+		rootPane.getChildren().setAll(pane);
 	}
 
 }
