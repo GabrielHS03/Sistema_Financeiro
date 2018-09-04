@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mysql.fabric.xmlrpc.Client;
+
 import DAO.ClienteDAO;
+import application.Home;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Cliente;
 
 public class ClientController implements Initializable {
@@ -112,17 +116,10 @@ public class ClientController implements Initializable {
 		choice();
 		
 		carregarTableViewClientes();
-		//Alteração de Clientes
+		
 		tbCliente.getSelectionModel().selectedItemProperty()
-				.addListener((observable, oldValue, newValue) -> {
-					try {
-						carregarTela();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				});
-		//Voltar pra tela HOME
+				.addListener((observable, oldValue, newValue) -> System.out.println("TESTE"));
+
 		imgHome.setOnMouseClicked(MouseEvent -> {
 			AnchorPane pane;
 			try {
@@ -134,7 +131,6 @@ public class ClientController implements Initializable {
 			
 		});
 
-		//Salva os campos preenchidos no banco
 		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
 			Cliente cliente = new Cliente();
 			ClienteDAO clienteDAO = new ClienteDAO();
@@ -226,19 +222,6 @@ public class ClientController implements Initializable {
                     return true;
                 }
                 
-                String cpfEmString = Long.toString(cliente.getCPF());
-                System.out.println(cpfEmString);
-                if (cpfEmString.toLowerCase().indexOf(typedText) != -1) {
-
-                    return true;
-                }
-                
-                String cnpjEmString = Long.toString(cliente.getCNPJ());
-                if (cnpjEmString.toLowerCase().indexOf(typedText) != -1) {
-
-                    return true;
-                }
-                
                 return false;
             });
             SortedList<Cliente> listaClientesSorted = new SortedList<>(listaClientesFiltered);
@@ -246,14 +229,5 @@ public class ClientController implements Initializable {
             tbCliente.setItems(listaClientesSorted);                      
         });
     }
-    
-	public void carregarTela() throws IOException  {
-
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
-		rootPane.getChildren().setAll(pane);
-		
-		
-	}
-
 
 }
