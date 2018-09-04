@@ -211,16 +211,16 @@ public class ClientController implements Initializable {
                     return true;
                 }
                 String typedText = newvalue.toLowerCase();
-                
-                if (cliente.getNome().toLowerCase().indexOf(typedText) != -1) {
-
-                    return true;
-                }
+               
                 String codigoEmString = Integer.toString(cliente.getCodigo());
-                if (codigoEmString.toLowerCase().indexOf(typedText) != -1) {
+                String cpfEmString = String.valueOf(cliente.getCPF());
+                String cnpjEmString = String.valueOf(cliente.getCNPJ());
+                
+                if ((cliente.getNome().toLowerCase().indexOf(typedText) != -1) || (codigoEmString.toLowerCase().indexOf(typedText) != -1) || (cpfEmString.toLowerCase().indexOf(typedText) != -1) || (cnpjEmString.toLowerCase().indexOf(typedText) != -1)) {
 
                     return true;
                 }
+
                 
                 return false;
             });
