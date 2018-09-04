@@ -21,17 +21,5 @@ public class Home extends Application {
 		stage.setTitle("Home");
 		stage.setScene(scene);
 		stage.show();
-		//setStage(stage);
-
 	}
-
-/*
-	public static Stage getStage() {
-		return stage;
-	}
-
-	public static void setStage(Stage stage) {
-		Home.stage = stage;
-	}*/
-
 }

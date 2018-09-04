@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mysql.fabric.xmlrpc.Client;
+
 import DAO.ClienteDAO;
-import application.Client;
 import application.Home;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,9 +57,6 @@ public class ClientController implements Initializable {
 
 	@FXML
 	private TableColumn<?, ?> tbClienteColumnTelefone;
-
-	@FXML
-	private ImageView imgReturn;
 
 	@FXML
 	private Button btnCadastrarCliente;
@@ -122,14 +120,15 @@ public class ClientController implements Initializable {
 		tbCliente.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> System.out.println("TESTE"));
 
-		imgReturn.setOnMouseClicked(MouseEvent -> {
-			Client.getStage().close();
-			Home home = new Home();
+		imgHome.setOnMouseClicked(MouseEvent -> {
+			AnchorPane pane;
 			try {
-				home.start(new Stage());
-			} catch (Exception e) {
-				e.getMessage();
+				pane = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
+				rootPane.getChildren().setAll(pane);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+			
 		});
 
 		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
