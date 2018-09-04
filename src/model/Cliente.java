@@ -23,7 +23,7 @@ public class Cliente {
     private Integer ID;
     private Integer codigo;
     private String nome;
-    private String nomeFantasia;
+    private String razaoSocial;
     private String telefone;
     private String tipo;
     private Long CPF;
@@ -57,12 +57,12 @@ public class Cliente {
         this.nome = nome;
     }
     
-    public String getNomeFantasia() {
-        return nomeFantasia;
+    public String getRazaoSocial() {
+        return razaoSocial;
     }
 
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
     }
     
     public String getTelefone() {

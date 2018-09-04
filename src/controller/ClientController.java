@@ -73,7 +73,7 @@ public class ClientController implements Initializable {
 	private TextField txtNome;
 
 	@FXML
-	private TextField txtNomeFantasia;
+	private TextField txtRazaoSocial;
 
 	@FXML
 	private TextField txtCPFCNPJ;
@@ -146,7 +146,7 @@ public class ClientController implements Initializable {
 				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
 			}else {
 				cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
-				cliente.setNomeFantasia(txtNomeFantasia.getText());
+				cliente.setRazaoSocial(txtRazaoSocial.getText());
 			}
 			
 			clienteDAO.save(cliente);
@@ -165,13 +165,13 @@ public class ClientController implements Initializable {
 		comboBox.setOnAction(e -> {
 			switch (comboBox.getValue()) {
 			case "CPF":
-				txtNomeFantasia.setVisible(false);
+				txtRazaoSocial.setVisible(false);
 				lblCNPJ.setVisible(false);
 				lblCPFCNPJ.setText("CPF:*");
 				lblNome.setText("Nome:*");
 				break;
 			case "CNPJ":
-				txtNomeFantasia.setVisible(true);
+				txtRazaoSocial.setVisible(true);
 				lblCNPJ.setVisible(true);
 				lblCPFCNPJ.setText("CNPJ:*");
 				lblNome.setText("Nome Fantasia:*");
@@ -227,9 +227,7 @@ public class ClientController implements Initializable {
             });
             SortedList<Cliente> listaClientesSorted = new SortedList<>(listaClientesFiltered);
             listaClientesSorted.comparatorProperty().bind(tbCliente.comparatorProperty());
-            tbCliente.setItems(listaClientesSorted);
-                       
-            
+            tbCliente.setItems(listaClientesSorted);                      
         });
     }
 
