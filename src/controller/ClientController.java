@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
+import DAO.EnderecoDAO;
 import application.ClienteAlterar;
 import application.Home;
 import application.Login;
@@ -28,6 +29,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Cliente;
+import model.Endereco;
 
 public class ClientController implements Initializable {
 
@@ -148,6 +150,13 @@ public class ClientController implements Initializable {
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			
+			Endereco endereco = new Endereco();
+			EnderecoDAO enderecoDAO = new EnderecoDAO();
+			
+			endereco.setRua(txtEndereco.getText());
+			endereco.setBairro(txtBairro.getText());
+			endereco.setComplemento(txtComplemento.getText());
+				
 			if(comboBox.getValue() == "CPF") {
 				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
 			}else {
@@ -156,6 +165,7 @@ public class ClientController implements Initializable {
 			}
 			
 			clienteDAO.save(cliente);
+			enderecoDAO.save(endereco);
 			try {
 				recarregarTela();
 			} catch (IOException e) {
