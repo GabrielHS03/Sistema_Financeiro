@@ -112,9 +112,16 @@ public class ClientController implements Initializable {
 		choice();
 		
 		carregarTableViewClientes();
-		
+		//Listener da tabela
 		tbCliente.getSelectionModel().selectedItemProperty()
-				.addListener((observable, oldValue, newValue) -> System.out.println("TESTE"));
+				.addListener((observable, oldValue, newValue) -> {
+					try {
+						carregarTelaAlterar(newValue);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				});
 
 		imgHome.setOnMouseClicked(MouseEvent -> {
 			AnchorPane pane;
@@ -190,12 +197,7 @@ public class ClientController implements Initializable {
 		tbClienteColumnCNPJ.setCellValueFactory(new PropertyValueFactory<>("CNPJ"));
 		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 	}
-	
-	public void recarregarTela() throws IOException {
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
-		rootPane.getChildren().setAll(pane);
-	}
-	
+		
     @FXML
     public void pesquisarTabela(KeyEvent event) {
 
@@ -225,5 +227,19 @@ public class ClientController implements Initializable {
             tbCliente.setItems(listaClientesSorted);                      
         });
     }
+
+	public void recarregarTela() throws IOException {
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
+		rootPane.getChildren().setAll(pane);
+	}
+	
+	public static Cliente clienteSelecionado = new Cliente();
+	public void carregarTelaAlterar(Cliente cliente) throws IOException {
+		clienteSelecionado = cliente;
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Alterar.fxml"));
+		rootPane.getChildren().setAll(pane);
+	}
+	
+	
 
 }
