@@ -12,10 +12,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="1280.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="1280.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClienteAlterarController">
    <children>
       <TableView fx:id="tbCliente" layoutX="654.0" layoutY="70.0" prefHeight="530.0" prefWidth="627.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="654.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="70.0">
         <columns>
@@ -35,7 +34,7 @@
       </ImageView>
       <Pane prefHeight="600.0" prefWidth="640.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btnCadastrarCliente" layoutX="265.0" layoutY="537.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" stylesheets="@style.css" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="btnAlterarCliente" ellipsisString="" layoutX="265.0" layoutY="537.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" stylesheets="@style.css" text="Alterar" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -47,26 +46,26 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
-            <TextField fx:id="txtID" layoutX="110.0" layoutY="111.0" prefHeight="25.0" prefWidth="87.0" />
+            <TextField fx:id="txtID" disable="true" layoutX="110.0" layoutY="111.0" prefHeight="25.0" prefWidth="87.0" />
             <TextField fx:id="txtCPFCNPJ" layoutX="415.0" layoutY="103.0" />
             <TextField fx:id="txtNome" layoutX="110.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" />
             <TextField fx:id="txtRazaoSocial" layoutX="415.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" visible="false" />
             <TextField fx:id="txtTelefone" layoutX="415.0" layoutY="186.0" />
             <TextField fx:id="txtEndereco" layoutX="110.0" layoutY="267.0" prefHeight="25.0" prefWidth="219.0" />
             <TextField fx:id="txtEmail" layoutX="110.0" layoutY="186.0" prefHeight="25.0" prefWidth="203.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="78.0" layoutY="115.0" text="ID:*" textAlignment="RIGHT" />
-            <Label fx:id="lblNome" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="150.0" prefHeight="17.0" prefWidth="87.0" text="Nome:*" textAlignment="RIGHT" />
-            <Label fx:id="lblCPFCNPJ" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="374.0" layoutY="107.0" text="CPF:*" textAlignment="RIGHT" />
-            <Label contentDisplay="RIGHT" layoutX="348.0" layoutY="190.0" text="Telefone:*" />
-            <Label contentDisplay="RIGHT" layoutX="40.0" layoutY="271.0" text="Endereço:*" textAlignment="RIGHT" />
+            <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="115.0" text="ID:" textAlignment="RIGHT" />
+            <Label fx:id="lblNome" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="7.0" layoutY="150.0" prefHeight="17.0" prefWidth="87.0" text="Nome:" textAlignment="RIGHT" />
+            <Label fx:id="lblCPFCNPJ" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="376.0" layoutY="107.0" text="CPF:" textAlignment="RIGHT" />
+            <Label contentDisplay="RIGHT" layoutX="349.0" layoutY="190.0" text="Telefone:" />
+            <Label contentDisplay="RIGHT" layoutX="43.0" layoutY="271.0" text="Endereço:" textAlignment="RIGHT" />
             <TextField fx:id="txtComplemento" layoutX="110.0" layoutY="300.0" />
             <TextField fx:id="txtBairro" layoutX="415.0" layoutY="267.0" />
             <TextField fx:id="txtCEP" layoutX="110.0" layoutY="335.0" />
             <TextArea fx:id="txtObservacao" layoutX="120.0" layoutY="397.0" prefHeight="121.0" prefWidth="418.0" />
-            <Label contentDisplay="RIGHT" layoutX="14.0" layoutY="304.0" text="Complemento:" textAlignment="RIGHT" />
-            <Label contentDisplay="RIGHT" layoutX="362.0" layoutY="271.0" text="Bairro:*" textAlignment="RIGHT" />
-            <Label contentDisplay="RIGHT" layoutX="69.0" layoutY="339.0" text="CEP:*" textAlignment="RIGHT" />
-            <Label contentDisplay="RIGHT" layoutX="28.0" layoutY="397.0" text="Observação:" textAlignment="RIGHT" />
+            <Label contentDisplay="RIGHT" layoutX="13.0" layoutY="304.0" text="Complemento:" textAlignment="RIGHT" />
+            <Label contentDisplay="RIGHT" layoutX="358.0" layoutY="271.0" text="Bairro:" textAlignment="RIGHT" />
+            <Label contentDisplay="RIGHT" layoutX="69.0" layoutY="339.0" text="CEP:" textAlignment="RIGHT" />
+            <Label contentDisplay="RIGHT" layoutX="29.0" layoutY="397.0" text="Observação:" textAlignment="RIGHT" />
             <Label fx:id="lblCNPJ" contentDisplay="RIGHT" layoutX="329.0" layoutY="150.0" text="Razão Social:*" textAlignment="RIGHT" visible="false" />
             <ImageView fx:id="imgHome" fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -77,15 +76,26 @@
                </cursor>
             </ImageView>
             <Label contentDisplay="RIGHT" layoutX="61.0" layoutY="190.0" text="Email:" textAlignment="RIGHT" />
-            <Label layoutX="420.0" layoutY="529.0" style="-fx-text-fill: red;" styleClass="lbl" stylesheets="@style.css" text="*Campos Obrigatórios" />
-            <Label fx:id="lblCidade" alignment="CENTER_RIGHT" layoutX="357.0" layoutY="304.0" text="Cidade:*" />
-            <Label fx:id="lblEstado" alignment="CENTER_RIGHT" layoutX="359.0" layoutY="339.0" text="Estado:*" />
+            <Label fx:id="lblCidade" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="304.0" text="Cidade:" />
+            <Label fx:id="lblEstado" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="339.0" text="Estado:" />
             <TextField fx:id="txtCidade" layoutX="415.0" layoutY="300.0" />
             <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="25.0" prefWidth="35.0" />
+            <Button fx:id="btnCancelar" cancelButton="true" layoutX="199.0" layoutY="537.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="41.0" style="-fx-background-color: yellow;" text="X" textFill="#1e1c1c">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnExcluir" layoutX="487.0" layoutY="537.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="102.0" style="-fx-background-color: red;" stylesheets="@style.css" text="Excluir" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <TextField fx:id="searchBox" layoutX="1117.0" layoutY="27.0" onKeyPressed="#pesquisarTabela" AnchorPane.leftAnchor="1117.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
       <Label layoutX="1056.0" layoutY="31.0" text="Pesquisar:" AnchorPane.leftAnchor="1056.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="31.0" />
-      <Line endX="100.0" startX="-100.0" />
    </children>
 </AnchorPane>
