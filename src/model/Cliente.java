@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -30,8 +31,9 @@ public class Cliente {
     private Long CNPJ;
     private String email;
     private String OBS;
-    //@OneToOne
-    //private Endereco endereco;
+    @OneToOne
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   	private Endereco endereco;
 
     public Integer getID() {
         return ID;
