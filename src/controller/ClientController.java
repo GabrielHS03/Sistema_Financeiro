@@ -5,6 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
+import application.ClienteAlterar;
+import application.Home;
+import application.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Cliente;
 
 public class ClientController implements Initializable {
@@ -236,8 +240,13 @@ public class ClientController implements Initializable {
 	public static Cliente clienteSelecionado = new Cliente();
 	public void carregarTelaAlterar(Cliente cliente) throws IOException {
 		clienteSelecionado = cliente;
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Alterar.fxml"));
-		rootPane.getChildren().setAll(pane);
+		
+		ClienteAlterar clienteAlterar = new ClienteAlterar();                        
+		try {
+			clienteAlterar.start(new Stage());
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 	
 	
