@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
 import DAO.EnderecoDAO;
+import application.ClienteAlterar;
+import application.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -129,7 +131,7 @@ public class ClienteAlterarController implements Initializable {
 
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
-			//----------------------
+			// ----------------------
 			String cpfEmString = String.valueOf(ClientController.clienteSelecionado.getCPF());
 			String cnpjEmString = String.valueOf(ClientController.clienteSelecionado.getCNPJ());
 
@@ -140,21 +142,14 @@ public class ClienteAlterarController implements Initializable {
 				cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
 				cliente.setRazaoSocial(txtRazaoSocial.getText());
 			}
-			//----------------------
+			// ----------------------
 			cliente.setTelefone(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			cliente.setID(ClientController.clienteSelecionado.getID());
-			
+
 			clienteDAO.save(cliente);
-
-			try {
-				recarregarTela();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+			ClienteAlterar.getStage().close();
 		});
 	}
 
@@ -186,6 +181,5 @@ public class ClienteAlterarController implements Initializable {
 		txtTelefone.setText(ClientController.clienteSelecionado.getTelefone());
 		txtObservacao.setText(ClientController.clienteSelecionado.getOBS());
 	}
-
 
 }
