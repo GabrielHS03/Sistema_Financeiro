@@ -165,7 +165,9 @@ public class ClientController implements Initializable {
 			Endereco endereco = new Endereco();
 			EnderecoDAO enderecoDAO = new EnderecoDAO();
 			
+			cliente.setEndereco(endereco);
 			endereco.setRua(txtEndereco.getText());
+			endereco.setCEP(Integer.parseInt(txtCEP.getText()));
 			endereco.setBairro(txtBairro.getText());
 			endereco.setComplemento(txtComplemento.getText());
 				

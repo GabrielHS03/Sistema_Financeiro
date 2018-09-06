@@ -18,16 +18,17 @@ public class EnderecoDAO {
     
     // Metodo para salvar no banco de dados !
     // Metodo para fazer Update so informar o ID!
-    public Endereco save(Endereco usuario) {
+	
+    public Endereco save(Endereco endereco) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
 
         try {
             entityManager.getTransaction().begin();
-            if (usuario.getID() == null) {
+            if (endereco.getID() == null) {
 
-                entityManager.persist(usuario);
+                entityManager.persist(endereco);
             } else {
-                entityManager.merge(usuario);
+                entityManager.merge(endereco);
             }
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -37,31 +38,31 @@ public class EnderecoDAO {
         } finally {
             entityManager.close();
         }
-        return usuario;
+        return endereco;
     }
 
     public Endereco buscarID(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Endereco usuario = null;
+        Endereco endereco = null;
 
         try {
-            usuario = entityManager.find(Endereco.class, ID);
+            endereco = entityManager.find(Endereco.class, ID);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             entityManager.close();
         }
-        return usuario;
+        return endereco;
     }
 
     public List<Endereco> buscarTodos() {
 
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        List<Endereco> usuarios = null;
+        List<Endereco> endereco = null;
 
         try {
 
-            usuarios = entityManager.createQuery("from TB_Endereco").getResultList();
+            endereco = entityManager.createQuery("from TB_Endereco").getResultList();
 
         } catch (Exception e) {
             //Se der Error aqui vai aparesentar o error .
@@ -69,17 +70,17 @@ public class EnderecoDAO {
         } finally {
             entityManager.close();
         }
-        return usuarios;
+        return endereco;
     }
 
     public Endereco remove(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Endereco usuario = null;
+        Endereco endereco = null;
 
         try {
-            usuario = entityManager.find(Endereco.class, ID);
+            endereco = entityManager.find(Endereco.class, ID);
             entityManager.getTransaction().begin();
-            entityManager.remove(usuario);
+            entityManager.remove(endereco);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -90,7 +91,7 @@ public class EnderecoDAO {
             entityManager.close();
         }
 
-        return usuario;
+        return endereco;
     }
 
 }

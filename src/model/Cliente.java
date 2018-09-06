@@ -5,6 +5,7 @@
  */
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,16 +27,16 @@ public class Cliente {
     private String nome;
     private String razaoSocial;
     private String telefone;
-    private String tipo;
     private Long CPF;
     private Long CNPJ;
     private String email;
     private String OBS;
-    @OneToOne
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToOne(cascade = CascadeType.ALL)
    	private Endereco endereco;
 
-    public Integer getID() {
+    
+
+	public Integer getID() {
         return ID;
     }
 
@@ -75,14 +76,6 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public Long getCPF() {
         return CPF;
     }
@@ -114,7 +107,13 @@ public class Cliente {
     public void setOBS(String OBS) {
         this.OBS = OBS;
     }
-    
+    public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
     
     
 }
