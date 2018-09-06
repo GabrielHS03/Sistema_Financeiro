@@ -5,9 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Cascade;
 
 @Entity(name = "TB_Boleto")
 public class Boleto {
@@ -19,7 +18,7 @@ public class Boleto {
 	private String status;
 	private String OBS;
 	private String tipoPagamento;
-	@OneToMany(cascade = CascadeType.ALL)
+	//@OneToMany(cascade = CascadeType.ALL)
 	private Cliente cliente;
 
 	public Integer getID() {

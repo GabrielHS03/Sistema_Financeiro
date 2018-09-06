@@ -26,7 +26,8 @@ public class Cliente {
     private Integer codigo;
     private String nome;
     private String razaoSocial;
-    private String telefone;
+    private String telefoneFixo;
+    private String telefoneCel;
     private Long CPF;
     private Long CNPJ;
     private String email;
@@ -68,12 +69,19 @@ public class Cliente {
         this.razaoSocial = razaoSocial;
     }
     
-    public String getTelefone() {
-        return telefone;
+    public String getTelefoneCel() {
+        return telefoneCel;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTelefoneCel(String telefoneCel) {
+        this.telefoneCel = telefoneCel;
+    }
+    public String getTelefoneFixo() {
+        return telefoneFixo;
+    }
+
+    public void setTelefoneFixo(String telefoneFixo) {
+        this.telefoneFixo = telefoneFixo;
     }
 
     public Long getCPF() {

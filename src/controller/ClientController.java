@@ -158,7 +158,8 @@ public class ClientController implements Initializable {
 			}
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
-			cliente.setTelefone(txtTelefone.getText());
+			cliente.setTelefoneFixo(txtTelefone.getText());
+			//cliente.setTelefoneCel(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			

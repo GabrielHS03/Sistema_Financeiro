@@ -143,7 +143,8 @@ public class ClienteAlterarController implements Initializable {
 				cliente.setRazaoSocial(txtRazaoSocial.getText());
 			}
 			// ----------------------
-			cliente.setTelefone(txtTelefone.getText());
+			cliente.setTelefoneCel(txtTelefone.getText());
+			//cliente.setTelefoneFixo(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			cliente.setID(ClientController.clienteSelecionado.getID());
@@ -178,7 +179,8 @@ public class ClienteAlterarController implements Initializable {
 		txtID.setText(codigoEmString);
 		txtNome.setText(ClientController.clienteSelecionado.getNome());
 		txtEmail.setText(ClientController.clienteSelecionado.getEmail());
-		txtTelefone.setText(ClientController.clienteSelecionado.getTelefone());
+		txtTelefone.setText(ClientController.clienteSelecionado.getTelefoneCel());
+		//txtTelefone.setText(ClientController.clienteSelecionado.getTelefoneFixo());
 		txtObservacao.setText(ClientController.clienteSelecionado.getOBS());
 	}
 
