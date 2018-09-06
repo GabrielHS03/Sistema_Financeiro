@@ -122,7 +122,9 @@ public class ClientController implements Initializable {
 		tbCliente.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> {
 					try {
+						recarregarTela();
 						carregarTelaAlterar(newValue);
+						
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
