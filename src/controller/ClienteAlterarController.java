@@ -129,10 +129,23 @@ public class ClienteAlterarController implements Initializable {
 
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
+			//----------------------
+			String cpfEmString = String.valueOf(ClientController.clienteSelecionado.getCPF());
+			String cnpjEmString = String.valueOf(ClientController.clienteSelecionado.getCNPJ());
+
+			if (cnpjEmString == "null") {
+				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
+			}
+			if (cpfEmString == "null") {
+				cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
+				cliente.setRazaoSocial(txtRazaoSocial.getText());
+			}
+			//----------------------
 			cliente.setTelefone(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
-
+			cliente.setID(ClientController.clienteSelecionado.getID());
+			
 			clienteDAO.save(cliente);
 
 			try {
@@ -155,7 +168,6 @@ public class ClienteAlterarController implements Initializable {
 		String cpfEmString = String.valueOf(ClientController.clienteSelecionado.getCPF());
 		String cnpjEmString = String.valueOf(ClientController.clienteSelecionado.getCNPJ());
 
-		System.out.println(cnpjEmString);
 		if (cnpjEmString == "null") {
 			txtCPFCNPJ.setText(cpfEmString);
 		}
@@ -165,47 +177,15 @@ public class ClienteAlterarController implements Initializable {
 			lblCNPJ.setVisible(true);
 			lblCPFCNPJ.setText("CNPJ:");
 			lblNome.setText("Nome Fantasia:");
+			txtRazaoSocial.setText(ClientController.clienteSelecionado.getRazaoSocial());
 		}
 
 		txtID.setText(codigoEmString);
 		txtNome.setText(ClientController.clienteSelecionado.getNome());
-
+		txtEmail.setText(ClientController.clienteSelecionado.getEmail());
+		txtTelefone.setText(ClientController.clienteSelecionado.getTelefone());
+		txtObservacao.setText(ClientController.clienteSelecionado.getOBS());
 	}
 
-	@FXML
-	void alterarCliente(MouseEvent event) {
-
-		Cliente cliente = new Cliente();
-		ClienteDAO clienteDAO = new ClienteDAO();
-
-		cliente.setCodigo(Integer.parseInt(txtID.getText()));
-		cliente.setNome(txtNome.getText());
-		cliente.setTelefone(txtTelefone.getText());
-		cliente.setEmail(txtEmail.getText());
-		cliente.setOBS(txtObservacao.getText());
-		cliente.setID(ClientController.clienteSelecionado.getID());
-
-		Endereco endereco = new Endereco();
-		EnderecoDAO enderecoDAO = new EnderecoDAO();
-
-		endereco.setRua(txtEndereco.getText());
-		endereco.setBairro(txtBairro.getText());
-		endereco.setComplemento(txtComplemento.getText());
-
-		if (comboBox.getValue() == "CPF") {
-			cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
-		} else {
-			cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
-			cliente.setRazaoSocial(txtRazaoSocial.getText());
-		}
-		clienteDAO.save(cliente);
-		enderecoDAO.save(endereco);
-		try {
-			recarregarTela();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 }
