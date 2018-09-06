@@ -7,6 +7,7 @@
     <!-- Lista de entidades -->
     <class>model.Usuario</class>
     <class>model.Cliente</class>
+    <class>model.Boleto</class>
     <class>model.Endereco</class>
     <class>model.Cidade</class>
     <class>model.Estado</class>

@@ -18,16 +18,16 @@ public class PaisDAO {
        
     // Metodo para salvar no banco de dados !
     // Metodo para fazer Update so informar o ID!
-    public Pais save(Pais usuario) {
+    public Pais save(Pais pais) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
 
         try {
             entityManager.getTransaction().begin();
-            if (usuario.getID() == null) {
+            if (pais.getID() == null) {
 
-                entityManager.persist(usuario);
+                entityManager.persist(pais);
             } else {
-                entityManager.merge(usuario);
+                entityManager.merge(pais);
             }
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -37,31 +37,31 @@ public class PaisDAO {
         } finally {
             entityManager.close();
         }
-        return usuario;
+        return pais;
     }
 
     public Pais buscarID(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Pais usuario = null;
+        Pais pais = null;
 
         try {
-            usuario = entityManager.find(Pais.class, ID);
+            pais = entityManager.find(Pais.class, ID);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             entityManager.close();
         }
-        return usuario;
+        return pais;
     }
 
     public List<Pais> buscarTodos() {
 
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        List<Pais> usuarios = null;
+        List<Pais> paiss = null;
 
         try {
 
-            usuarios = entityManager.createQuery("from TB_Pais").getResultList();
+            paiss = entityManager.createQuery("from TB_Pais").getResultList();
 
         } catch (Exception e) {
             //Se der Error aqui vai aparesentar o error .
@@ -69,17 +69,17 @@ public class PaisDAO {
         } finally {
             entityManager.close();
         }
-        return usuarios;
+        return paiss;
     }
 
     public Pais remove(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Pais usuario = null;
+        Pais pais = null;
 
         try {
-            usuario = entityManager.find(Pais.class, ID);
+            pais = entityManager.find(Pais.class, ID);
             entityManager.getTransaction().begin();
-            entityManager.remove(usuario);
+            entityManager.remove(pais);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -90,7 +90,7 @@ public class PaisDAO {
             entityManager.close();
         }
 
-        return usuario;
+        return pais;
     }
 
 }

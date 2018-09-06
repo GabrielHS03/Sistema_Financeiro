@@ -170,6 +170,7 @@ public class ClientController implements Initializable {
 			endereco.setCEP(Integer.parseInt(txtCEP.getText()));
 			endereco.setBairro(txtBairro.getText());
 			endereco.setComplemento(txtComplemento.getText());
+			
 				
 			if(comboBox.getValue() == "CPF") {
 				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));

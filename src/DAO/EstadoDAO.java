@@ -18,16 +18,16 @@ public class EstadoDAO {
        
     // Metodo para salvar no banco de dados !
     // Metodo para fazer Update so informar o ID!
-    public Estado save(Estado usuario) {
+    public Estado save(Estado estado) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
 
         try {
             entityManager.getTransaction().begin();
-            if (usuario.getID() == null) {
+            if (estado.getID() == null) {
 
-                entityManager.persist(usuario);
+                entityManager.persist(estado);
             } else {
-                entityManager.merge(usuario);
+                entityManager.merge(estado);
             }
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -37,31 +37,31 @@ public class EstadoDAO {
         } finally {
             entityManager.close();
         }
-        return usuario;
+        return estado;
     }
 
     public Estado buscarID(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Estado usuario = null;
+        Estado estado = null;
 
         try {
-            usuario = entityManager.find(Estado.class, ID);
+            estado = entityManager.find(Estado.class, ID);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             entityManager.close();
         }
-        return usuario;
+        return estado;
     }
 
     public List<Estado> buscarTodos() {
 
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        List<Estado> usuarios = null;
+        List<Estado> estados = null;
 
         try {
 
-            usuarios = entityManager.createQuery("from TB_Estado").getResultList();
+            estados = entityManager.createQuery("from TB_Estado").getResultList();
 
         } catch (Exception e) {
             //Se der Error aqui vai aparesentar o error .
@@ -69,17 +69,17 @@ public class EstadoDAO {
         } finally {
             entityManager.close();
         }
-        return usuarios;
+        return estados;
     }
 
     public Estado remove(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Estado usuario = null;
+        Estado estado = null;
 
         try {
-            usuario = entityManager.find(Estado.class, ID);
+            estado = entityManager.find(Estado.class, ID);
             entityManager.getTransaction().begin();
-            entityManager.remove(usuario);
+            entityManager.remove(estado);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -90,7 +90,7 @@ public class EstadoDAO {
             entityManager.close();
         }
 
-        return usuario;
+        return estado;
     }
 
 }

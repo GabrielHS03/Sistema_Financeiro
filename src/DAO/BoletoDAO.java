@@ -1,33 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-import controller.ConnectionFactory;
 import java.util.List;
-import javax.persistence.EntityManager;
-import model.Cidade;
 
-/**
- *
- * @author Alyson-Casa
- */
-public class CidadeDAO {
-       
-    // Metodo para salvar no banco de dados !
+import javax.persistence.EntityManager;
+
+import controller.ConnectionFactory;
+import model.Boleto;
+
+public class BoletoDAO {
+	 // Metodo para salvar no banco de dados !
     // Metodo para fazer Update so informar o ID!
-    public Cidade save(Cidade cidade) {
+    public Boleto save(Boleto boleto) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
 
         try {
             entityManager.getTransaction().begin();
-            if (cidade.getID() == null) {
+            if (boleto.getID() == null) {
 
-                entityManager.persist(cidade);
+                entityManager.persist(boleto);
             } else {
-                entityManager.merge(cidade);
+                entityManager.merge(boleto);
             }
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -37,31 +29,31 @@ public class CidadeDAO {
         } finally {
             entityManager.close();
         }
-        return cidade;
+        return boleto;
     }
 
-    public Cidade buscarID(Integer ID) {
+    public Boleto buscarID(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Cidade cidade = null;
+        Boleto boleto = null;
 
         try {
-            cidade = entityManager.find(Cidade.class, ID);
+            boleto = entityManager.find(Boleto.class, ID);
         } catch (Exception e) {
             System.err.println(e);
         } finally {
             entityManager.close();
         }
-        return cidade;
+        return boleto;
     }
 
-    public List<Cidade> buscarTodos() {
+    public List<Boleto> buscarTodos() {
 
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        List<Cidade> cidades = null;
+        List<Boleto> boletos = null;
 
         try {
 
-            cidades = entityManager.createQuery("from TB_Cidade").getResultList();
+            boletos = entityManager.createQuery("from TB_Boleto").getResultList();
 
         } catch (Exception e) {
             //Se der Error aqui vai aparesentar o error .
@@ -69,17 +61,17 @@ public class CidadeDAO {
         } finally {
             entityManager.close();
         }
-        return cidades;
+        return boletos;
     }
 
-    public Cidade remove(Integer ID) {
+    public Boleto remove(Integer ID) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
-        Cidade cidade = null;
+        Boleto boleto = null;
 
         try {
-            cidade = entityManager.find(Cidade.class, ID);
+            boleto = entityManager.find(Boleto.class, ID);
             entityManager.getTransaction().begin();
-            entityManager.remove(cidade);
+            entityManager.remove(boleto);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
@@ -90,7 +82,7 @@ public class CidadeDAO {
             entityManager.close();
         }
 
-        return cidade;
+        return boleto;
     }
 
 }
