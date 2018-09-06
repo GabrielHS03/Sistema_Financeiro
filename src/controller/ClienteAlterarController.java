@@ -1,11 +1,11 @@
 package controller;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
+import DAO.EnderecoDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,18 +17,20 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Cliente;
+import model.Endereco;
 
 public class ClienteAlterarController implements Initializable {
 
-    @FXML
-    private AnchorPane rootPane;
-	
-    @FXML
+	@FXML
+	private AnchorPane rootPane;
+
+	@FXML
 	private TextField searchBox;
-	
-    @FXML
+
+	@FXML
 	private TableView<Cliente> tbCliente;
 
 	@FXML
@@ -42,7 +44,7 @@ public class ClienteAlterarController implements Initializable {
 
 	@FXML
 	private TableColumn<?, ?> tbClienteColumnCNPJ;
-	
+
 	@FXML
 	private TableColumn<?, ?> tbClienteColumnEndereco;
 
@@ -51,14 +53,14 @@ public class ClienteAlterarController implements Initializable {
 
 	@FXML
 	private Button btnAlterarCliente;
-    
-	@FXML
-    private Button btnCancelar;
 
-    @FXML
-    private Button btnExcluir;
-	
-    @FXML
+	@FXML
+	private Button btnCancelar;
+
+	@FXML
+	private Button btnExcluir;
+
+	@FXML
 	private ComboBox<String> comboBox;
 
 	@FXML
@@ -87,10 +89,10 @@ public class ClienteAlterarController implements Initializable {
 
 	@FXML
 	private Label lblCNPJ;
-	
+
 	@FXML
 	private Label lblNome;
-	
+
 	@FXML
 	private TextField txtComplemento;
 
@@ -99,18 +101,17 @@ public class ClienteAlterarController implements Initializable {
 
 	@FXML
 	private TextField txtCEP;
-	
+
 	@FXML
 	private TextArea txtObservacao;
-	
+
 	@FXML
 	private ImageView imgHome;
-	
-	
+
 	public void initialize(URL url, ResourceBundle rb) {
-		
+
 		setarDados();
-		
+
 		imgHome.setOnMouseClicked(MouseEvent -> {
 			AnchorPane pane;
 			try {
@@ -119,7 +120,7 @@ public class ClienteAlterarController implements Initializable {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
 		});
 
 		btnAlterarCliente.setOnMouseClicked(MouseEvent -> {
@@ -131,16 +132,16 @@ public class ClienteAlterarController implements Initializable {
 			cliente.setTelefone(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
-			
+
 			clienteDAO.save(cliente);
-			
+
 			try {
 				recarregarTela();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		});
 	}
 
@@ -148,28 +149,63 @@ public class ClienteAlterarController implements Initializable {
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
 		rootPane.getChildren().setAll(pane);
 	}
-	
+
 	public void setarDados() {
 		String codigoEmString = Integer.toString(ClientController.clienteSelecionado.getCodigo());
-	    String cpfEmString = String.valueOf(ClientController.clienteSelecionado.getCPF());
-        String cnpjEmString = String.valueOf(ClientController.clienteSelecionado.getCNPJ());
-        
-        System.out.println(cnpjEmString);
-        if(cnpjEmString == "null") {
-        	txtCPFCNPJ.setText(cpfEmString);
-        }
-        if(cpfEmString == "null") {
-        	txtCPFCNPJ.setText(cnpjEmString);
+		String cpfEmString = String.valueOf(ClientController.clienteSelecionado.getCPF());
+		String cnpjEmString = String.valueOf(ClientController.clienteSelecionado.getCNPJ());
+
+		System.out.println(cnpjEmString);
+		if (cnpjEmString == "null") {
+			txtCPFCNPJ.setText(cpfEmString);
+		}
+		if (cpfEmString == "null") {
+			txtCPFCNPJ.setText(cnpjEmString);
 			txtRazaoSocial.setVisible(true);
 			lblCNPJ.setVisible(true);
-			lblCPFCNPJ.setText("CNPJ:*");
-			lblNome.setText("Nome Fantasia:*");
-        }
-        
-        txtID.setText(codigoEmString);
+			lblCPFCNPJ.setText("CNPJ:");
+			lblNome.setText("Nome Fantasia:");
+		}
+
+		txtID.setText(codigoEmString);
 		txtNome.setText(ClientController.clienteSelecionado.getNome());
-		
+
 	}
-	
+
+	@FXML
+	void alterarCliente(MouseEvent event) {
+
+		Cliente cliente = new Cliente();
+		ClienteDAO clienteDAO = new ClienteDAO();
+
+		cliente.setCodigo(Integer.parseInt(txtID.getText()));
+		cliente.setNome(txtNome.getText());
+		cliente.setTelefone(txtTelefone.getText());
+		cliente.setEmail(txtEmail.getText());
+		cliente.setOBS(txtObservacao.getText());
+		cliente.setID(ClientController.clienteSelecionado.getID());
+
+		Endereco endereco = new Endereco();
+		EnderecoDAO enderecoDAO = new EnderecoDAO();
+
+		endereco.setRua(txtEndereco.getText());
+		endereco.setBairro(txtBairro.getText());
+		endereco.setComplemento(txtComplemento.getText());
+
+		if (comboBox.getValue() == "CPF") {
+			cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
+		} else {
+			cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
+			cliente.setRazaoSocial(txtRazaoSocial.getText());
+		}
+		clienteDAO.save(cliente);
+		enderecoDAO.save(endereco);
+		try {
+			recarregarTela();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

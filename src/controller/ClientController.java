@@ -143,9 +143,19 @@ public class ClientController implements Initializable {
 		});
 
 		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
+			boolean controle = true;
 			Cliente cliente = new Cliente();
 			ClienteDAO clienteDAO = new ClienteDAO();
-
+			
+			for (Cliente clienteLista : listaClientes) {
+				int codigoCliente = Integer.parseInt(txtID.getText());
+				int codigoEmString = clienteLista.getCodigo();
+				
+				if(codigoEmString == codigoCliente){
+					System.out.println("ID já existe, digite outro!");
+					controle = false;
+				}	
+			}
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
 			cliente.setTelefone(txtTelefone.getText());
@@ -166,7 +176,10 @@ public class ClientController implements Initializable {
 				cliente.setRazaoSocial(txtRazaoSocial.getText());
 			}
 			
-			clienteDAO.save(cliente);
+			if(controle == true) {
+				clienteDAO.save(cliente);
+			}
+			
 			enderecoDAO.save(endereco);
 			try {
 				recarregarTela();
