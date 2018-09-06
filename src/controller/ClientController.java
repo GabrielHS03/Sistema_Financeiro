@@ -5,6 +5,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
+import DAO.EnderecoDAO;
+import application.ClienteAlterar;
+import application.Home;
+import application.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,7 +27,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Cliente;
+import model.Endereco;
 
 public class ClientController implements Initializable {
 
@@ -116,7 +122,9 @@ public class ClientController implements Initializable {
 		tbCliente.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> {
 					try {
+						recarregarTela();
 						carregarTelaAlterar(newValue);
+						
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -135,15 +143,32 @@ public class ClientController implements Initializable {
 		});
 
 		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
+			boolean controle = true;
 			Cliente cliente = new Cliente();
 			ClienteDAO clienteDAO = new ClienteDAO();
-
+			
+			for (Cliente clienteLista : listaClientes) {
+				int codigoCliente = Integer.parseInt(txtID.getText());
+				int codigoEmString = clienteLista.getCodigo();
+				
+				if(codigoEmString == codigoCliente){
+					System.out.println("ID já existe, digite outro!");
+					controle = false;
+				}	
+			}
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
 			cliente.setTelefone(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			
+			Endereco endereco = new Endereco();
+			EnderecoDAO enderecoDAO = new EnderecoDAO();
+			
+			endereco.setRua(txtEndereco.getText());
+			endereco.setBairro(txtBairro.getText());
+			endereco.setComplemento(txtComplemento.getText());
+				
 			if(comboBox.getValue() == "CPF") {
 				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
 			}else {
@@ -151,7 +176,11 @@ public class ClientController implements Initializable {
 				cliente.setRazaoSocial(txtRazaoSocial.getText());
 			}
 			
-			clienteDAO.save(cliente);
+			if(controle == true) {
+				clienteDAO.save(cliente);
+			}
+			
+			enderecoDAO.save(endereco);
 			try {
 				recarregarTela();
 			} catch (IOException e) {
@@ -236,8 +265,13 @@ public class ClientController implements Initializable {
 	public static Cliente clienteSelecionado = new Cliente();
 	public void carregarTelaAlterar(Cliente cliente) throws IOException {
 		clienteSelecionado = cliente;
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Alterar.fxml"));
-		rootPane.getChildren().setAll(pane);
+		
+		ClienteAlterar clienteAlterar = new ClienteAlterar();                        
+		try {
+			clienteAlterar.start(new Stage());
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 	
 	
