@@ -19,7 +19,7 @@ public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
-    private String nome;
+
     private String uf;
     //@Column(name = "pais_id) 
     //private Pais pais;

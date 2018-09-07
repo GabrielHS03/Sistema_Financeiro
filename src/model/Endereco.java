@@ -19,6 +19,26 @@ public class Endereco {
 	private Integer CEP;
 	private String rua;
 	private String bairro;
+    private String nomeCidade;
+    private String nomeEstado;
+    
+    
+	public String getNomeCidade() {
+		return nomeCidade;
+	}
+
+	public void setNomeCidade(String nomeCidade) {
+		this.nomeCidade = nomeCidade;
+	}
+
+	public String getNomeEstado() {
+		return nomeEstado;
+	}
+
+	public void setNomeEstado(String nomeEstado) {
+		this.nomeEstado = nomeEstado;
+	}
+
 	private String complemento;
 	//@Column(name = "cidade_id)     
 	//private Cidade cidade;
