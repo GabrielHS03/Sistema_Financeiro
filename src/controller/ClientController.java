@@ -172,8 +172,11 @@ public class ClientController implements Initializable {
 			endereco.setCEP(Integer.parseInt(txtCEP.getText()));
 			endereco.setBairro(txtBairro.getText());
 			endereco.setComplemento(txtComplemento.getText());
+			//endereco.setCidade(txtCidade.getText());
+			//endereco.setEstado(txtEstado.getText());
 			
-				
+			
+			
 			if(comboBox.getValue() == "CPF") {
 				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
 			}if(comboBox.getValue() == "CNPJ") {
@@ -231,7 +234,8 @@ public class ClientController implements Initializable {
 		tbClienteColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 		tbClienteColumnCNPJ.setCellValueFactory(new PropertyValueFactory<>("CNPJ"));
-		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefoneFixo"));
+		tbClienteColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("rua"));
 	}
 		
     @FXML
