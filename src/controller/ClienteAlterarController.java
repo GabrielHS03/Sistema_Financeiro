@@ -160,6 +160,17 @@ public class ClienteAlterarController implements Initializable {
 				e.printStackTrace();
 			}
 		});
+		
+		btnExcluir.setOnMouseClicked(MouseEvent -> {
+			ClienteDAO clienteDAO = new ClienteDAO();
+			clienteDAO.remove(ClientController.clienteSelecionado.getID());
+			ClienteAlterar.getStage().close();
+			try {
+				recarregarTelaClientePrincipal();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	public void recarregarTelaClientePrincipal() throws IOException {
