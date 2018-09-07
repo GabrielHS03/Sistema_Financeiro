@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 @Entity(name = "TB_Endereco")
 public class Endereco {
 
@@ -19,29 +20,9 @@ public class Endereco {
 	private Integer CEP;
 	private String rua;
 	private String bairro;
-    private String nomeCidade;
-    private String nomeEstado;
-    
-    
-	public String getNomeCidade() {
-		return nomeCidade;
-	}
-
-	public void setNomeCidade(String nomeCidade) {
-		this.nomeCidade = nomeCidade;
-	}
-
-	public String getNomeEstado() {
-		return nomeEstado;
-	}
-
-	public void setNomeEstado(String nomeEstado) {
-		this.nomeEstado = nomeEstado;
-	}
-
-	private String complemento;
-	//@Column(name = "cidade_id)     
-	//private Cidade cidade;
+    private String cidade;
+    private String estado;
+    private String complemento;
 
 	public Integer getID() {
 		return ID;
@@ -83,4 +64,23 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	
+	
+	
 }
