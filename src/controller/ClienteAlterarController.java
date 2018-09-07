@@ -144,7 +144,7 @@ public class ClienteAlterarController implements Initializable {
 			}
 			// ----------------------
 			cliente.setTelefoneCel(txtTelefone.getText());
-			cliente.setTelefoneFixo(txtTelefone.getText());
+			//cliente.setTelefoneFixo(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			cliente.setID(ClientController.clienteSelecionado.getID());

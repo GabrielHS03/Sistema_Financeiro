@@ -175,12 +175,9 @@ public class ClientController implements Initializable {
 				
 			if(comboBox.getValue() == "CPF") {
 				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
-			}
-			if(comboBox.getValue() == "CNPJ") {
+			}else {
 				cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
 				cliente.setRazaoSocial(txtRazaoSocial.getText());
-			}else {
-				controle = false;
 			}
 			
 			if(controle == true) {
