@@ -126,7 +126,7 @@ public class ClienteAlterarController implements Initializable {
 		});
 
 		btnAlterarCliente.setOnMouseClicked(MouseEvent -> {
-			Cliente cliente = new Cliente();
+			Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
 			ClienteDAO clienteDAO = new ClienteDAO();
 
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
@@ -182,6 +182,11 @@ public class ClienteAlterarController implements Initializable {
 		txtTelefone.setText(ClientController.clienteSelecionado.getTelefoneCel());
 		//txtTelefone.setText(ClientController.clienteSelecionado.getTelefoneFixo());
 		txtObservacao.setText(ClientController.clienteSelecionado.getOBS());
+		txtEndereco.setText(ClientController.clienteSelecionado.getEndereco().getRua() );
+		String CEPemString = String.valueOf((ClientController.clienteSelecionado.getEndereco().getCEP()));
+		txtCEP.setText(CEPemString);
+		txtBairro.setText(ClientController.clienteSelecionado.getEndereco().getBairro() );
+		txtComplemento.setText(ClientController.clienteSelecionado.getEndereco().getComplemento() );
 	}
 
 }

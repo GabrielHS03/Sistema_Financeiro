@@ -12,57 +12,55 @@ import javax.persistence.Id;
 
 @Entity(name = "TB_Endereco")
 public class Endereco {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
-    private Integer CEP;
-    private String rua;
-    private String bairro;
-    private String complemento;
-//    
-//private Cidade cidade;
 
-    public Integer getID() {
-        return ID;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer ID;
+	private Integer CEP;
+	private String rua;
+	private String bairro;
+	private String complemento;
+	//@Column(name = "cidade_id)     
+	//private Cidade cidade;
 
-    public void setID(Integer ID) {
-        this.ID = ID;
-    }
+	public Integer getID() {
+		return ID;
+	}
 
-    public Integer getCEP() {
-        return CEP;
-    }
+	public void setID(Integer ID) {
+		this.ID = ID;
+	}
 
-    public void setCEP(Integer CEP) {
-        this.CEP = CEP;
-    }
+	public Integer getCEP() {
+		return CEP;
+	}
 
-    public String getRua() {
-        return rua;
-    }
+	public void setCEP(Integer CEP) {
+		this.CEP = CEP;
+	}
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
+	public String getRua() {
+		return rua;
+	}
 
-    public String getBairro() {
-        return bairro;
-    }
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
+	public String getBairro() {
+		return bairro;
+	}
 
-    public String getComplemento() {
-        return complemento;
-    }
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
 
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-    
-    
-    
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
 }

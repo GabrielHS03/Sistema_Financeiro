@@ -144,7 +144,7 @@ public class ClientController implements Initializable {
 
 		btnCadastrarCliente.setOnMouseClicked(MouseEvent -> {
 			boolean controle = true;
-			Cliente cliente = new Cliente();
+			Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
 			ClienteDAO clienteDAO = new ClienteDAO();
 			
 			for (Cliente clienteLista : listaClientes) {
@@ -259,6 +259,7 @@ public class ClientController implements Initializable {
             listaClientesSorted.comparatorProperty().bind(tbCliente.comparatorProperty());
             tbCliente.setItems(listaClientesSorted);                      
         });
+        
     }
 
 	public void recarregarTela() throws IOException {
@@ -266,7 +267,7 @@ public class ClientController implements Initializable {
 		rootPane.getChildren().setAll(pane);
 	}
 	
-	public static Cliente clienteSelecionado = new Cliente();
+	public static Cliente clienteSelecionado = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
 	public void carregarTelaAlterar(Cliente cliente) throws IOException {
 		clienteSelecionado = cliente;
 		
@@ -276,6 +277,7 @@ public class ClientController implements Initializable {
 		} catch (Exception e) {
 			e.getMessage();
 		}
+		recarregarTela();
 	}
 	
 	

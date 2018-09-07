@@ -20,7 +20,7 @@ public class Cidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     private String nome;
-    
+ //@Column(name = "estado_id) 
 //private Estado estado;
 
     public Integer getID() {

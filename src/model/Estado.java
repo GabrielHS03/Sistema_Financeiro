@@ -21,6 +21,7 @@ public class Estado {
     private Integer ID;
     private String nome;
     private String uf;
+    //@Column(name = "pais_id) 
     //private Pais pais;
 
     public Integer getID() {

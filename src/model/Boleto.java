@@ -1,12 +1,10 @@
 package model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.OneToMany;
-
 
 @Entity(name = "TB_Boleto")
 public class Boleto {
@@ -18,8 +16,8 @@ public class Boleto {
 	private String status;
 	private String OBS;
 	private String tipoPagamento;
-	//@OneToMany(cascade = CascadeType.ALL)
-	private Cliente cliente;
+	// @OneToMany(cascade = CascadeType.ALL)
+	// private Cliente cliente;
 
 	public Integer getID() {
 		return ID;
@@ -53,13 +51,13 @@ public class Boleto {
 		OBS = oBS;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+//	public Cliente getCliente() {
+//		return cliente;
+//	}
+//
+//	public void setCliente(Cliente cliente) {
+//		this.cliente = cliente;
+//	}
 
 	public String getTipoPagamento() {
 		return tipoPagamento;
@@ -68,6 +66,5 @@ public class Boleto {
 	public void setTipoPagamento(String tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;
 	}
-	
 
 }
