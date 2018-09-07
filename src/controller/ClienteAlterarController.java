@@ -188,5 +188,4 @@ public class ClienteAlterarController implements Initializable {
 		txtBairro.setText(ClientController.clienteSelecionado.getEndereco().getBairro() );
 		txtComplemento.setText(ClientController.clienteSelecionado.getEndereco().getComplemento() );
 	}
-
 }

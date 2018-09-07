@@ -280,6 +280,4 @@ public class ClientController implements Initializable {
 		recarregarTela();
 	}
 	
-	
-
 }

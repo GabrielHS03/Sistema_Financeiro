@@ -7,7 +7,7 @@ import javax.persistence.Id;
 //import javax.persistence.OneToMany;
 
 @Entity(name = "TB_Boleto")
-public class Boleto {
+public class Boleto { 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

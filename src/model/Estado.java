@@ -32,13 +32,6 @@ public class Estado {
         this.ID = ID;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getUf() {
         return uf;
