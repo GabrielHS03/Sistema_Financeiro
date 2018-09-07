@@ -5,7 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
+import DAO.EnderecoDAO;
 import application.ClienteAlterar;
+import application.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Cliente;
 import model.Endereco;
@@ -77,9 +80,6 @@ public class ClienteAlterarController implements Initializable {
 	@FXML
 	private TextField txtTelefone;
 
-	@FXML
-	private TextField txtCelular;
-	
 	@FXML
 	private TextField txtEmail;
 
@@ -179,8 +179,8 @@ public class ClienteAlterarController implements Initializable {
 		txtID.setText(codigoEmString);
 		txtNome.setText(ClientController.clienteSelecionado.getNome());
 		txtEmail.setText(ClientController.clienteSelecionado.getEmail());
-		txtCelular.setText(ClientController.clienteSelecionado.getTelefoneCel());
-		txtTelefone.setText(ClientController.clienteSelecionado.getTelefoneFixo());
+		txtTelefone.setText(ClientController.clienteSelecionado.getTelefoneCel());
+		//txtTelefone.setText(ClientController.clienteSelecionado.getTelefoneFixo());
 		txtObservacao.setText(ClientController.clienteSelecionado.getOBS());
 		txtEndereco.setText(ClientController.clienteSelecionado.getEndereco().getRua() );
 		String CEPemString = String.valueOf((ClientController.clienteSelecionado.getEndereco().getCEP()));

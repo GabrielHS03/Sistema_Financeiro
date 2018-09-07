@@ -32,20 +32,17 @@
             <TextField fx:id="txtCPFCNPJ" layoutX="415.0" layoutY="103.0" />
             <TextField fx:id="txtNome" layoutX="110.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" />
             <TextField fx:id="txtRazaoSocial" layoutX="415.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" visible="false" />
-            <TextField fx:id="txtEmail" layoutX="110.0" layoutY="186.0" prefHeight="25.0" prefWidth="203.0" />
             <TextField fx:id="txtTelefone" layoutX="415.0" layoutY="186.0" />
-            <TextField fx:id="txtCelular" layoutX="415.0" layoutY="221.0" />
             <TextField fx:id="txtEndereco" layoutX="110.0" layoutY="267.0" prefHeight="25.0" prefWidth="219.0" />
+            <TextField fx:id="txtEmail" layoutX="110.0" layoutY="186.0" prefHeight="25.0" prefWidth="203.0" />
             <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="115.0" text="ID:" textAlignment="RIGHT" />
             <Label fx:id="lblNome" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="7.0" layoutY="150.0" prefHeight="17.0" prefWidth="87.0" text="Nome:" textAlignment="RIGHT" />
             <Label fx:id="lblCPFCNPJ" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="376.0" layoutY="107.0" text="CPF:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="349.0" layoutY="190.0" text="Telefone:" />
             <Label contentDisplay="RIGHT" layoutX="43.0" layoutY="271.0" text="Endereço:" textAlignment="RIGHT" />
-            <TextField fx:id="txtBairro" layoutX="415.0" layoutY="267.0" />
             <TextField fx:id="txtComplemento" layoutX="110.0" layoutY="300.0" />
-            <TextField fx:id="txtCidade" layoutX="415.0" layoutY="300.0" />
+            <TextField fx:id="txtBairro" layoutX="415.0" layoutY="267.0" />
             <TextField fx:id="txtCEP" layoutX="110.0" layoutY="335.0" />
-            <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="25.0" prefWidth="35.0" />
             <TextArea fx:id="txtObservacao" layoutX="120.0" layoutY="397.0" prefHeight="121.0" prefWidth="418.0" />
             <Label contentDisplay="RIGHT" layoutX="13.0" layoutY="304.0" text="Complemento:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="358.0" layoutY="271.0" text="Bairro:" textAlignment="RIGHT" />
@@ -63,12 +60,13 @@
             <Label contentDisplay="RIGHT" layoutX="61.0" layoutY="190.0" text="Email:" textAlignment="RIGHT" />
             <Label fx:id="lblCidade" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="304.0" text="Cidade:" />
             <Label fx:id="lblEstado" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="339.0" text="Estado:" />
+            <TextField fx:id="txtCidade" layoutX="415.0" layoutY="300.0" />
+            <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="25.0" prefWidth="35.0" />
             <Button fx:id="btnExcluir" layoutX="438.0" layoutY="537.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="102.0" style="-fx-background-color: red;" stylesheets="@style.css" text="Excluir" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Label contentDisplay="RIGHT" layoutX="358.0" layoutY="225.0" text="Celular:" />
          </children>
       </Pane>
    </children>

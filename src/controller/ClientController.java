@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import DAO.ClienteDAO;
 import DAO.EnderecoDAO;
 import application.ClienteAlterar;
+import application.Home;
+import application.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -78,9 +80,6 @@ public class ClientController implements Initializable {
 
 	@FXML
 	private TextField txtTelefone;
-	
-	@FXML
-	private TextField txtCelular;
 
 	@FXML
 	private TextField txtEmail;
@@ -160,7 +159,7 @@ public class ClientController implements Initializable {
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
 			cliente.setTelefoneFixo(txtTelefone.getText());
-			cliente.setTelefoneCel(txtCelular.getText());
+			//cliente.setTelefoneCel(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			
