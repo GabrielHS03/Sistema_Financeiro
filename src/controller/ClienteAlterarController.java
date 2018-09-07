@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
 import application.ClienteAlterar;
+import application.Home;
+import application.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +20,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Cliente;
 import model.Endereco;
 
@@ -143,20 +146,25 @@ public class ClienteAlterarController implements Initializable {
 				cliente.setRazaoSocial(txtRazaoSocial.getText());
 			}
 			// ----------------------
-			cliente.setTelefoneCel(txtTelefone.getText());
-			//cliente.setTelefoneFixo(txtTelefone.getText());
+			cliente.setTelefoneCel(txtCelular.getText());
+			cliente.setTelefoneFixo(txtTelefone.getText());
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			cliente.setID(ClientController.clienteSelecionado.getID());
 
 			clienteDAO.save(cliente);
 			ClienteAlterar.getStage().close();
+			try {
+				recarregarTelaClientePrincipal();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		});
 	}
 
-	public void recarregarTela() throws IOException {
+	public void recarregarTelaClientePrincipal() throws IOException {
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
-		rootPane.getChildren().setAll(pane);
+		HomeController.rootPaneHome.getChildren().setAll(pane);
 	}
 
 	public void setarDados() {

@@ -16,7 +16,8 @@ public class HomeController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
-    
+    public static AnchorPane rootPaneHome;
+
 	@FXML
 	private Button btnCliente;
 
@@ -33,6 +34,7 @@ public class HomeController implements Initializable {
 	private ImageView imgClient;
 
 	public void initialize(URL url, ResourceBundle rb) {
+	    rootPaneHome = rootPane;
 		btnCliente.setOnMouseClicked(MouseEvent -> {
 			try {
 				carregarTela();
