@@ -175,14 +175,16 @@ public class ClientController implements Initializable {
 			//endereco.setCidade(txtCidade.getText());
 			//endereco.setEstado(txtEstado.getText());
 			
-			
-			
-			if(comboBox.getValue() == "CPF") {
+			switch (comboBox.getValue()) {
+			case "CPF":
 				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
-			}if(comboBox.getValue() == "CNPJ") {
+				break;
+			case "CNPJ":
 				cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
 				cliente.setRazaoSocial(txtRazaoSocial.getText());
-			}else {
+				break;
+			default :
+				System.out.println("Selecione CPF ou CNPJ!");
 				controle = false;
 			}
 			
