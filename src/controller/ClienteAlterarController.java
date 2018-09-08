@@ -5,9 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
+import DAO.EnderecoDAO;
 import application.ClienteAlterar;
-import application.Home;
-import application.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,7 +19,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.Cliente;
 import model.Endereco;
 
@@ -106,6 +104,12 @@ public class ClienteAlterarController implements Initializable {
 
 	@FXML
 	private TextField txtCEP;
+	
+    @FXML
+    private TextField txtCidade;
+
+    @FXML
+    private TextField txtEstado;
 
 	@FXML
 	private TextArea txtObservacao;
@@ -131,7 +135,7 @@ public class ClienteAlterarController implements Initializable {
 		btnAlterarCliente.setOnMouseClicked(MouseEvent -> {
 			Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
 			ClienteDAO clienteDAO = new ClienteDAO();
-
+			
 			cliente.setCodigo(Integer.parseInt(txtID.getText()));
 			cliente.setNome(txtNome.getText());
 			// ----------------------
@@ -151,8 +155,15 @@ public class ClienteAlterarController implements Initializable {
 			cliente.setEmail(txtEmail.getText());
 			cliente.setOBS(txtObservacao.getText());
 			cliente.setID(ClientController.clienteSelecionado.getID());
-
+			cliente.getEndereco().setRua(txtEndereco.getText());
+			cliente.getEndereco().setBairro(txtBairro.getText());
+			cliente.getEndereco().setComplemento(txtComplemento.getText());
+			cliente.getEndereco().setCidade(txtCidade.getText());
+			cliente.getEndereco().setCEP(Integer.parseInt(txtCEP.getText()));
+			cliente.getEndereco().setEstado(txtEstado.getText());
+			cliente.getEndereco().setID(ClientController.clienteSelecionado.getEndereco().getID());
 			clienteDAO.save(cliente);
+			
 			ClienteAlterar.getStage().close();
 			try {
 				recarregarTelaClientePrincipal();
@@ -204,7 +215,9 @@ public class ClienteAlterarController implements Initializable {
 		txtEndereco.setText(ClientController.clienteSelecionado.getEndereco().getRua() );
 		String CEPemString = String.valueOf((ClientController.clienteSelecionado.getEndereco().getCEP()));
 		txtCEP.setText(CEPemString);
-		txtBairro.setText(ClientController.clienteSelecionado.getEndereco().getBairro() );
-		txtComplemento.setText(ClientController.clienteSelecionado.getEndereco().getComplemento() );
+		txtBairro.setText(ClientController.clienteSelecionado.getEndereco().getBairro());
+		txtComplemento.setText(ClientController.clienteSelecionado.getEndereco().getComplemento());
+		txtCidade.setText(ClientController.clienteSelecionado.getEndereco().getCidade());
+		txtEstado.setText(ClientController.clienteSelecionado.getEndereco().getEstado());
 	}
 }

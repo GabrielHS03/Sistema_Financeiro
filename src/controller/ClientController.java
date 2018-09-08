@@ -105,7 +105,13 @@ public class ClientController implements Initializable {
 
 	@FXML
 	private TextField txtCEP;
-	
+
+    @FXML
+    private TextField txtCidade;
+
+    @FXML
+    private TextField txtEstado;
+    
 	@FXML
 	private TextArea txtObservacao;
 	
@@ -172,8 +178,8 @@ public class ClientController implements Initializable {
 			endereco.setCEP(Integer.parseInt(txtCEP.getText()));
 			endereco.setBairro(txtBairro.getText());
 			endereco.setComplemento(txtComplemento.getText());
-			//endereco.setCidade(txtCidade.getText());
-			//endereco.setEstado(txtEstado.getText());
+			endereco.setCidade(txtCidade.getText());
+			endereco.setEstado(txtEstado.getText());
 			
 			switch (comboBox.getValue()) {
 			case "CPF":
