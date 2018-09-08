@@ -18,7 +18,7 @@ public class Home extends Application {
 		Scene scene = new Scene(root);
 		Image image = new Image("file:icon.png");
 		stage.getIcons().add(image);
-		stage.setTitle("Home");
+		stage.setTitle("Maxima Segurança");
 		stage.setScene(scene);
 		stage.show();
 		setStage(stage);

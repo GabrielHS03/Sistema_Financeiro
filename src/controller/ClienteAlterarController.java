@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DAO.ClienteDAO;
-import DAO.EnderecoDAO;
 import application.ClienteAlterar;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,9 +43,6 @@ public class ClienteAlterarController implements Initializable {
 
 	@FXML
 	private TableColumn<?, ?> tbClienteColumnCNPJ;
-
-	@FXML
-	private TableColumn<?, ?> tbClienteColumnEndereco;
 
 	@FXML
 	private TableColumn<?, ?> tbClienteColumnTelefone;
@@ -173,14 +169,46 @@ public class ClienteAlterarController implements Initializable {
 		});
 		
 		btnExcluir.setOnMouseClicked(MouseEvent -> {
+			
+			Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
 			ClienteDAO clienteDAO = new ClienteDAO();
-			clienteDAO.remove(ClientController.clienteSelecionado.getID());
+			
+			cliente.setCodigo(null);
+			cliente.setNome(txtNome.getText());
+			// ----------------------
+			String cpfEmString = String.valueOf(ClientController.clienteSelecionado.getCPF());
+			String cnpjEmString = String.valueOf(ClientController.clienteSelecionado.getCNPJ());
+
+			if (cnpjEmString == "null") {
+				cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
+			}
+			if (cpfEmString == "null") {
+				cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
+				cliente.setRazaoSocial(txtRazaoSocial.getText());
+			}
+			// ----------------------
+			cliente.setTelefoneCel(txtCelular.getText());
+			cliente.setTelefoneFixo(txtTelefone.getText());
+			cliente.setEmail(txtEmail.getText());
+			cliente.setOBS(txtObservacao.getText());
+			cliente.setID(ClientController.clienteSelecionado.getID());
+			cliente.getEndereco().setRua(txtEndereco.getText());
+			cliente.getEndereco().setBairro(txtBairro.getText());
+			cliente.getEndereco().setComplemento(txtComplemento.getText());
+			cliente.getEndereco().setCidade(txtCidade.getText());
+			cliente.getEndereco().setCEP(Integer.parseInt(txtCEP.getText()));
+			cliente.getEndereco().setEstado(txtEstado.getText());
+			cliente.getEndereco().setID(ClientController.clienteSelecionado.getEndereco().getID());
+			cliente.setStatus(false);
+			clienteDAO.save(cliente);
+			
 			ClienteAlterar.getStage().close();
 			try {
 				recarregarTelaClientePrincipal();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		
 		});
 	}
 

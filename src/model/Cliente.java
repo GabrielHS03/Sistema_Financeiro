@@ -34,7 +34,7 @@ public class Cliente {
     private String OBS;
     @OneToOne(cascade = CascadeType.ALL)
    	private Endereco endereco;
-
+    private boolean status = true;
     
 
 	public Cliente() {
@@ -141,6 +141,14 @@ public class Cliente {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
     
     

@@ -123,7 +123,7 @@ public class ClientController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		comboBox.getItems().addAll("CPF", "CNPJ");
 		choice();
-		
+		comboBox.setValue("CPF");
 		carregarTableViewClientes();
 		//Listener da tabela
 		tbCliente.getSelectionModel().selectedItemProperty()
@@ -189,9 +189,7 @@ public class ClientController implements Initializable {
 				cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
 				cliente.setRazaoSocial(txtRazaoSocial.getText());
 				break;
-			default :
-				System.out.println("Selecione CPF ou CNPJ!");
-				controle = false;
+			
 			}
 			
 			if(controle == true) {
@@ -233,8 +231,9 @@ public class ClientController implements Initializable {
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
 		for (Cliente cliente : clienteDAO.buscarTodos()) {
-
-			listaClientes.add(cliente);
+			if(cliente.getStatus() == true) {
+				listaClientes.add(cliente);
+			}
 		}
 		
 		tbCliente.setItems(listaClientes);
@@ -243,7 +242,6 @@ public class ClientController implements Initializable {
 		tbClienteColumnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 		tbClienteColumnCNPJ.setCellValueFactory(new PropertyValueFactory<>("CNPJ"));
 		tbClienteColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefoneFixo"));
-		tbClienteColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("rua"));
 	}
 		
     @FXML
