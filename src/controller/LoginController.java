@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Cliente;
 import model.Usuario;
 
 public class LoginController implements Initializable {
@@ -46,30 +47,22 @@ public class LoginController implements Initializable {
 	//========================================================================================
     
 	public void login() {
-		if (txtUsuario.getText().equals(retornoLoginBD()) && txtSenha.getText().equals(retornoSenhaBD())) {
-			lblStatus.setText("Login efetuado com sucesso!");                   
-			Home home = new Home();                        
-			Login.getStage().close();
-			try {
-				home.start(new Stage());
-			} catch (Exception e) {
-				e.getMessage();
+		
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		for (Usuario usuario : usuarioDAO.buscarTodos()) {
+			if (txtUsuario.getText().equals(usuario.getLogin()) && txtSenha.getText().equals(usuario.getSenha())) {
+				lblStatus.setText("Login efetuado com sucesso!");                   
+				Home home = new Home();                        
+				Login.getStage().close();
+				try {
+					home.start(new Stage());
+				} catch (Exception e) {
+					e.getMessage();
+				}
+			} else {
+				lblStatus.setText("Login e/ou senha incorretos!");
 			}
-		} else {
-			lblStatus.setText("Login e/ou senha incorretos!");
 		}
 	}
 
-	public String retornoLoginBD() {
-        UsuarioDAO userDAO = new UsuarioDAO();
-        Usuario user = userDAO.buscarID(2);
-        
-        return user.getLogin();
-	}
-	public String retornoSenhaBD() {
-        UsuarioDAO userDAO = new UsuarioDAO();
-        Usuario user = userDAO.buscarID(2);
-        
-        return user.getSenha();
-	}
 }
