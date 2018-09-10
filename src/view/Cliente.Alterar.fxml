@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClienteAlterarController">
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="640.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClienteAlterarController">
    <children>
       <ImageView fx:id="imgReturn" fitHeight="41.0" fitWidth="40.0" layoutX="14.0" layoutY="6.0">
          <image>
@@ -45,7 +45,7 @@
             <TextField fx:id="txtComplemento" layoutX="110.0" layoutY="300.0" />
             <TextField fx:id="txtCidade" layoutX="415.0" layoutY="300.0" />
             <TextField fx:id="txtCEP" layoutX="110.0" layoutY="335.0" />
-            <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="25.0" prefWidth="35.0" />
+            <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="31.0" prefWidth="42.0" />
             <TextArea fx:id="txtObservacao" layoutX="120.0" layoutY="397.0" prefHeight="121.0" prefWidth="418.0" />
             <Label contentDisplay="RIGHT" layoutX="13.0" layoutY="304.0" text="Complemento:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="358.0" layoutY="271.0" text="Bairro:" textAlignment="RIGHT" />
@@ -54,7 +54,7 @@
             <Label fx:id="lblCNPJ" contentDisplay="RIGHT" layoutX="329.0" layoutY="150.0" text="Razão Social:" textAlignment="RIGHT" visible="false" />
             <ImageView fx:id="imgHome" fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/home.png" />
+                  <Image url="@../images/home.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

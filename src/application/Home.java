@@ -16,7 +16,7 @@ public class Home extends Application {
 
 		Parent root = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
 		Scene scene = new Scene(root);
-		Image image = new Image("file:icon.png");
+		Image image = new Image("images/icon.png");
 		stage.getIcons().add(image);
 		stage.setTitle("Maxima Segurança");
 		stage.setScene(scene);

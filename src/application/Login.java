@@ -25,7 +25,7 @@ public class Login extends Application {
 		EntityManager entityManager = new ConnectionFactory().getConnection();
 		Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
 		Scene scene = new Scene(root);
-		Image image = new Image("file:icon.png");
+		Image image = new Image("images/icon.png");
 		stage.getIcons().add(image);
 		stage.setTitle("Login");
 		stage.setScene(scene);
