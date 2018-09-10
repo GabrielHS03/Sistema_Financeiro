@@ -33,7 +33,7 @@
       </ImageView>
       <Pane prefHeight="600.0" prefWidth="640.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btnCadastrarCliente" layoutX="265.0" layoutY="537.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" stylesheets="@style.css" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="btnCadastrarCliente" layoutX="265.0" layoutY="537.0" mnemonicParsing="false" onAction="#btnCadastrarCliente" prefHeight="41.0" prefWidth="111.0" stylesheets="@style.css" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ComboBox fx:id="comboBox" layoutX="110.0" layoutY="72.0" prefHeight="25.0" prefWidth="74.0">
+            <ComboBox fx:id="comboBox" layoutX="110.0" layoutY="72.0" prefHeight="31.0" prefWidth="87.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
@@ -62,14 +62,14 @@
             <TextField fx:id="txtComplemento" layoutX="110.0" layoutY="300.0" />
             <TextField fx:id="txtCidade" layoutX="415.0" layoutY="300.0" />
             <TextField fx:id="txtCEP" layoutX="110.0" layoutY="335.0" />
-            <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="25.0" prefWidth="35.0" />
+            <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="31.0" prefWidth="49.0" />
             <TextArea fx:id="txtObservacao" layoutX="120.0" layoutY="397.0" prefHeight="121.0" prefWidth="418.0" />
             <Label contentDisplay="RIGHT" layoutX="14.0" layoutY="304.0" text="Complemento:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="362.0" layoutY="271.0" text="Bairro:*" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="69.0" layoutY="339.0" text="CEP:*" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="28.0" layoutY="397.0" text="Observação:" textAlignment="RIGHT" />
             <Label fx:id="lblCNPJ" contentDisplay="RIGHT" layoutX="329.0" layoutY="150.0" text="Razão Social:*" textAlignment="RIGHT" visible="false" />
-            <ImageView fx:id="imgHome" fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgHome" fitHeight="57.0" fitWidth="49.0" layoutX="16.0" layoutY="14.0" onMouseClicked="#imgHome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/home.png" />
                </image>
@@ -84,7 +84,7 @@
             <Label contentDisplay="RIGHT" layoutX="356.0" layoutY="224.0" text="Celular:" />
          </children>
       </Pane>
-      <TextField fx:id="searchBox" layoutX="1117.0" layoutY="16.0" onKeyPressed="#pesquisarTabela" AnchorPane.leftAnchor="1117.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="16.0" />
+      <TextField fx:id="searchBox" layoutX="1117.0" layoutY="16.0" onKeyPressed="#searchBox" AnchorPane.leftAnchor="1117.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="16.0" />
       <Label layoutX="1043.0" layoutY="21.0" prefHeight="21.0" prefWidth="67.0" text="Pesquisar:" AnchorPane.leftAnchor="1043.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="21.0" />
    </children>
 </AnchorPane>

@@ -6,13 +6,12 @@ import java.util.ResourceBundle;
 import DAO.UsuarioDAO;
 import application.Home;
 import application.Login;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import model.Usuario;
 
@@ -25,34 +24,29 @@ public class LoginController implements Initializable {
 	private PasswordField txtSenha;
 
 	@FXML
-	private Button btnEntrar;
-
-	@FXML
 	private Label lblStatus;
-
+	
+	//=======================================================================================
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		btnEntrar.setOnMouseClicked(MouseEvent -> {
-			login();
 
-		});
-
-		btnEntrar.setOnKeyPressed(KeyEvent -> {
-			if (KeyEvent.getCode() == KeyCode.ENTER) {
-				login();
-			}
-
-		});
-
-		txtSenha.setOnKeyPressed(KeyEvent -> {
-			if (KeyEvent.getCode() == KeyCode.ENTER) {
-				login();
-			}
-		});
 	}
+	//========================================================================================
+   
+	@FXML
+    void btnEntrar(ActionEvent event) {
+    	login();
+    }
 
+    @FXML
+    void txtSenha(ActionEvent event) {
+    	login();
+    }
+    
+	//========================================================================================
+    
 	public void login() {
-		if (txtUsuario.getText().equals("adm") && txtSenha.getText().equals("123")) {
+		if (txtUsuario.getText().equals(retornoLoginBD()) && txtSenha.getText().equals(retornoSenhaBD())) {
 			lblStatus.setText("Login efetuado com sucesso!");                   
 			Home home = new Home();                        
 			Login.getStage().close();
@@ -68,13 +62,13 @@ public class LoginController implements Initializable {
 
 	public String retornoLoginBD() {
         UsuarioDAO userDAO = new UsuarioDAO();
-        Usuario user = userDAO.buscarID(1);
+        Usuario user = userDAO.buscarID(2);
         
         return user.getLogin();
 	}
 	public String retornoSenhaBD() {
         UsuarioDAO userDAO = new UsuarioDAO();
-        Usuario user = userDAO.buscarID(1);
+        Usuario user = userDAO.buscarID(2);
         
         return user.getSenha();
 	}
