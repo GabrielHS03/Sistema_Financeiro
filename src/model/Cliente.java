@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,34 +28,10 @@ public class Cliente {
     private String OBS;
     @OneToOne(cascade = CascadeType.ALL)
    	private Endereco endereco;
-    @OneToMany(targetEntity = Boleto.class, mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Boleto.class, mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List <Boleto> boletos;
     private boolean status = true;
     
-
-	public Cliente() {
-	
-	}
-
-	
-	public Cliente(Integer iD, Integer codigo, String nome, String razaoSocial, String telefoneFixo, String telefoneCel,
-			Long cPF, Long cNPJ, String email, String oBS, Endereco endereco, List<Boleto> boletos, boolean status) {
-		super();
-		ID = iD;
-		this.codigo = codigo;
-		this.nome = nome;
-		this.razaoSocial = razaoSocial;
-		this.telefoneFixo = telefoneFixo;
-		this.telefoneCel = telefoneCel;
-		CPF = cPF;
-		CNPJ = cNPJ;
-		this.email = email;
-		OBS = oBS;
-		this.endereco = endereco;
-		this.boletos = boletos;
-		this.status = status;
-	}
-
 	public Integer getID() {
         return ID;
     }

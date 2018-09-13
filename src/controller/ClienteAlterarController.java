@@ -128,7 +128,7 @@ public class ClienteAlterarController implements Initializable {
     
 	@FXML
     void btnAlterarCliente(ActionEvent event) throws IOException {
-		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco(), null, false);
+		Cliente cliente = new Cliente();
 		ClienteDAO clienteDAO = new ClienteDAO();
 		
 		cliente.setCodigo(Integer.parseInt(txtID.getText()));
@@ -166,7 +166,7 @@ public class ClienteAlterarController implements Initializable {
 
     @FXML
     void btnExcluir(ActionEvent event) throws IOException {
-		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco(), null, false);
+		Cliente cliente = new Cliente();
 		ClienteDAO clienteDAO = new ClienteDAO();
 		
 		cliente.setCodigo(null);

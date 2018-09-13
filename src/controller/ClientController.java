@@ -145,10 +145,8 @@ public class ClientController implements Initializable {
 	}
 
 	@FXML
-	void btnCadastrarCliente(ActionEvent event) {
+	void btnCadastrarCliente(ActionEvent event) throws IOException {
 		boolean controle = true;
-		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco(), new ArrayList<>(), controle);
-		ClienteDAO clienteDAO = new ClienteDAO();
 
 		for (Cliente clienteLista : listaClientes) {
 			int codigoCliente = Integer.parseInt(txtID.getText());
@@ -159,24 +157,15 @@ public class ClientController implements Initializable {
 				controle = false;
 			}
 		}
+		//---------CLIENTE--------------------------------------------
+		Cliente cliente = new Cliente();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		cliente.setCodigo(Integer.parseInt(txtID.getText()));
 		cliente.setNome(txtNome.getText());
 		cliente.setTelefoneFixo(txtTelefone.getText());
 		cliente.setTelefoneCel(txtCelular.getText());
 		cliente.setEmail(txtEmail.getText());
 		cliente.setOBS(txtObservacao.getText());
-
-		Endereco endereco = new Endereco();
-		EnderecoDAO enderecoDAO = new EnderecoDAO();
-
-		cliente.setEndereco(endereco);
-		endereco.setRua(txtEndereco.getText());
-		endereco.setCEP(Integer.parseInt(txtCEP.getText()));
-		endereco.setBairro(txtBairro.getText());
-		endereco.setComplemento(txtComplemento.getText());
-		endereco.setCidade(txtCidade.getText());
-		endereco.setEstado(txtEstado.getText());
-
 		switch (comboBox.getValue()) {
 		case "CPF":
 			cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
@@ -187,32 +176,45 @@ public class ClientController implements Initializable {
 			break;
 
 		}
-		
+		//------------------------------------------------------------
+		//---------ENDEREÇO-------------------------------------------
+		Endereco endereco = new Endereco();
+		EnderecoDAO enderecoDAO = new EnderecoDAO();
+
+		endereco.setRua(txtEndereco.getText());
+		endereco.setCEP(Integer.parseInt(txtCEP.getText()));
+		endereco.setBairro(txtBairro.getText());
+		endereco.setComplemento(txtComplemento.getText());
+		endereco.setCidade(txtCidade.getText());
+		endereco.setEstado(txtEstado.getText());
+		cliente.setEndereco(endereco);
+		//------------------------------------------------------------
+		//---------BOLETO---------------------------------------------
 		List<Boleto> listaDeBoletos = new ArrayList<>();
-		Boleto boleto = new Boleto();
+		Boleto boleto1 = new Boleto();
+		Boleto boleto2 = new Boleto();	
 		BoletoDAO boletoDAO = new BoletoDAO();
 		
+		boleto1.setValor(800.50);
+		boleto1.setStatus("PAGO");
+		boleto1.setCliente(cliente);
 		
-		boleto.setValor(800.50);
-		boleto.setStatus("PAGO");
-		boleto.setCliente(cliente);
-		listaDeBoletos.add(boleto);
+		boleto2.setValor(500.00);
+		boleto2.setStatus("DEVENDO");
+		boleto2.setCliente(cliente);
+		
+		listaDeBoletos.add(boleto1);
+		listaDeBoletos.add(boleto2);
 		cliente.setBoletos(listaDeBoletos);
-		
+		//------------------------------------------------------------
 		
 		if (controle == true) {
 			clienteDAO.save(cliente);
 		}
-
 		enderecoDAO.save(endereco);
-		try {
-			recarregarTela();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		boletoDAO.save(boleto);
+		boletoDAO.save(boleto1);
+		boletoDAO.save(boleto2);
+		recarregarTela();				
 	}
 
 	@FXML
@@ -256,7 +258,7 @@ public class ClientController implements Initializable {
 				lblCNPJ.setVisible(false);
 				lblCPFCNPJ.setText("CPF:*");
 				lblNome.setText("Nome:*");
-				break;
+				break; 
 			case "CNPJ":
 				txtRazaoSocial.setVisible(true);
 				lblCNPJ.setVisible(true);
@@ -296,7 +298,7 @@ public class ClientController implements Initializable {
 		rootPane.getChildren().setAll(pane);
     }
     
-    public static Cliente clienteSelecionado = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco(), null, false);
+    public static Cliente clienteSelecionado = new Cliente();
 	public void carregarTelaAlterar(Cliente cliente) throws IOException {
 		clienteSelecionado = cliente;
 		ClienteAlterar clienteAlterar = new ClienteAlterar();
