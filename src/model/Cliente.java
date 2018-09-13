@@ -27,17 +27,18 @@ public class Cliente {
     private String OBS;
     @OneToOne(cascade = CascadeType.ALL)
    	private Endereco endereco;
-    //@OneToMany(targetEntity = Boleto.class, mappedBy = "cliente", cascade = CascadeType.ALL)
-    //private List <Boleto> boletos;
+    @OneToMany(targetEntity = Boleto.class, mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List <Boleto> boletos;
     private boolean status = true;
     
 
 	public Cliente() {
-		super();
+	
 	}
 
+	
 	public Cliente(Integer iD, Integer codigo, String nome, String razaoSocial, String telefoneFixo, String telefoneCel,
-			Long cPF, Long cNPJ, String email, String oBS, Endereco endereco) {
+			Long cPF, Long cNPJ, String email, String oBS, Endereco endereco, List<Boleto> boletos, boolean status) {
 		super();
 		ID = iD;
 		this.codigo = codigo;
@@ -50,6 +51,8 @@ public class Cliente {
 		this.email = email;
 		OBS = oBS;
 		this.endereco = endereco;
+		this.boletos = boletos;
+		this.status = status;
 	}
 
 	public Integer getID() {
@@ -138,13 +141,13 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-//	public List<Boleto> getBoletos() {
-//		return boletos;
-//	}
-//
-//	public void setBoletos(List<Boleto> boletos) {
-//		this.boletos = boletos;
-//	}
+	public List<Boleto> getBoletos() {
+		return boletos;
+	}
+
+	public void setBoletos(List<Boleto> boletos) {
+		this.boletos = boletos;
+	}
 
 	public boolean getStatus() {
 		return status;

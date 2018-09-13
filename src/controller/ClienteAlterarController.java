@@ -2,7 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import com.mysql.fabric.xmlrpc.base.Array;
 
 import DAO.ClienteDAO;
 import application.ClienteAlterar;
@@ -20,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import model.Boleto;
 import model.Cliente;
 import model.Endereco;
 
@@ -115,7 +120,6 @@ public class ClienteAlterarController implements Initializable {
 	//=============================================================================================================
 	
 	public void initialize(URL url, ResourceBundle rb) {
-		
 		setarDados();
 
 	}
@@ -124,7 +128,7 @@ public class ClienteAlterarController implements Initializable {
     
 	@FXML
     void btnAlterarCliente(ActionEvent event) throws IOException {
-		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
+		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco(), null, false);
 		ClienteDAO clienteDAO = new ClienteDAO();
 		
 		cliente.setCodigo(Integer.parseInt(txtID.getText()));
@@ -162,7 +166,7 @@ public class ClienteAlterarController implements Initializable {
 
     @FXML
     void btnExcluir(ActionEvent event) throws IOException {
-		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
+		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco(), null, false);
 		ClienteDAO clienteDAO = new ClienteDAO();
 		
 		cliente.setCodigo(null);

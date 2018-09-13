@@ -2,8 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import DAO.EnderecoDAO;
 import application.ClienteAlterar;
@@ -26,6 +29,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Boleto;
 import model.Cliente;
 import model.Endereco;
 
@@ -143,7 +147,7 @@ public class ClientController implements Initializable {
 	@FXML
 	void btnCadastrarCliente(ActionEvent event) {
 		boolean controle = true;
-		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
+		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco(), new ArrayList<>(), controle);
 		ClienteDAO clienteDAO = new ClienteDAO();
 
 		for (Cliente clienteLista : listaClientes) {
@@ -183,7 +187,19 @@ public class ClientController implements Initializable {
 			break;
 
 		}
-
+		
+		List<Boleto> listaDeBoletos = new ArrayList<>();
+		Boleto boleto = new Boleto();
+		BoletoDAO boletoDAO = new BoletoDAO();
+		
+		
+		boleto.setValor(800.50);
+		boleto.setStatus("PAGO");
+		boleto.setCliente(cliente);
+		listaDeBoletos.add(boleto);
+		cliente.setBoletos(listaDeBoletos);
+		
+		
 		if (controle == true) {
 			clienteDAO.save(cliente);
 		}
@@ -195,6 +211,8 @@ public class ClientController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		boletoDAO.save(boleto);
 	}
 
 	@FXML
@@ -278,10 +296,9 @@ public class ClientController implements Initializable {
 		rootPane.getChildren().setAll(pane);
     }
     
-    public static Cliente clienteSelecionado = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco());
+    public static Cliente clienteSelecionado = new Cliente(null, null, null, null, null, null, null, null, null, null, new Endereco(), null, false);
 	public void carregarTelaAlterar(Cliente cliente) throws IOException {
 		clienteSelecionado = cliente;
-
 		ClienteAlterar clienteAlterar = new ClienteAlterar();
 		try {
 			clienteAlterar.start(new Stage());

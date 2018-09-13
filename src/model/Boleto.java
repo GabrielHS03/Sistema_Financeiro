@@ -12,12 +12,12 @@ public class Boleto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ID;
-	private Float valor;
+	private double valor;
 	private String status;
 	private String OBS;
 	private String tipoPagamento;
-	//@ManyToOne
-	//private Cliente cliente;
+	@ManyToOne
+	private Cliente cliente;
 
 	public Integer getID() {
 		return ID;
@@ -27,12 +27,12 @@ public class Boleto {
 		ID = iD;
 	}
 
-	public Float getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(Float valor) {
-		this.valor = valor;
+	public void setValor(double d) {
+		this.valor = d;
 	}
 
 	public String getStatus() {
@@ -59,12 +59,12 @@ public class Boleto {
 		this.tipoPagamento = tipoPagamento;
 	}
 	
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 }
