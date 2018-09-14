@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BoletoController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="640.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextField layoutX="73.0" layoutY="201.0" promptText="Valor" />
+            <TextField layoutX="81.0" layoutY="39.0" prefHeight="25.0" prefWidth="350.0" />
+            <TextArea layoutX="73.0" layoutY="341.0" prefHeight="200.0" prefWidth="494.0" />
+            <TextField layoutX="73.0" layoutY="148.0" promptText="ID" />
+            <DatePicker layoutX="73.0" layoutY="261.0" />
+            <Label layoutX="73.0" layoutY="238.0" text="Data de Vencimento:" />
+         </children>
+      </Pane>
+      <TableView layoutX="640.0" layoutY="-1.0" prefHeight="600.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
