@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +8,13 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
-
+import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -22,12 +23,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import model.Boleto;
 import model.Cliente;
 
 
 public class BoletoController implements Initializable {
 	
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     private TextField txtValor;
@@ -65,7 +70,10 @@ public class BoletoController implements Initializable {
     @FXML
     private TableColumn<?, ?> columnObservação;
     
+    
 	private ObservableList<Boleto> listaDeBoletos = FXCollections.observableArrayList();
+	
+	private Cliente clienteSelecionado;
 	
 	// =============================================================================================================
 	@Override
@@ -75,14 +83,22 @@ public class BoletoController implements Initializable {
 	}
 
 	// =============================================================================================================
-
+    @FXML
+    void btnHome(MouseEvent event) throws IOException {
+    	carregarTelaHome();
+    }
+    
+    @FXML
+    void btnSalvar(ActionEvent event) throws IOException {
+    	cadastrarBoleto();
+    }
     @FXML
     void txtCodigo(ActionEvent event) {
    		
 		ClienteDAO clienteDAO = new ClienteDAO();
 		for (Cliente cliente : clienteDAO.buscarTodos()) {
 			if(cliente.getCodigo() == Integer.parseInt(txtCodigo.getText())) {
-				
+				clienteSelecionado = cliente;
 				for(Boleto b : cliente.getBoletos()){
 					listaDeBoletos.add(b);
 				}
@@ -91,13 +107,35 @@ public class BoletoController implements Initializable {
 				columnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
 				columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 				columnObservação.setCellValueFactory(new PropertyValueFactory<>("OBS"));
+				
 			}
 			
 		}
     }
 	// =============================================================================================================
+   
+    public void cadastrarBoleto() throws IOException {
+    	
+    	ClienteDAO clienteDAO = new ClienteDAO();
+    	List<Boleto> listaDeBoletos = new ArrayList<>();
+		Boleto boleto = new Boleto();	
+		BoletoDAO boletoDAO = new BoletoDAO();
+		
+		boleto.setCodigo(Integer.parseInt(txtID.getText()));
+		boleto.setValor(Double.parseDouble(txtValor.getText()));
+		boleto.setStatus("PAGO");
+		boleto.setCliente(clienteSelecionado);
+		boleto.setOBS(txtOBS.getText());
+		
+		listaDeBoletos.add(boleto);
+		clienteSelecionado.setBoletos(listaDeBoletos);
+		
+		boletoDAO.save(boleto);
+		
+		//recarregarTela();
+    }
 	
-	public void pesquisarCliente() {
+    public void pesquisarCliente() {
 		List<Integer> listaDeCodigos = new ArrayList<>();
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
@@ -108,5 +146,16 @@ public class BoletoController implements Initializable {
 		TextFields.bindAutoCompletion(txtCodigo, listaDeCodigos);
 		
 	}
+	
+	
+	   public void carregarTelaHome() throws IOException {
+			AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
+			rootPane.getChildren().setAll(pane);
+	    }
+	   
+	   public void recarregarTela() throws IOException {
+			AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Boleto.Principal.fxml"));
+			rootPane.getChildren().setAll(pane);
+		}
 
 }

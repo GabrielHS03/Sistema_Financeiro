@@ -190,30 +190,30 @@ public class ClientController implements Initializable {
 		cliente.setEndereco(endereco);
 		//------------------------------------------------------------
 		//---------BOLETO---------------------------------------------
-		List<Boleto> listaDeBoletos = new ArrayList<>();
-		Boleto boleto1 = new Boleto();
-		Boleto boleto2 = new Boleto();	
-		BoletoDAO boletoDAO = new BoletoDAO();
-		
-		boleto1.setValor(800.50);
-		boleto1.setStatus("PAGO");
-		boleto1.setCliente(cliente);
-		
-		boleto2.setValor(500.00);
-		boleto2.setStatus("DEVENDO");
-		boleto2.setCliente(cliente);
-		
-		listaDeBoletos.add(boleto1);
-		listaDeBoletos.add(boleto2);
-		cliente.setBoletos(listaDeBoletos);
+//		List<Boleto> listaDeBoletos = new ArrayList<>();
+//		Boleto boleto1 = new Boleto();
+//		Boleto boleto2 = new Boleto();	
+//		BoletoDAO boletoDAO = new BoletoDAO();
+//		
+//		boleto1.setValor(800.50);
+//		boleto1.setStatus("PAGO");
+//		boleto1.setCliente(cliente);
+//		
+//		boleto2.setValor(500.00);
+//		boleto2.setStatus("DEVENDO");
+//		boleto2.setCliente(cliente);
+//		
+//		listaDeBoletos.add(boleto1);
+//		listaDeBoletos.add(boleto2);
+//		cliente.setBoletos(listaDeBoletos);
 		//------------------------------------------------------------
 		
 		if (controle == true) {
 			clienteDAO.save(cliente);
 		}
 		enderecoDAO.save(endereco);
-		boletoDAO.save(boleto1);
-		boletoDAO.save(boleto2);
+//		boletoDAO.save(boleto1);
+//		boletoDAO.save(boleto2);
 		recarregarTela();				
 	}
 
