@@ -12,6 +12,7 @@ public class Boleto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ID;
+	private Integer codigo;
 	private double valor;
 	private String status;
 	private String OBS;
@@ -25,6 +26,14 @@ public class Boleto {
 
 	public void setID(Integer iD) {
 		ID = iD;
+	}
+
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public double getValor() {

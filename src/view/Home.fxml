@@ -38,7 +38,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnBoleto" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="btn" stylesheets="@style.css" text="Relatório" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+            <Button fx:id="btnBoleto" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnBoleto" prefHeight="200.0" prefWidth="200.0" styleClass="btn" stylesheets="@style.css" text="Boleto" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>

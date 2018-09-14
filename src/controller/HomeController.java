@@ -27,11 +27,20 @@ public class HomeController implements Initializable {
     void btnCliente(ActionEvent event) throws IOException {
     	carregarTelaClientePrincipal();
     }
-
+    
+    @FXML
+    void btnBoleto(ActionEvent event) throws IOException {
+    	carregarTelaBoletoPrincipal();
+    }
 	//========================================================================================
     
     public void carregarTelaClientePrincipal() throws IOException {
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Cliente.Principal.fxml"));
+		rootPane.getChildren().setAll(pane);
+    }
+    
+    public void carregarTelaBoletoPrincipal() throws IOException {
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Boleto.Principal.fxml"));
 		rootPane.getChildren().setAll(pane);
     }
 
