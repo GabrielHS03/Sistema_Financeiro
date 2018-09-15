@@ -79,7 +79,13 @@ public class BoletoController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		pesquisarCliente();		
-		
+
+		tbBoletos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			
+			System.out.println("TESTE");
+			tbBoletos.getItems().removeAll(listaDeBoletos);
+			//setarTabelaBoletos(); 
+		});
 	}
 
 	// =============================================================================================================
@@ -94,7 +100,47 @@ public class BoletoController implements Initializable {
     }
     @FXML
     void txtCodigo(ActionEvent event) {
-   		
+    	setarTabelaBoletos();    	
+    }
+    
+	// =============================================================================================================
+   
+    public void cadastrarBoleto() throws IOException {
+    	
+    	ClienteDAO clienteDAO = new ClienteDAO();
+    	List<Boleto> listaBoletos = new ArrayList<>();
+		Boleto boleto = new Boleto();	
+		BoletoDAO boletoDAO = new BoletoDAO();
+		
+		boleto.setCodigo(Integer.parseInt(txtID.getText()));
+		boleto.setValor(Double.parseDouble(txtValor.getText()));
+		boleto.setStatus("PAGO");
+		boleto.setCliente(clienteSelecionado);
+		boleto.setOBS(txtOBS.getText());
+		
+		listaBoletos.add(boleto);
+		clienteSelecionado.setBoletos(listaBoletos);
+		
+		boletoDAO.save(boleto);
+		
+		tbBoletos.getItems().removeAll(listaDeBoletos);
+		setarTabelaBoletos();  
+
+    }
+	
+    public void pesquisarCliente() {
+		List<Integer> listaDeCodigos = new ArrayList<>();
+		
+		ClienteDAO clienteDAO = new ClienteDAO();
+		for (Cliente cliente : clienteDAO.buscarTodos()) {
+			listaDeCodigos.add(cliente.getCodigo());
+		}
+		
+		TextFields.bindAutoCompletion(txtCodigo, listaDeCodigos);
+		
+	}
+	
+	public void setarTabelaBoletos() {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		for (Cliente cliente : clienteDAO.buscarTodos()) {
 			if(cliente.getCodigo() == Integer.parseInt(txtCodigo.getText())) {
@@ -111,43 +157,7 @@ public class BoletoController implements Initializable {
 			}
 			
 		}
-    }
-	// =============================================================================================================
-   
-    public void cadastrarBoleto() throws IOException {
-    	
-    	ClienteDAO clienteDAO = new ClienteDAO();
-    	List<Boleto> listaDeBoletos = new ArrayList<>();
-		Boleto boleto = new Boleto();	
-		BoletoDAO boletoDAO = new BoletoDAO();
-		
-		boleto.setCodigo(Integer.parseInt(txtID.getText()));
-		boleto.setValor(Double.parseDouble(txtValor.getText()));
-		boleto.setStatus("PAGO");
-		boleto.setCliente(clienteSelecionado);
-		boleto.setOBS(txtOBS.getText());
-		
-		listaDeBoletos.add(boleto);
-		clienteSelecionado.setBoletos(listaDeBoletos);
-		
-		boletoDAO.save(boleto);
-		
-		//recarregarTela();
-    }
-	
-    public void pesquisarCliente() {
-		List<Integer> listaDeCodigos = new ArrayList<>();
-		
-		ClienteDAO clienteDAO = new ClienteDAO();
-		for (Cliente cliente : clienteDAO.buscarTodos()) {
-			listaDeCodigos.add(cliente.getCodigo());
-		}
-		
-		TextFields.bindAutoCompletion(txtCodigo, listaDeCodigos);
-		
 	}
-	
-	
 	   public void carregarTelaHome() throws IOException {
 			AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
 			rootPane.getChildren().setAll(pane);
