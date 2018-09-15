@@ -15,6 +15,7 @@ import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Boleto;
@@ -90,10 +92,7 @@ public class BoletoController implements Initializable {
 		pesquisarCliente();		
 
 		tbBoletos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			
 			System.out.println("TESTE");
-			tbBoletos.getItems().removeAll(listaDeBoletos);
-			//setarTabelaBoletos(); 
 		});
 	}
 
@@ -107,20 +106,22 @@ public class BoletoController implements Initializable {
     void btnSalvar(ActionEvent event) throws IOException {
     	cadastrarBoleto();
     }
-    @FXML
-    void txtCodigo(ActionEvent event) {
-    	setarTabelaBoletos();    	
-    }
     
 	// =============================================================================================================
    
     public void cadastrarBoleto() throws IOException {
-    	
-    	
-    	ClienteDAO clienteDAO = new ClienteDAO();
+		BoletoDAO boletoDAO = new BoletoDAO();
+    	//-------------CONTROLE-----------------------------------------
+    	boolean controle = true; 	
+    	for(Boleto b : boletoDAO.buscarTodos()) {
+    		if(b.getCodigo() == Integer.parseInt(txtID.getText())) {
+				System.out.println("ID já existe, digite outro!");
+				controle = false;
+    		}
+    	}
+    	//--------------------------------------------------------------
     	List<Boleto> listaBoletos = new ArrayList<>();
 		Boleto boleto = new Boleto();	
-		BoletoDAO boletoDAO = new BoletoDAO();
 		
 		boleto.setCodigo(Integer.parseInt(txtID.getText()));
 		boleto.setValor(Double.parseDouble(txtValor.getText()));
@@ -142,9 +143,10 @@ public class BoletoController implements Initializable {
 		boleto.setCadastro(formatado2);
 		boleto.setTipoPagamento(comboBox.getValue());
 		
-		boletoDAO.save(boleto);
+		if(controle == true) {
+			boletoDAO.save(boleto);
+		}
 		
-		tbBoletos.getItems().removeAll(listaDeBoletos);
 		setarTabelaBoletos();  
 
     }
@@ -158,10 +160,18 @@ public class BoletoController implements Initializable {
 		}
 		
 		TextFields.bindAutoCompletion(txtCodigo, listaDeCodigos);
-		
+		txtCodigo.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
+			for (Cliente cliente : clienteDAO.buscarTodos()) {
+				if(cliente.getCodigo() == Integer.parseInt(txtCodigo.getText())) {
+					setarTabelaBoletos();  
+				}
+			}
+		});
 	}
 	
 	public void setarTabelaBoletos() {
+		
+		tbBoletos.getItems().removeAll(listaDeBoletos);
 		ClienteDAO clienteDAO = new ClienteDAO();
 		for (Cliente cliente : clienteDAO.buscarTodos()) {
 			if(cliente.getCodigo() == Integer.parseInt(txtCodigo.getText())) {
