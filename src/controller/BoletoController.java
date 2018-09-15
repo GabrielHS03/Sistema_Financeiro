@@ -15,6 +15,8 @@ import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
@@ -78,6 +81,8 @@ public class BoletoController implements Initializable {
     @FXML
     private TableColumn<?, ?> columnObservação;
     
+    @FXML
+    private TextField searchBox;
     
 	private ObservableList<Boleto> listaDeBoletos = FXCollections.observableArrayList();
 
@@ -108,6 +113,31 @@ public class BoletoController implements Initializable {
     @FXML
     void btnSalvar(ActionEvent event) throws IOException {
     	cadastrarBoleto();
+    }
+    
+    @FXML
+    void searchBox(KeyEvent event) {
+    	FilteredList<Boleto> listaBoletosFiltered = new FilteredList<>(listaDeBoletos, p -> true);
+		searchBox.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
+			listaBoletosFiltered.setPredicate(boleto -> {
+
+				if (newvalue == null || newvalue.isEmpty()) {
+					return true;
+				}
+				String typedText = newvalue.toLowerCase();
+
+				String data = boleto.getVencimento();
+
+				if ((boleto.getVencimento().toLowerCase().indexOf(typedText) != -1)) {
+					return true;
+				}
+
+				return false;
+			});
+			SortedList<Boleto> listaBoletosSorted = new SortedList<>(listaBoletosFiltered);
+			listaBoletosSorted.comparatorProperty().bind(tbBoletos.comparatorProperty());
+			tbBoletos.setItems(listaBoletosSorted);
+		});
     }
     
 	// =============================================================================================================

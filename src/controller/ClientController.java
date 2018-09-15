@@ -116,7 +116,7 @@ public class ClientController implements Initializable {
 	@FXML
 	private TextArea txtObservacao;
 
-	private ObservableList<Cliente> listaClientes = FXCollections.observableArrayList();;
+	private ObservableList<Cliente> listaClientes = FXCollections.observableArrayList();
 
 	// =============================================================================================================
 
