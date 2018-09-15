@@ -65,7 +65,7 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView fx:id="tbBoletos" layoutX="640.0" prefHeight="600.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tbBoletos" layoutX="640.0" layoutY="77.0" prefHeight="523.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="77.0">
         <columns>
           <TableColumn fx:id="columnID" prefWidth="88.0" text="ID" />
           <TableColumn fx:id="columnValor" prefWidth="110.0" text="Valor" />
@@ -74,5 +74,7 @@
             <TableColumn fx:id="columnObservação" prefWidth="219.0" text="Observação" />
         </columns>
       </TableView>
+      <TextField fx:id="txtPesquisa" layoutX="1100.0" layoutY="32.0" />
+      <Label layoutX="1039.0" layoutY="36.0" text="Pesquisar:" />
    </children>
 </AnchorPane>
