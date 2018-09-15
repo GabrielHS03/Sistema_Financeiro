@@ -14,12 +14,13 @@ public class Boleto {
 	private Integer ID;
 	private Integer codigo;
 	private double valor;
+	private String vencimento;
+	private String cadastro;
 	private String status;
 	private String OBS;
 	private String tipoPagamento;
 	@ManyToOne
 	private Cliente cliente;
-
 	public Integer getID() {
 		return ID;
 	}
@@ -74,6 +75,22 @@ public class Boleto {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public String getVencimento() {
+		return vencimento;
+	}
+
+	public void setVencimento(String localDate) {
+		this.vencimento = localDate;
+	}
+
+	public String getCadastro() {
+		return cadastro;
+	}
+
+	public void setCadastro(String cadastro) {
+		this.cadastro = cadastro;
 	}
 
 }

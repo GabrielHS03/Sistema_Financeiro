@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -50,7 +53,7 @@ public class BoletoController implements Initializable {
     private DatePicker dateVencimento;
 
     @FXML
-    private ComboBox<?> boxPagamento;
+    private ComboBox<String> comboBox;
 
     @FXML
     private TableView<Boleto> tbBoletos;
@@ -75,9 +78,15 @@ public class BoletoController implements Initializable {
 	
 	private Cliente clienteSelecionado;
 	
+	SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+	
 	// =============================================================================================================
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		comboBox.getItems().addAll("A Vista", "Cartão", "Nota Fiscal", "Carne", "Recibo", "Deposito");
+		
+		
 		pesquisarCliente();		
 
 		tbBoletos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -107,6 +116,7 @@ public class BoletoController implements Initializable {
    
     public void cadastrarBoleto() throws IOException {
     	
+    	
     	ClienteDAO clienteDAO = new ClienteDAO();
     	List<Boleto> listaBoletos = new ArrayList<>();
 		Boleto boleto = new Boleto();	
@@ -114,12 +124,23 @@ public class BoletoController implements Initializable {
 		
 		boleto.setCodigo(Integer.parseInt(txtID.getText()));
 		boleto.setValor(Double.parseDouble(txtValor.getText()));
-		boleto.setStatus("PAGO");
+		boleto.setStatus("A PAGAR");
 		boleto.setCliente(clienteSelecionado);
 		boleto.setOBS(txtOBS.getText());
 		
+		LocalDate vencimento = dateVencimento.getValue();
+		DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String formatado = vencimento.format(formatar);
+		boleto.setVencimento(formatado);
+		
 		listaBoletos.add(boleto);
 		clienteSelecionado.setBoletos(listaBoletos);
+		
+		LocalDate horaCadastro = LocalDate.now();
+		DateTimeFormatter formatarCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String formatado2 = horaCadastro.format(formatarCadastro);
+		boleto.setCadastro(formatado2);
+		boleto.setTipoPagamento(comboBox.getValue());
 		
 		boletoDAO.save(boleto);
 		
@@ -153,6 +174,7 @@ public class BoletoController implements Initializable {
 				columnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
 				columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 				columnObservação.setCellValueFactory(new PropertyValueFactory<>("OBS"));
+				columnVencimento.setCellValueFactory(new PropertyValueFactory<>("vencimento"));
 				
 			}
 			
