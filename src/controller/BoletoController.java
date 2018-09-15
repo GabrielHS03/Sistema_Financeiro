@@ -15,8 +15,8 @@ import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,10 +26,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
+import javafx.util.converter.DefaultStringConverter;
 import model.Boleto;
 import model.Cliente;
 
@@ -70,16 +73,16 @@ public class BoletoController implements Initializable {
     private TableColumn<?, ?> columnVencimento;
 
     @FXML
-    private TableColumn<?, ?> columnStatus;
+    private TableColumn<Boleto, String> columnStatus;
 
     @FXML
     private TableColumn<?, ?> columnObservação;
     
     
 	private ObservableList<Boleto> listaDeBoletos = FXCollections.observableArrayList();
-	
+
 	private Cliente clienteSelecionado;
-	
+	private Integer codigoDoBoletoSelecionado;
 	SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
 	
 	// =============================================================================================================
@@ -92,7 +95,7 @@ public class BoletoController implements Initializable {
 		pesquisarCliente();		
 
 		tbBoletos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			System.out.println("TESTE");
+			codigoDoBoletoSelecionado = newValue.getCodigo();
 		});
 	}
 
@@ -183,6 +186,26 @@ public class BoletoController implements Initializable {
 				columnID.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 				columnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
 				columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+				columnStatus.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(), FXCollections.observableArrayList("PAGO","A PAGAR")));
+				columnStatus.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Boleto,String>>() {
+					
+					@Override
+					public void handle(CellEditEvent<Boleto, String> event) {
+						
+						List<Boleto> listaDeBoletos = new ArrayList<>();
+						BoletoDAO boletoDAO = new BoletoDAO();
+						listaDeBoletos = boletoDAO.buscarTodos();
+						
+						for(Boleto b : listaDeBoletos) {
+							if(b.getCodigo() == codigoDoBoletoSelecionado) {
+								b.setStatus(event.getNewValue());
+								boletoDAO.save(b);
+							}
+	
+						}														
+					}
+				});
+				tbBoletos.setEditable(true);
 				columnObservação.setCellValueFactory(new PropertyValueFactory<>("OBS"));
 				columnVencimento.setCellValueFactory(new PropertyValueFactory<>("vencimento"));
 				
