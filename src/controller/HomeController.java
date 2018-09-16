@@ -32,6 +32,11 @@ public class HomeController implements Initializable {
     void btnBoleto(ActionEvent event) throws IOException {
     	carregarTelaBoletoPrincipal();
     }
+    
+    @FXML
+    void btnRelatorio(ActionEvent event) throws IOException {
+    	carregarTelaRelatorioPrincipal();
+    }
 	//========================================================================================
     
     public void carregarTelaClientePrincipal() throws IOException {
@@ -41,6 +46,11 @@ public class HomeController implements Initializable {
     
     public void carregarTelaBoletoPrincipal() throws IOException {
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Boleto.Principal.fxml"));
+		rootPane.getChildren().setAll(pane);
+    }
+    
+    public void carregarTelaRelatorioPrincipal() throws IOException {
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Relatorio.Principal.fxml"));
 		rootPane.getChildren().setAll(pane);
     }
 
