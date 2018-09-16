@@ -129,6 +129,7 @@ public class ClienteAlterarController implements Initializable {
 	@FXML
     void btnAlterarCliente(ActionEvent event) throws IOException {
 		Cliente cliente = new Cliente();
+		cliente.setEndereco(new Endereco());
 		ClienteDAO clienteDAO = new ClienteDAO();
 		
 		cliente.setCodigo(Integer.parseInt(txtID.getText()));
@@ -150,6 +151,7 @@ public class ClienteAlterarController implements Initializable {
 		cliente.setEmail(txtEmail.getText());
 		cliente.setOBS(txtObservacao.getText());
 		cliente.setID(ClientController.clienteSelecionado.getID());
+		System.out.println(cliente.getEndereco().getRua());
 		cliente.getEndereco().setRua(txtEndereco.getText());
 		cliente.getEndereco().setBairro(txtBairro.getText());
 		cliente.getEndereco().setComplemento(txtComplemento.getText());
