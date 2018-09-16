@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class Login extends Application {
 
 	private static Stage stage;
+	public static int click1; //usado para logica de 2 cliques na tabela clientes
 
 	public static void main(String[] args) {
 		launch(args);

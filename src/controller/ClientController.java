@@ -10,6 +10,7 @@ import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import DAO.EnderecoDAO;
 import application.ClienteAlterar;
+import application.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -127,12 +128,21 @@ public class ClientController implements Initializable {
 		carregarTableViewClientes();
 		// Listener da tabela
 		tbCliente.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			
+			if(Login.click1 == observable.getValue().getCodigo()) {
+				try {
+					carregarTelaAlterar(newValue);
+
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}	
+			}
+			Login.click1 = observable.getValue().getCodigo();
+			
 			try {
 				recarregarTela();
-				carregarTelaAlterar(newValue);
-
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		});
 	}
@@ -142,6 +152,7 @@ public class ClientController implements Initializable {
 	@FXML
 	void imgHome(MouseEvent event) throws IOException {
 		carregarTelaHome();
+		Login.click1 = -1;
 	}
 
 	@FXML
