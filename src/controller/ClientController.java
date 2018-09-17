@@ -196,8 +196,12 @@ public class ClientController implements Initializable {
 		endereco.setCEP(Integer.parseInt(txtCEP.getText()));
 		endereco.setBairro(txtBairro.getText());
 		endereco.setComplemento(txtComplemento.getText());
-		endereco.setCidade(txtCidade.getText());
-		endereco.setEstado(txtEstado.getText());
+		
+		
+//		endereco.setCidade(txtCidade.getText());
+//		endereco.setEstado(txtEstado.getText());
+		
+		
 		cliente.setEndereco(endereco);
 		//------------------------------------------------------------
 		//---------BOLETO---------------------------------------------

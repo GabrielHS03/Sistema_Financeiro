@@ -14,8 +14,8 @@ public class Endereco {
 	private Integer CEP;
 	private String rua;
 	private String bairro;
-    private String cidade;
-    private String estado;
+    //private String cidade;
+   //private String estado;
     private String complemento;
 
 	public Integer getID() {
@@ -58,23 +58,20 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	
-	
+//	public String getCidade() {
+//		return cidade;
+//	}
+//
+//	public void setCidade(String cidade) {
+//		this.cidade = cidade;
+//	}
+//
+//	public String getEstado() {
+//		return estado;
+//	}
+//
+//	public void setEstado(String estado) {
+//		this.estado = estado;
+//	}	
 	
 }
