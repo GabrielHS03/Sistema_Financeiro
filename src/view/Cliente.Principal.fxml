@@ -60,9 +60,7 @@
             <Label contentDisplay="RIGHT" layoutX="40.0" layoutY="271.0" text="Endereço:*" textAlignment="RIGHT" />
             <TextField fx:id="txtBairro" layoutX="415.0" layoutY="267.0" />
             <TextField fx:id="txtComplemento" layoutX="110.0" layoutY="300.0" />
-            <TextField fx:id="txtCidade" layoutX="415.0" layoutY="300.0" />
             <TextField fx:id="txtCEP" layoutX="110.0" layoutY="335.0" onKeyReleased="#FormatacaoCEP" />
-            <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="31.0" prefWidth="49.0" />
             <TextArea fx:id="txtObservacao" layoutX="120.0" layoutY="397.0" prefHeight="121.0" prefWidth="418.0" />
             <Label contentDisplay="RIGHT" layoutX="14.0" layoutY="304.0" text="Complemento:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="362.0" layoutY="271.0" text="Bairro:*" textAlignment="RIGHT" />
@@ -82,6 +80,8 @@
             <Label fx:id="lblCidade" alignment="CENTER_RIGHT" layoutX="357.0" layoutY="304.0" text="Cidade:*" />
             <Label fx:id="lblEstado" alignment="CENTER_RIGHT" layoutX="359.0" layoutY="339.0" text="Estado:*" />
             <Label contentDisplay="RIGHT" layoutX="356.0" layoutY="224.0" text="Celular:" />
+            <ComboBox fx:id="cbCidade" layoutX="414.0" layoutY="300.0" prefWidth="150.0" />
+            <ComboBox fx:id="cbEstado" layoutX="414.0" layoutY="335.0" prefHeight="25.0" prefWidth="28.0" />
          </children>
       </Pane>
       <TextField fx:id="searchBox" layoutX="1117.0" layoutY="16.0" onKeyPressed="#searchBox" AnchorPane.leftAnchor="1117.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="16.0" />

@@ -109,11 +109,11 @@ public class ClientController implements Initializable {
 	@FXML
 	private TextField txtCEP;
 
-	@FXML
-	private TextField txtCidade;
+    @FXML
+    private ComboBox<?> cbCidade;
 
-	@FXML
-	private TextField txtEstado;
+    @FXML
+    private ComboBox<?> cbEstado;
 
 	@FXML
 	private TextArea txtObservacao;
@@ -121,6 +121,9 @@ public class ClientController implements Initializable {
 	@FXML
 	private void FormatacaoCPF(){
 		TextFieldFormatter msk = new TextFieldFormatter();
+		
+		switch(comboBox.getValue()) {
+		case "CPF":
 		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("###.###.###-##");
 		//Aqui coloca oq pode ter na mascara!
@@ -129,6 +132,15 @@ public class ClientController implements Initializable {
 		msk.setTf(txtCPFCNPJ);
 		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
+		break;
+		case "CNPJ":
+			msk.setMask("##.###.###/####-##");
+			msk.setCaracteresValidos("0123456789");
+			msk.setTf(txtCPFCNPJ);
+			msk.formatter();
+			
+			break;
+	}
 	}
 	@FXML
 	private void FormatacaoTel(){
@@ -319,12 +331,14 @@ public class ClientController implements Initializable {
 		comboBox.setOnAction(e -> {
 			switch (comboBox.getValue()) {
 			case "CPF":
+				txtCPFCNPJ.clear();
 				txtRazaoSocial.setVisible(false);
 				lblCNPJ.setVisible(false);
 				lblCPFCNPJ.setText("CPF:*");
 				lblNome.setText("Nome:*");
 				break; 
 			case "CNPJ":
+				txtCPFCNPJ.clear();
 				txtRazaoSocial.setVisible(true);
 				lblCNPJ.setVisible(true);
 				lblCPFCNPJ.setText("CNPJ:*");

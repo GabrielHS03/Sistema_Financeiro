@@ -110,10 +110,10 @@ public class ClienteAlterarController implements Initializable {
 	private TextField txtCEP;
 	
     @FXML
-    private TextField txtCidade;
+    private ComboBox<?> cbCidade;
 
     @FXML
-    private TextField txtEstado;
+    private ComboBox<?> cbEstado;
 
 	@FXML
 	private TextArea txtObservacao;
@@ -123,6 +123,9 @@ public class ClienteAlterarController implements Initializable {
 	@FXML
 	private void FormatacaoCPF(){
 		TextFieldFormatter msk = new TextFieldFormatter();
+		
+		switch(comboBox.getValue()) {
+		case "CPF":
 		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("###.###.###-##");
 		//Aqui coloca oq pode ter na mascara!
@@ -131,6 +134,15 @@ public class ClienteAlterarController implements Initializable {
 		msk.setTf(txtCPFCNPJ);
 		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
+		break;
+		case "CNPJ":
+			msk.setMask("##.###.###/####-##");
+			msk.setCaracteresValidos("0123456789");
+			msk.setTf(txtCPFCNPJ);
+			msk.formatter();
+			
+			break;
+	}
 	}
 	@FXML
 	private void FormatacaoTel(){
