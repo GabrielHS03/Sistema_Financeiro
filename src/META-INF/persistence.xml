@@ -9,6 +9,8 @@
     <class>model.Cliente</class>
     <class>model.Boleto</class>
     <class>model.Endereco</class>
+    <class>model.Cidade</class>
+    <class>model.Estado</class>
     <properties>
       <!-- Propriedades JDBC -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
