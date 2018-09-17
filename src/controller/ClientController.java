@@ -121,33 +121,49 @@ public class ClientController implements Initializable {
 	@FXML
 	private void FormatacaoCPF(){
 		TextFieldFormatter msk = new TextFieldFormatter();
+		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("###.###.###-##");
+		//Aqui coloca oq pode ter na mascara!
 		msk.setCaracteresValidos("0123456789");
+		//Aqui coloca o campo que a mascara vai entra!
 		msk.setTf(txtCPFCNPJ);
+		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
 	}
 	@FXML
 	private void FormatacaoTel(){
 		TextFieldFormatter msk = new TextFieldFormatter();
+		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("(##)#####-####");
+		//Aqui coloca oq pode ter na mascara!
 		msk.setCaracteresValidos("0123456789");
+		//Aqui coloca o campo que a mascara vai entra!
 		msk.setTf(txtTelefone);
+		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
 	}
 	@FXML
 	private void FormatacaoCel(){
 		TextFieldFormatter msk = new TextFieldFormatter();
+		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("(##)#####-####");
+		//Aqui coloca oq pode ter na mascara!
 		msk.setCaracteresValidos("0123456789");
+		//Aqui coloca o campo que a mascara vai entra!
 		msk.setTf(txtCelular);
+		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
 	}
 	@FXML
 	private void FormatacaoCEP(){
 		TextFieldFormatter msk = new TextFieldFormatter();
+		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("#####-###");
+		//Aqui coloca oq pode ter na mascara!
 		msk.setCaracteresValidos("0123456789");
+		//Aqui coloca o campo que a mascara vai entra!
 		msk.setTf(txtCEP);
+		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
 	}	
 
