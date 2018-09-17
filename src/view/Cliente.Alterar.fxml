@@ -22,12 +22,12 @@
                </cursor>
             </Button>
             <TextField fx:id="txtID" layoutX="110.0" layoutY="111.0" prefHeight="25.0" prefWidth="87.0" />
-            <TextField fx:id="txtCPFCNPJ" layoutX="415.0" layoutY="113.0" />
+            <TextField fx:id="txtCPFCNPJ" layoutX="415.0" layoutY="113.0" onKeyReleased="#FormatacaoCPF" />
             <TextField fx:id="txtNome" layoutX="110.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" />
             <TextField fx:id="txtRazaoSocial" layoutX="415.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" visible="false" />
             <TextField fx:id="txtEmail" layoutX="110.0" layoutY="186.0" prefHeight="25.0" prefWidth="203.0" />
-            <TextField fx:id="txtTelefone" layoutX="415.0" layoutY="186.0" />
-            <TextField fx:id="txtCelular" layoutX="415.0" layoutY="221.0" />
+            <TextField fx:id="txtTelefone" layoutX="415.0" layoutY="186.0" onKeyReleased="#FormatacaoTel" />
+            <TextField fx:id="txtCelular" layoutX="415.0" layoutY="221.0" onKeyReleased="#FormatacaoCel" />
             <TextField fx:id="txtEndereco" layoutX="110.0" layoutY="267.0" prefHeight="25.0" prefWidth="219.0" />
             <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="115.0" text="ID:" textAlignment="RIGHT" />
             <Label fx:id="lblNome" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="13.0" layoutY="150.0" prefHeight="17.0" prefWidth="87.0" text="Nome:" textAlignment="RIGHT" />
@@ -37,7 +37,7 @@
             <TextField fx:id="txtBairro" layoutX="415.0" layoutY="267.0" />
             <TextField fx:id="txtComplemento" layoutX="110.0" layoutY="300.0" />
             <TextField fx:id="txtCidade" layoutX="415.0" layoutY="300.0" />
-            <TextField fx:id="txtCEP" layoutX="110.0" layoutY="335.0" />
+            <TextField fx:id="txtCEP" layoutX="110.0" layoutY="335.0" onKeyReleased="#FormatacaoCEP" />
             <TextField fx:id="txtEstado" layoutX="415.0" layoutY="335.0" prefHeight="31.0" prefWidth="42.0" />
             <TextArea fx:id="txtObservacao" layoutX="120.0" layoutY="397.0" prefHeight="121.0" prefWidth="418.0" />
             <Label contentDisplay="RIGHT" layoutX="8.0" layoutY="304.0" text="Complemento:" textAlignment="RIGHT" />

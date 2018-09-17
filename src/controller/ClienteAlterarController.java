@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Boleto;
 import model.Cliente;
 import model.Endereco;
+import util.TextFieldFormatter;
 
 public class ClienteAlterarController implements Initializable {
 
@@ -116,6 +117,41 @@ public class ClienteAlterarController implements Initializable {
 
 	@FXML
 	private TextArea txtObservacao;
+	
+	//=============================================================================================================
+	// Mascara de Formatacao de Campos!
+	@FXML
+	private void FormatacaoCPF(){
+		TextFieldFormatter msk = new TextFieldFormatter();
+		msk.setMask("###.###.###-##");
+		msk.setCaracteresValidos("0123456789");
+		msk.setTf(txtCPFCNPJ);
+		msk.formatter();
+	}
+	@FXML
+	private void FormatacaoTel(){
+		TextFieldFormatter msk = new TextFieldFormatter();
+		msk.setMask("(##)#####-####");
+		msk.setCaracteresValidos("0123456789");
+		msk.setTf(txtTelefone);
+		msk.formatter();
+	}
+	@FXML
+	private void FormatacaoCel(){
+		TextFieldFormatter msk = new TextFieldFormatter();
+		msk.setMask("(##)#####-####");
+		msk.setCaracteresValidos("0123456789");
+		msk.setTf(txtCelular);
+		msk.formatter();
+	}
+	@FXML
+	private void FormatacaoCEP(){
+		TextFieldFormatter msk = new TextFieldFormatter();
+		msk.setMask("#####-###");
+		msk.setCaracteresValidos("0123456789");
+		msk.setTf(txtCEP);
+		msk.formatter();
+	}	
 
 	//=============================================================================================================
 	
@@ -139,10 +175,10 @@ public class ClienteAlterarController implements Initializable {
 		String cnpjEmString = String.valueOf(ClientController.clienteSelecionado.getCNPJ());
 
 		if (cnpjEmString == "null") {
-			cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
+			cliente.setCPF((txtCPFCNPJ.getText()));
 		}
 		if (cpfEmString == "null") {
-			cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
+			cliente.setCNPJ((txtCPFCNPJ.getText()));
 			cliente.setRazaoSocial(txtRazaoSocial.getText());
 		}
 		// ----------------------
@@ -157,7 +193,7 @@ public class ClienteAlterarController implements Initializable {
 		
 //		cliente.getEndereco().setCidade(txtCidade.getText());
 		
-		cliente.getEndereco().setCEP(Integer.parseInt(txtCEP.getText()));
+		cliente.getEndereco().setCEP((txtCEP.getText()));
 		
 //		cliente.getEndereco().setEstado(txtEstado.getText());
 		
@@ -182,10 +218,10 @@ public class ClienteAlterarController implements Initializable {
 		String cnpjEmString = String.valueOf(ClientController.clienteSelecionado.getCNPJ());
 
 		if (cnpjEmString == "null") {
-			cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
+			cliente.setCPF((txtCPFCNPJ.getText()));
 		}
 		if (cpfEmString == "null") {
-			cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
+			cliente.setCNPJ((txtCPFCNPJ.getText()));
 			cliente.setRazaoSocial(txtRazaoSocial.getText());
 		}
 		// ----------------------
@@ -198,7 +234,7 @@ public class ClienteAlterarController implements Initializable {
 		cliente.getEndereco().setBairro(txtBairro.getText());
 		cliente.getEndereco().setComplemento(txtComplemento.getText());
 //		cliente.getEndereco().setCidade(txtCidade.getText());
-		cliente.getEndereco().setCEP(Integer.parseInt(txtCEP.getText()));
+		cliente.getEndereco().setCEP((txtCEP.getText()));
 //		cliente.getEndereco().setEstado(txtEstado.getText());
 		cliente.getEndereco().setID(ClientController.clienteSelecionado.getEndereco().getID());
 		cliente.setStatus(false);

@@ -33,6 +33,7 @@ import javafx.stage.Stage;
 import model.Boleto;
 import model.Cliente;
 import model.Endereco;
+import util.TextFieldFormatter;
 
 public class ClientController implements Initializable {
 
@@ -116,6 +117,39 @@ public class ClientController implements Initializable {
 
 	@FXML
 	private TextArea txtObservacao;
+	
+	@FXML
+	private void FormatacaoCPF(){
+		TextFieldFormatter msk = new TextFieldFormatter();
+		msk.setMask("###.###.###-##");
+		msk.setCaracteresValidos("0123456789");
+		msk.setTf(txtCPFCNPJ);
+		msk.formatter();
+	}
+	@FXML
+	private void FormatacaoTel(){
+		TextFieldFormatter msk = new TextFieldFormatter();
+		msk.setMask("(##)#####-####");
+		msk.setCaracteresValidos("0123456789");
+		msk.setTf(txtTelefone);
+		msk.formatter();
+	}
+	@FXML
+	private void FormatacaoCel(){
+		TextFieldFormatter msk = new TextFieldFormatter();
+		msk.setMask("(##)#####-####");
+		msk.setCaracteresValidos("0123456789");
+		msk.setTf(txtCelular);
+		msk.formatter();
+	}
+	@FXML
+	private void FormatacaoCEP(){
+		TextFieldFormatter msk = new TextFieldFormatter();
+		msk.setMask("#####-###");
+		msk.setCaracteresValidos("0123456789");
+		msk.setTf(txtCEP);
+		msk.formatter();
+	}	
 
 	private ObservableList<Cliente> listaClientes = FXCollections.observableArrayList();
 
@@ -179,10 +213,10 @@ public class ClientController implements Initializable {
 		cliente.setOBS(txtObservacao.getText());
 		switch (comboBox.getValue()) {
 		case "CPF":
-			cliente.setCPF(Long.parseLong(txtCPFCNPJ.getText()));
+			cliente.setCPF((txtCPFCNPJ.getText()));
 			break;
 		case "CNPJ":
-			cliente.setCNPJ(Long.parseLong(txtCPFCNPJ.getText()));
+			cliente.setCNPJ((txtCPFCNPJ.getText()));
 			cliente.setRazaoSocial(txtRazaoSocial.getText());
 			break;
 
@@ -193,7 +227,7 @@ public class ClientController implements Initializable {
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 
 		endereco.setRua(txtEndereco.getText());
-		endereco.setCEP(Integer.parseInt(txtCEP.getText()));
+		endereco.setCEP((txtCEP.getText()));
 		endereco.setBairro(txtBairro.getText());
 		endereco.setComplemento(txtComplemento.getText());
 		

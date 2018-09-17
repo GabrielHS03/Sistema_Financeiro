@@ -22,8 +22,8 @@ public class Cliente {
     private String razaoSocial;
     private String telefoneFixo;
     private String telefoneCel;
-    private Long CPF;
-    private Long CNPJ;
+    private String CPF;
+    private String CNPJ;
     private String email;
     private String OBS;
     @OneToOne(cascade = CascadeType.ALL)
@@ -79,19 +79,19 @@ public class Cliente {
         this.telefoneFixo = telefoneFixo;
     }
 
-    public Long getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(Long CPF) {
+    public void setCPF(String CPF) {
         this.CPF = CPF;
     }
 
-    public Long getCNPJ() {
+    public String getCNPJ() {
         return CNPJ;
     }
 
-    public void setCNPJ(Long CNPJ) {
+    public void setCNPJ(String CNPJ) {
         this.CNPJ = CNPJ;
     }
 
