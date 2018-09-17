@@ -21,13 +21,13 @@ public class TesteDB {
     public static void main(String[] args) {
 /*=========================      Exemplo de Inserir novo Usuario!  ================================*/ 
     	          
-//        
-//        Usuario user = new Usuario();
-//        user.setLogin("adm");
-//        user.setSenha("123");   
-//        
-//        UsuarioDAO userDAO = new UsuarioDAO();
-//        userDAO.save(user);
+        
+        Usuario user = new Usuario();
+        user.setLogin("adm");
+        user.setSenha("123");   
+        
+        UsuarioDAO userDAO = new UsuarioDAO();
+        userDAO.save(user);
  		
  		
         
@@ -55,14 +55,14 @@ public class TesteDB {
 
          */
 /*=========================      Exemplo de como Buscar e listar todos Usuario  ================================*/
-        
+   /*     
         CidadeDAO cityDAO = new CidadeDAO();
         for(Cidade city: cityDAO.buscarTodos()){
             System.out.println("ID: "+city.getID());
             System.out.println("Usuario: "+city.getNome());
             System.out.println("Senha: "+city.getEstado());
         }
-     
+     */
 /*=========================      Exemplo de como Remover Usuario  ================================*/
  /*
         UsuarioDAO userDAO = new UsuarioDAO();
