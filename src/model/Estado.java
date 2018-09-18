@@ -18,8 +18,8 @@ public class Estado {
 	private Integer ID;
 	private String nome;
 	private String uf;
-	//@OneToMany(targetEntity = Cidade.class, mappedBy = "cidade", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	//private List<Cidade> cidade;
+	@OneToMany(targetEntity = Cidade.class, mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Cidade> cidade;
 
 
 	public Integer getID() {
@@ -46,12 +46,12 @@ public class Estado {
 		this.uf = uf;
 	}
 
-//	public List<Cidade> getCidade() {
-//		return cidade;
-//	}
-//
-//	public void setCidade(List<Cidade> cidade) {
-//		this.cidade = cidade;
-//	}
+	public List<Cidade> getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(List<Cidade> cidade) {
+		this.cidade = cidade;
+	}
 
 }

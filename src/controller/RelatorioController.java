@@ -2,8 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import DAO.CidadeDAO;
+import DAO.ClienteDAO;
+import DAO.EstadoDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Boleto;
+import model.Cidade;
+import model.Estado;
 
 public class RelatorioController implements Initializable {
 	
@@ -70,14 +77,27 @@ public class RelatorioController implements Initializable {
 		
 		comboBox.getItems().addAll("Por nome", "A receber por data", "Recebida por data");
 		choice();
+		//-------------------------------------TESTE----------------
 		
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		List<Cidade> listaDeCidades = new ArrayList<>();
 		
-		
+		for(Cidade c : cidadeDAO.buscarTodos()) {		
+			String cidadeSelecionada = c.getNome();
+
+			if(cidadeSelecionada.equals("Anápolis")) {
+				System.out.println(c.getEstado().getNome());
+			}
+						
+		}
+
+		//-------------------------------------TESTE----------------
 	}
 	
 	@FXML
 	void btnHome(MouseEvent event) throws IOException {
 		carregarTelaHome();
+		
 	}
 	
 	
