@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.TextFields;
+
 import DAO.BoletoDAO;
+import DAO.CidadeDAO;
 import DAO.ClienteDAO;
 import DAO.EnderecoDAO;
 import application.ClienteAlterar;
@@ -31,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Boleto;
+import model.Cidade;
 import model.Cliente;
 import model.Endereco;
 import util.TextFieldFormatter;
@@ -110,10 +114,10 @@ public class ClientController implements Initializable {
 	private TextField txtCEP;
 
     @FXML
-    private ComboBox<?> cbCidade;
-
+    private TextField txtCidade;
+    
     @FXML
-    private ComboBox<?> cbEstado;
+    private TextField txtEstado;
 
 	@FXML
 	private TextArea txtObservacao;
@@ -187,6 +191,7 @@ public class ClientController implements Initializable {
 		comboBox.getItems().addAll("CPF", "CNPJ");
 		choice();
 		comboBox.setValue("CPF");
+		pesquisarCidade();
 		carregarTableViewClientes();
 		// Listener da tabela
 		tbCliente.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -258,12 +263,9 @@ public class ClientController implements Initializable {
 		endereco.setCEP((txtCEP.getText()));
 		endereco.setBairro(txtBairro.getText());
 		endereco.setComplemento(txtComplemento.getText());
-		
-		
-//		endereco.setCidade(txtCidade.getText());
-//		endereco.setEstado(txtEstado.getText());
-		
-		
+		endereco.setCidade(txtCidade.getText());
+		endereco.setEstado(txtEstado.getText());
+
 		cliente.setEndereco(endereco);
 		//------------------------------------------------------------
 		//---------BOLETO---------------------------------------------
@@ -347,7 +349,25 @@ public class ClientController implements Initializable {
 			}
 		});
 	}
-
+   
+	public void pesquisarCidade() {
+		List<String> listaDeCidades = new ArrayList<>();
+		
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		for(Cidade cidade : cidadeDAO.buscarTodos()) {		
+			listaDeCidades.add(cidade.getNome());
+		}
+		
+		TextFields.bindAutoCompletion(txtCidade, listaDeCidades);
+		txtCidade.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
+			for (Cidade cidade : cidadeDAO.buscarTodos()) {
+				if(cidade.getNome().equals(txtCidade.getText())) {
+					txtEstado.setText(cidade.getEstado().getUf());
+				}		
+			}
+		});
+	}
+    
 	public void carregarTableViewClientes() {
 
 		ClienteDAO clienteDAO = new ClienteDAO();

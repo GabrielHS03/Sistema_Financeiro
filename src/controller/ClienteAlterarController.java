@@ -110,10 +110,10 @@ public class ClienteAlterarController implements Initializable {
 	private TextField txtCEP;
 	
     @FXML
-    private ComboBox<?> cbCidade;
+    private TextField txtCidade;
 
     @FXML
-    private ComboBox<?> cbEstado;
+    private TextField txtEstado;
 
 	@FXML
 	private TextArea txtObservacao;
@@ -218,13 +218,9 @@ public class ClienteAlterarController implements Initializable {
 		cliente.getEndereco().setRua(txtEndereco.getText());
 		cliente.getEndereco().setBairro(txtBairro.getText());
 		cliente.getEndereco().setComplemento(txtComplemento.getText());
-		
-//		cliente.getEndereco().setCidade(txtCidade.getText());
-		
+		cliente.getEndereco().setCidade(txtCidade.getText());
 		cliente.getEndereco().setCEP((txtCEP.getText()));
-		
-//		cliente.getEndereco().setEstado(txtEstado.getText());
-		
+		cliente.getEndereco().setEstado(txtEstado.getText());
 		cliente.getEndereco().setID(ClientController.clienteSelecionado.getEndereco().getID());
 		clienteDAO.save(cliente);
 		
@@ -261,9 +257,9 @@ public class ClienteAlterarController implements Initializable {
 		cliente.getEndereco().setRua(txtEndereco.getText());
 		cliente.getEndereco().setBairro(txtBairro.getText());
 		cliente.getEndereco().setComplemento(txtComplemento.getText());
-//		cliente.getEndereco().setCidade(txtCidade.getText());
+		cliente.getEndereco().setCidade(txtCidade.getText());
 		cliente.getEndereco().setCEP((txtCEP.getText()));
-//		cliente.getEndereco().setEstado(txtEstado.getText());
+		cliente.getEndereco().setEstado(txtEstado.getText());
 		cliente.getEndereco().setID(ClientController.clienteSelecionado.getEndereco().getID());
 		cliente.setStatus(false);
 		
@@ -308,7 +304,7 @@ public class ClienteAlterarController implements Initializable {
 		txtCEP.setText(CEPemString);
 		txtBairro.setText(ClientController.clienteSelecionado.getEndereco().getBairro());
 		txtComplemento.setText(ClientController.clienteSelecionado.getEndereco().getComplemento());
-//		txtCidade.setText(ClientController.clienteSelecionado.getEndereco().getCidade());
-//		txtEstado.setText(ClientController.clienteSelecionado.getEndereco().getEstado());
+		txtCidade.setText(ClientController.clienteSelecionado.getEndereco().getCidade());
+		txtEstado.setText(ClientController.clienteSelecionado.getEndereco().getEstado());
 	}
 }
