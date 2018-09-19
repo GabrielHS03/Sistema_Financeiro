@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -16,8 +17,8 @@ public class Boleto {
 	private Integer ID;
 	private Integer codigo;
 	private double valor;
-	private LocalDate vencimento;
-	private LocalDate dataPagamento;
+	private Date vencimento;
+	private Date dataPagamento;
 	private String cadastro;
 	private String status;
 	private String OBS;
@@ -80,19 +81,19 @@ public class Boleto {
 		this.cliente = cliente;
 	}
 
-	public LocalDate getVencimento() {
+	public Date getVencimento() {
 		return vencimento;
 	}
 
-	public void setVencimento(LocalDate localDate) {
+	public void setVencimento(Date localDate) {
 		this.vencimento = localDate;
 	}
 
-	public LocalDate getDataPagamento() {
+	public Date getDataPagamento() {
 		return dataPagamento;
 	}
 
-	public void setDataPagamento(LocalDate dataPagamento) {
+	public void setDataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 	

@@ -2,10 +2,12 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -13,6 +15,7 @@ import org.controlsfx.control.textfield.TextFields;
 
 import DAO.BoletoDAO;
 import DAO.ClienteDAO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -74,7 +77,7 @@ public class BoletoController implements Initializable {
     private TableColumn<?, ?> columnValor;
 
     @FXML
-    private TableColumn<Boleto, LocalDate> columnVencimento;
+    private TableColumn<Boleto, String> columnVencimento;
 
     @FXML
     private TableColumn<Boleto, String> columnStatus;
@@ -162,9 +165,7 @@ public class BoletoController implements Initializable {
 		boleto.setStatus("A PAGAR");
 		boleto.setCliente(clienteSelecionado);
 		boleto.setOBS(txtOBS.getText());
-		
-		
-		boleto.setVencimento(dateVencimento.getValue());
+		boleto.setVencimento(java.sql.Date.valueOf(dateVencimento.getValue()));
 		
 		listaBoletos.add(boleto);
 		clienteSelecionado.setBoletos(listaBoletos);
@@ -236,7 +237,14 @@ public class BoletoController implements Initializable {
 				});
 				tbBoletos.setEditable(true);
 				columnObservação.setCellValueFactory(new PropertyValueFactory<>("OBS"));
-				columnVencimento.setCellValueFactory(new PropertyValueFactory<Boleto, LocalDate>("vencimento"));
+				columnVencimento.setCellValueFactory(
+				           Job -> {
+				               SimpleStringProperty property = new SimpleStringProperty();
+				               DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				               property.setValue(dateFormat.format(Job.getValue().getVencimento()));
+				               return property;
+				            });
+				
 			}
 			
 		}
