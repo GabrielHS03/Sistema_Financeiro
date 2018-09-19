@@ -15,6 +15,8 @@ import org.controlsfx.control.textfield.TextFields;
 
 import DAO.BoletoDAO;
 import DAO.ClienteDAO;
+import application.BoletoDataPagamento;
+import application.ClienteAlterar;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +40,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.DefaultStringConverter;
 import model.Boleto;
@@ -230,6 +233,7 @@ public class BoletoController implements Initializable {
 							if(b.getCodigo() == codigoDoBoletoSelecionado) {
 								b.setStatus(event.getNewValue());
 								boletoDAO.save(b);
+								carregarTelaDataPagamento();
 							}
 	
 						}														
@@ -257,6 +261,15 @@ public class BoletoController implements Initializable {
 	   public void recarregarTela() throws IOException {
 			AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Boleto.Principal.fxml"));
 			rootPane.getChildren().setAll(pane);
+		}
+	   
+	   public void carregarTelaDataPagamento() {
+		   BoletoDataPagamento boletoDataPagamento= new BoletoDataPagamento();
+			try {
+				boletoDataPagamento.start(new Stage());
+			} catch (Exception e) {
+				e.getMessage();
+			}
 		}
 
 }
