@@ -74,7 +74,7 @@
             <TableColumn fx:id="columnObservação" prefWidth="219.0" text="Observação" />
         </columns>
       </TableView>
-      <TextField fx:id="searchBox" layoutX="1100.0" layoutY="32.0" onKeyPressed="#searchBox" />
+      <TextField fx:id="searchBox" layoutX="1100.0" layoutY="32.0" />
       <Label layoutX="1039.0" layoutY="36.0" text="Pesquisar:" />
    </children>
 </AnchorPane>

@@ -24,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -73,7 +74,7 @@ public class BoletoController implements Initializable {
     private TableColumn<?, ?> columnValor;
 
     @FXML
-    private TableColumn<?, ?> columnVencimento;
+    private TableColumn<Boleto, LocalDate> columnVencimento;
 
     @FXML
     private TableColumn<Boleto, String> columnStatus;
@@ -88,13 +89,13 @@ public class BoletoController implements Initializable {
 
 	private Cliente clienteSelecionado;
 	private Integer codigoDoBoletoSelecionado;
-	SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	// =============================================================================================================
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		comboBox.getItems().addAll("A Vista", "Cartão", "Nota Fiscal", "Carne", "Recibo", "Deposito");
+		comboBox.getItems().addAll("Nota Fiscal", "Carne", "Recibo", "Deposito");
 		
 		
 		pesquisarCliente();		
@@ -115,30 +116,30 @@ public class BoletoController implements Initializable {
     	cadastrarBoleto();
     }
     
-    @FXML
-    void searchBox(KeyEvent event) {
-    	FilteredList<Boleto> listaBoletosFiltered = new FilteredList<>(listaDeBoletos, p -> true);
-		searchBox.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
-			listaBoletosFiltered.setPredicate(boleto -> {
-
-				if (newvalue == null || newvalue.isEmpty()) {
-					return true;
-				}
-				String typedText = newvalue.toLowerCase();
-
-				String data = boleto.getVencimento();
-
-				if ((boleto.getVencimento().toLowerCase().indexOf(typedText) != -1)) {
-					return true;
-				}
-
-				return false;
-			});
-			SortedList<Boleto> listaBoletosSorted = new SortedList<>(listaBoletosFiltered);
-			listaBoletosSorted.comparatorProperty().bind(tbBoletos.comparatorProperty());
-			tbBoletos.setItems(listaBoletosSorted);
-		});
-    }
+//    @FXML
+//    void searchBox(KeyEvent event) {
+//    	FilteredList<Boleto> listaBoletosFiltered = new FilteredList<>(listaDeBoletos, p -> true);
+//		searchBox.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
+//			listaBoletosFiltered.setPredicate(boleto -> {
+//
+//				if (newvalue == null || newvalue.isEmpty()) {
+//					return true;
+//				}
+//				String typedText = newvalue.toLowerCase();
+//
+//				String data = boleto.getVencimento();
+//
+//				if ((boleto.getVencimento().toLowerCase().indexOf(typedText) != -1)) {
+//					return true;
+//				}
+//
+//				return false;
+//			});
+//			SortedList<Boleto> listaBoletosSorted = new SortedList<>(listaBoletosFiltered);
+//			listaBoletosSorted.comparatorProperty().bind(tbBoletos.comparatorProperty());
+//			tbBoletos.setItems(listaBoletosSorted);
+//		});
+//    }
     
 	// =============================================================================================================
    
@@ -162,10 +163,8 @@ public class BoletoController implements Initializable {
 		boleto.setCliente(clienteSelecionado);
 		boleto.setOBS(txtOBS.getText());
 		
-		LocalDate vencimento = dateVencimento.getValue();
-		DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String formatado = vencimento.format(formatar);
-		boleto.setVencimento(formatado);
+		
+		boleto.setVencimento(dateVencimento.getValue());
 		
 		listaBoletos.add(boleto);
 		clienteSelecionado.setBoletos(listaBoletos);
@@ -237,8 +236,7 @@ public class BoletoController implements Initializable {
 				});
 				tbBoletos.setEditable(true);
 				columnObservação.setCellValueFactory(new PropertyValueFactory<>("OBS"));
-				columnVencimento.setCellValueFactory(new PropertyValueFactory<>("vencimento"));
-				
+				columnVencimento.setCellValueFactory(new PropertyValueFactory<Boleto, LocalDate>("vencimento"));
 			}
 			
 		}

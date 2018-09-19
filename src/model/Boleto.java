@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +16,8 @@ public class Boleto {
 	private Integer ID;
 	private Integer codigo;
 	private double valor;
-	private String vencimento;
+	private LocalDate vencimento;
+	private LocalDate dataPagamento;
 	private String cadastro;
 	private String status;
 	private String OBS;
@@ -77,14 +80,22 @@ public class Boleto {
 		this.cliente = cliente;
 	}
 
-	public String getVencimento() {
+	public LocalDate getVencimento() {
 		return vencimento;
 	}
 
-	public void setVencimento(String localDate) {
+	public void setVencimento(LocalDate localDate) {
 		this.vencimento = localDate;
 	}
 
+	public LocalDate getDataPagamento() {
+		return dataPagamento;
+	}
+
+	public void setDataPagamento(LocalDate dataPagamento) {
+		this.dataPagamento = dataPagamento;
+	}
+	
 	public String getCadastro() {
 		return cadastro;
 	}
@@ -92,5 +103,8 @@ public class Boleto {
 	public void setCadastro(String cadastro) {
 		this.cadastro = cadastro;
 	}
+
+
+	
 
 }
