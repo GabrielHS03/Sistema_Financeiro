@@ -2,12 +2,12 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -16,32 +16,27 @@ import org.controlsfx.control.textfield.TextFields;
 import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import application.BoletoDataPagamento;
-import application.ClienteAlterar;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.converter.DefaultStringConverter;
 import model.Boleto;
 import model.Cliente;
@@ -95,7 +90,8 @@ public class BoletoController implements Initializable {
 
 	private Cliente clienteSelecionado;
 	private Integer codigoDoBoletoSelecionado;
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	public static Date dataPagamento;
+	public static int codigoBoleto; //É usado para setar a data de pagamento do boleto
 	
 	// =============================================================================================================
 	@Override
@@ -230,10 +226,24 @@ public class BoletoController implements Initializable {
 						listaDeBoletos = boletoDAO.buscarTodos();
 						
 						for(Boleto b : listaDeBoletos) {
-							if(b.getCodigo() == codigoDoBoletoSelecionado) {
+							if(b.getCodigo().equals(codigoDoBoletoSelecionado)){
+								if(b.getStatus().equals("PAGO")) {
+									Alert msg = new Alert(Alert.AlertType.ERROR);
+									msg.setTitle("Status");
+									msg.setContentText("Este pagamento já foi efetuado!");
+									msg.setHeaderText(null);
+									msg.showAndWait();
+									try {
+										recarregarTela();
+										break;
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
 								b.setStatus(event.getNewValue());
-								boletoDAO.save(b);
 								carregarTelaDataPagamento();
+								codigoBoleto = b.getCodigo();
+								boletoDAO.save(b);
 							}
 	
 						}														
