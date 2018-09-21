@@ -18,7 +18,7 @@ public class Boleto {
 	private double valor;
 	private Date vencimento;
 	private Date dataPagamento;
-	private String cadastro;
+	private Date cadastro;
 	private String status;
 	private String OBS;
 	private String tipoPagamento;
@@ -96,11 +96,11 @@ public class Boleto {
 		this.dataPagamento = dataPagamento;
 	}
 	
-	public String getCadastro() {
+	public Date getCadastro() {
 		return cadastro;
 	}
 
-	public void setCadastro(String cadastro) {
+	public void setCadastro(Date cadastro) {
 		this.cadastro = cadastro;
 	}
 

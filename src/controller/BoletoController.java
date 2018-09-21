@@ -165,15 +165,13 @@ public class BoletoController implements Initializable {
 		boleto.setCliente(clienteSelecionado);
 		boleto.setOBS(txtOBS.getText());
 		boleto.setVencimento(java.sql.Date.valueOf(dateVencimento.getValue()));
-		
+		LocalDate horaCadastro = LocalDate.now();
+		boleto.setCadastro(java.sql.Date.valueOf(horaCadastro));
+		boleto.setTipoPagamento(comboBox.getValue());
 		listaBoletos.add(boleto);
 		clienteSelecionado.setBoletos(listaBoletos);
 		
-		LocalDate horaCadastro = LocalDate.now();
-		DateTimeFormatter formatarCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String formatado2 = horaCadastro.format(formatarCadastro);
-		boleto.setCadastro(formatado2);
-		boleto.setTipoPagamento(comboBox.getValue());
+
 		
 		if(controle == true) {
 			boletoDAO.save(boleto);

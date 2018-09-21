@@ -2,16 +2,17 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import DAO.CidadeDAO;
-import DAO.ClienteDAO;
-import DAO.EstadoDAO;
+import DAO.BoletoDAO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -22,10 +23,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Boleto;
-import model.Cidade;
-import model.Estado;
-import net.sf.jasperreports.engine.JRException;
 import model.Carro;
+import net.sf.jasperreports.engine.JRException;
 import util.Relatorio;
 
 
@@ -37,6 +36,9 @@ public class RelatorioController implements Initializable {
     @FXML
     private ImageView btnHome;
 
+    @FXML
+    private Button btnPesquisar;
+    
     @FXML
     private ComboBox<String> comboBox;
 
@@ -113,7 +115,42 @@ public class RelatorioController implements Initializable {
 		}
 	}
 	
-	
+    @FXML
+    void btnPesquisar(ActionEvent event) {
+    	Date initialDate;
+    	Date finalDate;
+		List<Boleto> listaDeBoletos = new ArrayList<>();
+		BoletoDAO boletoDAO = new BoletoDAO();
+		listaDeBoletos = boletoDAO.buscarTodos();
+		
+    	switch(comboBox.getValue()) {
+    		case "Por nome":
+    			break;
+    		case "A receber por data": 	
+    	    	initialDate = java.sql.Date.valueOf(dataInicial.getValue());
+    	    	finalDate = java.sql.Date.valueOf(dataFinal.getValue());
+    			for(Boleto b : listaDeBoletos) {
+    				if((b.getCadastro().compareTo(initialDate)>0) && (b.getCadastro().compareTo(finalDate)<0)) {
+    					if(b.getStatus().equals("A PAGAR")) {
+    						System.out.println(b.getValor());
+    					}
+    				}
+    			}	
+    			break;
+    		case "Recebida por data":
+    	    	initialDate = java.sql.Date.valueOf(dataInicial.getValue());
+    	    	finalDate = java.sql.Date.valueOf(dataFinal.getValue());
+    			for(Boleto b : listaDeBoletos) {
+    				if((b.getCadastro().compareTo(initialDate)>0) && (b.getCadastro().compareTo(finalDate)<0)) {
+    					if(b.getStatus().equals("PAGO")) {
+    						System.out.println(b.getValor());
+    					}
+    				}
+    			}
+    			break;
+    	}
+
+    }
 	
 	public void choice() {
 
