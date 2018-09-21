@@ -24,6 +24,10 @@ import javafx.scene.layout.AnchorPane;
 import model.Boleto;
 import model.Cidade;
 import model.Estado;
+import net.sf.jasperreports.engine.JRException;
+import model.Carro;
+import util.Relatorio;
+
 
 public class RelatorioController implements Initializable {
 	
@@ -77,27 +81,36 @@ public class RelatorioController implements Initializable {
 		
 		comboBox.getItems().addAll("Por nome", "A receber por data", "Recebida por data");
 		choice();
-		//-------------------------------------TESTE----------------
-		
-		CidadeDAO cidadeDAO = new CidadeDAO();
-		List<Cidade> listaDeCidades = new ArrayList<>();
-		
-		for(Cidade c : cidadeDAO.buscarTodos()) {		
-			String cidadeSelecionada = c.getNome();
 
-			if(cidadeSelecionada.equals("Anápolis")) {
-				System.out.println(c.getEstado().getNome());
-			}
-						
-		}
-
-		//-------------------------------------TESTE----------------
 	}
 	
 	@FXML
 	void btnHome(MouseEvent event) throws IOException {
-		carregarTelaHome();
+		//carregarTelaHome();
 		
+		List<Carro> listaDeCarros = new ArrayList<>();
+		
+		Carro carro1 = new Carro();
+		carro1.setMarca("Toyota");
+		carro1.setModelo("Camaro");
+		carro1.setCor("Branco");
+		carro1.setAno(2018);
+		
+		Carro carro2 = new Carro();
+		carro2.setMarca("Toyota");
+		carro2.setModelo("Camaro");
+		carro2.setCor("preto");
+		carro2.setAno(2018);
+		listaDeCarros.add(carro2);
+		
+			
+		Relatorio r = new Relatorio();
+		try {
+			r.gerarRelatorio(listaDeCarros);
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

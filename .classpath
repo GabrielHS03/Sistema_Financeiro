@@ -18,5 +18,13 @@
 	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/hibernate/mysql-connector-java-5.1.38.jar"/>
 	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/itext/itextpdf-5.5.11.jar"/>
 	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/controlsfx-8.40.14.jar"/>
+	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/ireport/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/ireport/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/ireport/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/ireport/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/ireport/groovy-all-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/ireport/iText-2.1.7.js2.jar"/>
+	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/ireport/jasperreports-5.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/JAVA-LIBRARIES/ireport/jasperreports-fonts-5.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
