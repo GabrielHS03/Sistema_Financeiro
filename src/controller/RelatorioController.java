@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Boleto;
 import model.Carro;
+import model.Cliente;
 import net.sf.jasperreports.engine.JRException;
 import util.Relatorio;
 
@@ -37,7 +38,7 @@ public class RelatorioController implements Initializable {
     private ImageView btnHome;
 
     @FXML
-    private Button btnPesquisar;
+    private Button btnGerarRelatorio;
     
     @FXML
     private ComboBox<String> comboBox;
@@ -60,23 +61,6 @@ public class RelatorioController implements Initializable {
     @FXML
     private TextField txtCliente;
     
-    @FXML
-    private TableView<Boleto> tbRelatorio;
-
-    @FXML
-    private TableColumn<?, ?> columnCodigo;
-
-    @FXML
-    private TableColumn<?, ?> columnValor;
-
-    @FXML
-    private TableColumn<?, ?> columnStatus;
-
-    @FXML
-    private TableColumn<?, ?> columnCadastro;
-
-    @FXML
-    private TableColumn<?, ?> columnVencimento;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -88,40 +72,18 @@ public class RelatorioController implements Initializable {
 	
 	@FXML
 	void btnHome(MouseEvent event) throws IOException {
-		//carregarTelaHome();
-		
-		List<Carro> listaDeCarros = new ArrayList<>();
-		
-		Carro carro1 = new Carro();
-		carro1.setMarca("Toyota");
-		carro1.setModelo("Camaro");
-		carro1.setCor("Branco");
-		carro1.setAno(2018);
-		
-		Carro carro2 = new Carro();
-		carro2.setMarca("Toyota");
-		carro2.setModelo("Camaro");
-		carro2.setCor("preto");
-		carro2.setAno(2018);
-		listaDeCarros.add(carro2);
-		
-			
-		Relatorio r = new Relatorio();
-		try {
-			r.gerarRelatorio(listaDeCarros);
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		carregarTelaHome();
 	}
 	
     @FXML
-    void btnPesquisar(ActionEvent event) {
+    void btnGerarRelatorio(ActionEvent event) {
     	Date initialDate;
     	Date finalDate;
 		List<Boleto> listaDeBoletos = new ArrayList<>();
+		List<Boleto> listaRelatorio = new ArrayList<>();
 		BoletoDAO boletoDAO = new BoletoDAO();
 		listaDeBoletos = boletoDAO.buscarTodos();
+		
 		
     	switch(comboBox.getValue()) {
     		case "Por nome":
@@ -132,10 +94,19 @@ public class RelatorioController implements Initializable {
     			for(Boleto b : listaDeBoletos) {
     				if((b.getCadastro().compareTo(initialDate)>0) && (b.getCadastro().compareTo(finalDate)<0)) {
     					if(b.getStatus().equals("A PAGAR")) {
-    						System.out.println(b.getValor());
-    					}
+    						listaRelatorio.add(b);
+    					}		
     				}
     			}	
+    			
+    			Relatorio r = new Relatorio();
+    			try {
+    				r.gerarRelatorio(listaRelatorio);
+    			} catch (JRException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    			
     			break;
     		case "Recebida por data":
     	    	initialDate = java.sql.Date.valueOf(dataInicial.getValue());
