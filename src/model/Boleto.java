@@ -22,6 +22,7 @@ public class Boleto {
 	private String status;
 	private String OBS;
 	private String tipoPagamento;
+	private String nomeCliente;
 	@ManyToOne
 	private Cliente cliente;
 	public Integer getID() {
@@ -72,6 +73,14 @@ public class Boleto {
 		this.tipoPagamento = tipoPagamento;
 	}
 	
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}

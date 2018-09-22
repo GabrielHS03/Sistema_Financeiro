@@ -168,6 +168,7 @@ public class BoletoController implements Initializable {
 		LocalDate horaCadastro = LocalDate.now();
 		boleto.setCadastro(java.sql.Date.valueOf(horaCadastro));
 		boleto.setTipoPagamento(comboBox.getValue());
+		boleto.setNomeCliente(clienteSelecionado.getNome());
 		listaBoletos.add(boleto);
 		clienteSelecionado.setBoletos(listaBoletos);
 		

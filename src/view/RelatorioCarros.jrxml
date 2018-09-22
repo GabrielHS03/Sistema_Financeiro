@@ -2,10 +2,11 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioCarros" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1427715f-41a8-4235-a2ed-328e07fcd8bf">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="70"/>
+	<property name="ireport.y" value="0"/>
 	<field name="codigo" class="java.lang.String"/>
 	<field name="vencimento" class="java.lang.String"/>
 	<field name="valor" class="java.lang.String"/>
+	<field name="nomeCliente" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -26,7 +27,7 @@
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="138" height="20" uuid="60c5594d-efce-44e3-ae8c-0a4c6ed2334e"/>
+				<reportElement x="0" y="0" width="76" height="20" uuid="60c5594d-efce-44e3-ae8c-0a4c6ed2334e"/>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
@@ -46,12 +47,16 @@
 				</textElement>
 				<text><![CDATA[Valor]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="76" y="0" width="100" height="20" uuid="0b3f919f-47fb-413a-9c17-67713775e4eb"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="138" height="20" uuid="ae241fef-815c-41ee-868d-8838684c8fc8"/>
+				<reportElement x="0" y="0" width="76" height="20" uuid="ae241fef-815c-41ee-868d-8838684c8fc8"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
@@ -70,6 +75,10 @@
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="0" width="100" height="20" uuid="a32251a1-2e6a-47e9-83fb-fec944290ec4"/>
+				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

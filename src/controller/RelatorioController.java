@@ -94,7 +94,6 @@ public class RelatorioController implements Initializable {
     			for(Boleto b : listaDeBoletos) {
     				if((b.getVencimento().compareTo(initialDate)>0) && (b.getVencimento().compareTo(finalDate)<0)) {
     					if(b.getStatus().equals("A PAGAR")) {
-    						b.getCliente().getNome();
     						listaRelatorio.add(b);
     					}		
     				}
