@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.mysql.fabric.xmlrpc.base.Array;
 
+import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import application.ClienteAlterar;
 import javafx.event.ActionEvent;
@@ -223,6 +224,16 @@ public class ClienteAlterarController implements Initializable {
 		cliente.getEndereco().setEstado(txtEstado.getText());
 		cliente.getEndereco().setID(ClientController.clienteSelecionado.getEndereco().getID());
 		clienteDAO.save(cliente);
+		
+		BoletoDAO boletoDAO = new BoletoDAO();
+		List<Boleto> listaBoletos = new ArrayList<>();
+		listaBoletos = ClientController.clienteSelecionado.getBoletos();
+		
+		for(Boleto b : listaBoletos) {
+			b.setNomeCliente(txtNome.getText());
+			boletoDAO.save(b);
+		}
+		
 		
 		ClienteAlterar.getStage().close();
 		recarregarTelaClientePrincipal();
