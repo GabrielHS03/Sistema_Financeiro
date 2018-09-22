@@ -70,19 +70,22 @@ public class BoletoController implements Initializable {
     private TableView<Boleto> tbBoletos;
 
     @FXML
-    private TableColumn<?, ?> columnID;
+    private TableColumn<Boleto, String> columnID;
 
     @FXML
-    private TableColumn<?, ?> columnValor;
+    private TableColumn<Boleto, String> columnValor;
 
     @FXML
     private TableColumn<Boleto, String> columnVencimento;
 
     @FXML
+    private TableColumn<Boleto, String> columnPagamento;
+
+    @FXML
     private TableColumn<Boleto, String> columnStatus;
 
     @FXML
-    private TableColumn<?, ?> columnObservação;
+    private TableColumn<Boleto, String> columnObservação;
     
     @FXML
     private TextField searchBox;
@@ -260,7 +263,19 @@ public class BoletoController implements Initializable {
 				               property.setValue(dateFormat.format(Job.getValue().getVencimento()));
 				               return property;
 				            });
-				
+				columnPagamento.setCellValueFactory(
+				           Job -> {
+				        	   if(Job.getValue().getStatus().equals("PAGO")) {
+				               SimpleStringProperty property = new SimpleStringProperty();
+				               DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				               property.setValue(dateFormat.format(Job.getValue().getDataPagamento()));
+				               return property;
+				        	   } else {
+				        		   return null;
+				        	   }
+				        	   
+				            });
+//				
 			}
 			
 		}

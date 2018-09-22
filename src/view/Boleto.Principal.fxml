@@ -67,11 +67,12 @@
       </Pane>
       <TableView fx:id="tbBoletos" layoutX="640.0" layoutY="77.0" prefHeight="523.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="77.0">
         <columns>
-          <TableColumn fx:id="columnID" prefWidth="88.0" text="ID" />
-          <TableColumn fx:id="columnValor" prefWidth="110.0" text="Valor" />
-            <TableColumn fx:id="columnVencimento" prefWidth="112.0" text="Vencimento" />
-            <TableColumn fx:id="columnStatus" prefWidth="110.0" text="Status" />
-            <TableColumn fx:id="columnObservação" prefWidth="219.0" text="Observação" />
+          <TableColumn fx:id="columnID" prefWidth="62.0" text="ID" />
+          <TableColumn fx:id="columnValor" prefWidth="78.0" text="Valor" />
+            <TableColumn fx:id="columnVencimento" prefWidth="95.0" text="Vencimento" />
+            <TableColumn fx:id="columnStatus" prefWidth="93.0" text="Status" />
+            <TableColumn fx:id="columnPagamento" prefWidth="113.0" text="Pagamento" />
+            <TableColumn fx:id="columnObservação" prefWidth="160.0" text="Observação" />
         </columns>
       </TableView>
       <TextField fx:id="searchBox" layoutX="1100.0" layoutY="32.0" />
