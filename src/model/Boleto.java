@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "TB_Boleto")
-public class Boleto { 
+public class Boleto implements Comparable<Boleto> { 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,6 +111,12 @@ public class Boleto {
 
 	public void setCadastro(Date cadastro) {
 		this.cadastro = cadastro;
+	}
+
+	@Override
+	public int compareTo(Boleto arg0) {
+		// TODO Auto-generated method stub
+		return getVencimento().compareTo(arg0.getVencimento());
 	}
 
 

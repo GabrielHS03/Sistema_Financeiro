@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -210,6 +211,8 @@ public class BoletoController implements Initializable {
 				for(Boleto b : cliente.getBoletos()){
 					listaDeBoletos.add(b);
 				}
+				
+				Collections.sort(listaDeBoletos);
 				tbBoletos.setItems(listaDeBoletos);
 				columnID.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 				columnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
