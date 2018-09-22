@@ -14,9 +14,33 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class Relatorio {
-	public void gerarRelatorio(List<Boleto> listaBoletos) throws JRException {
+	public void gerarRelatorioPorCliente(List<Boleto> listaBoletos) throws JRException {
 		
-		InputStream arq = Relatorio.class.getResourceAsStream("/view/RelatorioCarros.jrxml");
+		InputStream arq = Relatorio.class.getResourceAsStream("/view/RelatorioPorCliente.jrxml");
+	
+		JasperReport report = JasperCompileManager.compileReport(arq);
+		
+		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(listaBoletos));
+		
+		JasperViewer.viewReport(print, false);
+		
+	}
+	
+	public void gerarRelatorioAReceberPorData(List<Boleto> listaBoletos) throws JRException {
+		
+		InputStream arq = Relatorio.class.getResourceAsStream("/view/RelatorioPorCliente.jrxml");
+	
+		JasperReport report = JasperCompileManager.compileReport(arq);
+		
+		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(listaBoletos));
+		
+		JasperViewer.viewReport(print, false);
+		
+	}
+	
+	public void gerarRelatorioRecebidosPorData(List<Boleto> listaBoletos) throws JRException {
+		
+		InputStream arq = Relatorio.class.getResourceAsStream("/view/RelatorioPorCliente.jrxml");
 	
 		JasperReport report = JasperCompileManager.compileReport(arq);
 		

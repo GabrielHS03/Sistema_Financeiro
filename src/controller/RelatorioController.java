@@ -81,12 +81,24 @@ public class RelatorioController implements Initializable {
     	Date finalDate;
 		List<Boleto> listaDeBoletos = new ArrayList<>();
 		List<Boleto> listaRelatorio = new ArrayList<>();
+		Relatorio r = new Relatorio();
 		BoletoDAO boletoDAO = new BoletoDAO();
 		listaDeBoletos = boletoDAO.buscarTodos();
 		
 		
     	switch(comboBox.getValue()) {
     		case "Por nome":
+    			for(Boleto b : listaDeBoletos) {
+    				if(b.getNomeCliente().equals(txtCliente.getText())) {
+    					listaRelatorio.add(b);
+    				}
+    			}
+    			
+    			try {
+    				r.gerarRelatorioPorCliente(listaRelatorio);
+    			} catch (JRException e) {
+    				e.printStackTrace();
+    			}
     			break;
     		case "A receber por data": 	
     	    	initialDate = java.sql.Date.valueOf(dataInicial.getValue());
@@ -99,14 +111,11 @@ public class RelatorioController implements Initializable {
     				}
     			}	
     			
-    			Relatorio r = new Relatorio();
     			try {
-    				r.gerarRelatorio(listaRelatorio);
+    				r.gerarRelatorioAReceberPorData(listaRelatorio);
     			} catch (JRException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
-    			
     			break;
     		case "Recebida por data":
     	    	initialDate = java.sql.Date.valueOf(dataInicial.getValue());
@@ -114,13 +123,18 @@ public class RelatorioController implements Initializable {
     			for(Boleto b : listaDeBoletos) {
     				if((b.getDataPagamento().compareTo(initialDate)>0) && (b.getDataPagamento().compareTo(finalDate)<0)) {
     					if(b.getStatus().equals("PAGO")) {
-    						System.out.println(b.getValor());
+    						listaRelatorio.add(b);
     					}
     				}
     			}
+    			
+    			try {
+    				r.gerarRelatorioRecebidosPorData(listaRelatorio);
+    			} catch (JRException e) {
+    				e.printStackTrace();
+    			}
     			break;
     	}
-
     }
 	
 	public void choice() {
