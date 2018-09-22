@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<field name="codigo" class="java.lang.String"/>
-	<field name="vencimento" class="java.lang.String"/>
-	<field name="valor" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.Integer"/>
 	<field name="nomeCliente" class="java.lang.String"/>
+	<field name="vencimento" class="java.util.Date"/>
+	<field name="valor" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -34,13 +34,6 @@
 				<text><![CDATA[Código]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="276" y="0" width="138" height="20" uuid="b3ed1775-7da1-4a8b-812f-21d139e30f24"/>
-				<textElement>
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Data de Vencimento]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="437" y="0" width="138" height="20" uuid="9629c948-bd20-41f8-a844-ee8e23ea17e4"/>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
@@ -49,36 +42,49 @@
 			</staticText>
 			<staticText>
 				<reportElement x="76" y="0" width="100" height="20" uuid="0b3f919f-47fb-413a-9c17-67713775e4eb"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="20" uuid="b3ed1775-7da1-4a8b-812f-21d139e30f24"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Vencimento]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="76" height="20" uuid="ae241fef-815c-41ee-868d-8838684c8fc8"/>
+				<reportElement x="0" y="0" width="76" height="20" uuid="f64f986f-e319-4672-bbd9-566c91c29081"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="276" y="0" width="138" height="20" uuid="7d2f7f40-8193-4620-bdcb-8dac5966d4f2"/>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="279" y="0" width="138" height="20" uuid="22d8ef4b-d3ed-4fae-b570-277eb367b3cb"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vencimento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="437" y="0" width="138" height="20" uuid="fad068c9-df76-4e8b-9702-e194b6ce5f89"/>
+				<reportElement x="76" y="0" width="200" height="20" uuid="995cc22b-c479-4d24-b328-52053284c68f"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="437" y="0" width="100" height="20" uuid="bbd2bf3e-261b-411d-92f5-377bc41e9a75"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="76" y="0" width="100" height="20" uuid="a32251a1-2e6a-47e9-83fb-fec944290ec4"/>
-				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
