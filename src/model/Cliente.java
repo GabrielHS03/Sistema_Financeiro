@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity(name = "TB_Cliente")
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -132,6 +132,12 @@ public class Cliente {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@Override
+	public int compareTo(Cliente arg0) {
+		// TODO Auto-generated method stub
+		return getCodigo().compareTo(arg0.getCodigo());
 	}
     
     
