@@ -92,8 +92,9 @@ public class RelatorioController implements Initializable {
     	    	initialDate = java.sql.Date.valueOf(dataInicial.getValue());
     	    	finalDate = java.sql.Date.valueOf(dataFinal.getValue());
     			for(Boleto b : listaDeBoletos) {
-    				if((b.getCadastro().compareTo(initialDate)>0) && (b.getCadastro().compareTo(finalDate)<0)) {
+    				if((b.getVencimento().compareTo(initialDate)>0) && (b.getVencimento().compareTo(finalDate)<0)) {
     					if(b.getStatus().equals("A PAGAR")) {
+    						b.getCliente().getNome();
     						listaRelatorio.add(b);
     					}		
     				}
@@ -112,7 +113,7 @@ public class RelatorioController implements Initializable {
     	    	initialDate = java.sql.Date.valueOf(dataInicial.getValue());
     	    	finalDate = java.sql.Date.valueOf(dataFinal.getValue());
     			for(Boleto b : listaDeBoletos) {
-    				if((b.getCadastro().compareTo(initialDate)>0) && (b.getCadastro().compareTo(finalDate)<0)) {
+    				if((b.getDataPagamento().compareTo(initialDate)>0) && (b.getDataPagamento().compareTo(finalDate)<0)) {
     					if(b.getStatus().equals("PAGO")) {
     						System.out.println(b.getValor());
     					}

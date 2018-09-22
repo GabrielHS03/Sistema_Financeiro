@@ -2,9 +2,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioCarros" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1427715f-41a8-4235-a2ed-328e07fcd8bf">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="70"/>
 	<field name="codigo" class="java.lang.String"/>
-	<field name="nome" class="java.lang.String"/>
 	<field name="vencimento" class="java.lang.String"/>
 	<field name="valor" class="java.lang.String"/>
 	<background>
@@ -13,7 +12,7 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="102" y="16" width="361" height="49" uuid="67abdb37-2d62-4b26-9886-7ccf38646950"/>
+				<reportElement x="76" y="14" width="361" height="49" uuid="67abdb37-2d62-4b26-9886-7ccf38646950"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="26" isBold="true"/>
 				</textElement>
@@ -22,45 +21,16 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
-			<staticText>
-				<reportElement x="2" y="0" width="100" height="20" uuid="adb0a9b8-c187-4ef9-bea0-55365baba360"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<text><![CDATA[Emissão: ]]></text>
-			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="52" y="0" width="100" height="20" uuid="6f2e9f35-c044-4369-bb5d-12a5d649536d"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="455" y="0" width="100" height="20" uuid="8f4ecca2-00c2-461c-9665-36b9516a8454"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="138" height="20" uuid="60c5594d-efce-44e3-ae8c-0a4c6ed2334e"/>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Código]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="138" y="0" width="138" height="20" uuid="f5342913-f01d-4140-92ee-547c8e9b706c"/>
-				<textElement>
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="276" y="0" width="138" height="20" uuid="b3ed1775-7da1-4a8b-812f-21d139e30f24"/>
@@ -88,13 +58,6 @@
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="138" y="0" width="138" height="20" uuid="4cd6f0a4-d32c-4f38-817c-7256d5528ea4"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="276" y="0" width="138" height="20" uuid="7d2f7f40-8193-4620-bdcb-8dac5966d4f2"/>
 				<textElement>
 					<font fontName="Arial"/>
@@ -114,7 +77,29 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="39" width="100" height="15" uuid="8f4ecca2-00c2-461c-9665-36b9516a8454"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="39" width="100" height="15" uuid="adb0a9b8-c187-4ef9-bea0-55365baba360"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Emissão: ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="52" y="39" width="100" height="15" uuid="6f2e9f35-c044-4369-bb5d-12a5d649536d"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
