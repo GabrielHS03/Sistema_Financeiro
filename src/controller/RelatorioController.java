@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.TextFields;
+
 import DAO.BoletoDAO;
+import DAO.ClienteDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,6 +98,7 @@ public class RelatorioController implements Initializable {
     			}
     			
     			try {
+    				Collections.sort(listaRelatorio);
     				r.gerarRelatorioPorCliente(listaRelatorio);
     			} catch (JRException e) {
     				e.printStackTrace();
@@ -148,6 +153,14 @@ public class RelatorioController implements Initializable {
 				dataInicial.setVisible(false);
 				dataFinal.setVisible(false);
 				
+				List<String> listaDeNomes = new ArrayList<>();
+				
+				ClienteDAO clienteDAO = new ClienteDAO();
+				for (Cliente cliente : clienteDAO.buscarTodos()) {
+					listaDeNomes.add(cliente.getNome());
+				}
+				TextFields.bindAutoCompletion(txtCliente, listaDeNomes);
+
 				break; 
 			case "A receber por data":
 				lblNome.setVisible(false);
