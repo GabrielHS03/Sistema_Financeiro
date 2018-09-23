@@ -125,11 +125,14 @@ public class RelatorioController implements Initializable {
     	    	initialDate = java.sql.Date.valueOf(dataInicial.getValue());
     	    	finalDate = java.sql.Date.valueOf(dataFinal.getValue());
     			for(Boleto b : listaDeBoletos) {
-    				if((b.getDataPagamento().compareTo(initialDate)>0) && (b.getDataPagamento().compareTo(finalDate)<0)) {
-    					if(b.getStatus().equals("PAGO")) {
-    						listaRelatorio.add(b);
-    					}
+    				if(b.getDataPagamento() != (null)) {
+    	 				if((b.getDataPagamento().compareTo(initialDate)>0) && (b.getDataPagamento().compareTo(finalDate)<0)) {
+        					if(b.getStatus().equals("PAGO")) {
+        						listaRelatorio.add(b);
+        					}
+        				}	
     				}
+   
     			}
     			
     			try {
