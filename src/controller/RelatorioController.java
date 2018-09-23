@@ -20,8 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -93,7 +91,9 @@ public class RelatorioController implements Initializable {
     		case "Por nome":
     			for(Boleto b : listaDeBoletos) {
     				if(b.getNomeCliente().equals(txtCliente.getText())) {
+    					if(!b.getStatus().equals("PAGO")) {
     					listaRelatorio.add(b);
+    					}
     				}
     			}
     			

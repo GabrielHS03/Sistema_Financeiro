@@ -76,7 +76,7 @@
         </columns>
       </TableView>
       <DatePicker fx:id="pikerDataPagamento" layoutX="967.0" layoutY="43.0" visible="false" />
-      <Button fx:id="btnOK" layoutX="1207.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnOK" text="OK" visible="false" />
+      <Button fx:id="btnOK" layoutX="1207.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnOK" stylesheets="@style.css" text="OK" visible="false" />
       <Label fx:id="lblMSG" layoutX="967.0" layoutY="14.0" prefHeight="21.0" prefWidth="218.0" text="Selecione a Data de Pagamento" visible="false" />
    </children>
 </AnchorPane>

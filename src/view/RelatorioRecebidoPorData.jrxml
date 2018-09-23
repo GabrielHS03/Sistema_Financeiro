@@ -2,10 +2,16 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioCarros" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1427715f-41a8-4235-a2ed-328e07fcd8bf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="127"/>
+	<property name="ireport.y" value="0"/>
+	<style name="row">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#FFCCFF"/>
+		</conditionalStyle>
+	</style>
 	<field name="codigo" class="java.lang.Integer"/>
 	<field name="nomeCliente" class="java.lang.String"/>
-	<field name="vencimento" class="java.util.Date"/>
+	<field name="dataPagamento" class="java.util.Date"/>
 	<field name="valor" class="java.lang.Double"/>
 	<variable name="valor_1" class="java.lang.Double" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
@@ -20,7 +26,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="26" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Contas a receber por cliente]]></text>
+				<text><![CDATA[Contas recebidas por data]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -55,35 +61,38 @@
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Data de Vencimento]]></text>
+				<text><![CDATA[Data do Pagamento]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="5f63a2d6-dd1e-4c19-8cdf-27f2c38b3a66"/>
+			</frame>
 			<textField>
-				<reportElement x="0" y="0" width="76" height="20" uuid="f64f986f-e319-4672-bbd9-566c91c29081"/>
+				<reportElement x="0" y="0" width="76" height="15" uuid="f64f986f-e319-4672-bbd9-566c91c29081"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="279" y="0" width="138" height="20" uuid="22d8ef4b-d3ed-4fae-b570-277eb367b3cb"/>
+				<reportElement x="279" y="0" width="138" height="15" uuid="22d8ef4b-d3ed-4fae-b570-277eb367b3cb"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{vencimento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{dataPagamento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="76" y="0" width="200" height="20" uuid="995cc22b-c479-4d24-b328-52053284c68f"/>
+				<reportElement x="76" y="0" width="200" height="15" uuid="995cc22b-c479-4d24-b328-52053284c68f"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement x="437" y="0" width="100" height="20" uuid="bbd2bf3e-261b-411d-92f5-377bc41e9a75"/>
+				<reportElement x="437" y="0" width="100" height="15" uuid="bbd2bf3e-261b-411d-92f5-377bc41e9a75"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
