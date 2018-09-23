@@ -16,7 +16,6 @@ import org.controlsfx.control.textfield.TextFields;
 
 import DAO.BoletoDAO;
 import DAO.ClienteDAO;
-import application.BoletoDataPagamento;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,8 +25,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
@@ -86,16 +87,21 @@ public class BoletoController implements Initializable {
 
     @FXML
     private TableColumn<Boleto, String> columnObservação;
-    
+ 
     @FXML
-    private TextField searchBox;
+    private Label lblMSG; 
+  
+    @FXML
+    private DatePicker pikerDataPagamento;
+
+    @FXML
+    private Button btnOK;
     
 	private ObservableList<Boleto> listaDeBoletos = FXCollections.observableArrayList();
 
 	private Cliente clienteSelecionado;
 	private Integer codigoDoBoletoSelecionado;
-	public static Date dataPagamento;
-	public static int codigoBoleto; //É usado para setar a data de pagamento do boleto
+	public int codigoBoleto; 
 	
 	// =============================================================================================================
 	@Override
@@ -122,30 +128,23 @@ public class BoletoController implements Initializable {
     	cadastrarBoleto();
     }
     
-//    @FXML
-//    void searchBox(KeyEvent event) {
-//    	FilteredList<Boleto> listaBoletosFiltered = new FilteredList<>(listaDeBoletos, p -> true);
-//		searchBox.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
-//			listaBoletosFiltered.setPredicate(boleto -> {
-//
-//				if (newvalue == null || newvalue.isEmpty()) {
-//					return true;
-//				}
-//				String typedText = newvalue.toLowerCase();
-//
-//				String data = boleto.getVencimento();
-//
-//				if ((boleto.getVencimento().toLowerCase().indexOf(typedText) != -1)) {
-//					return true;
-//				}
-//
-//				return false;
-//			});
-//			SortedList<Boleto> listaBoletosSorted = new SortedList<>(listaBoletosFiltered);
-//			listaBoletosSorted.comparatorProperty().bind(tbBoletos.comparatorProperty());
-//			tbBoletos.setItems(listaBoletosSorted);
-//		});
-//    }
+    @FXML
+    void btnOK(ActionEvent event) {
+		List<Boleto> listaDeBoletos = new ArrayList<>();
+		BoletoDAO boletoDAO = new BoletoDAO();
+		listaDeBoletos = boletoDAO.buscarTodos();
+		
+		for(Boleto b : listaDeBoletos) {
+			if(b.getCodigo() == codigoBoleto) {
+				b.setDataPagamento(java.sql.Date.valueOf(pikerDataPagamento.getValue()));
+				boletoDAO.save(b);
+				
+			}
+
+		}	
+		ocultarDatePicker();
+		setarTabelaBoletos();
+    }
     
 	// =============================================================================================================
    
@@ -246,7 +245,7 @@ public class BoletoController implements Initializable {
 									}
 								}
 								b.setStatus(event.getNewValue());
-								carregarTelaDataPagamento();
+								exibirDatePicker();
 								codigoBoleto = b.getCodigo();
 								boletoDAO.save(b);
 							}
@@ -289,14 +288,15 @@ public class BoletoController implements Initializable {
 			AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Boleto.Principal.fxml"));
 			rootPane.getChildren().setAll(pane);
 		}
-	   
-	   public void carregarTelaDataPagamento() {
-		   BoletoDataPagamento boletoDataPagamento= new BoletoDataPagamento();
-			try {
-				boletoDataPagamento.start(new Stage());
-			} catch (Exception e) {
-				e.getMessage();
-			}
-		}
-
+	   	   
+	   public void exibirDatePicker() {
+		   pikerDataPagamento.setVisible(true);
+		   btnOK.setVisible(true);
+		   lblMSG.setVisible(true);
+	   }
+	   public void ocultarDatePicker() {
+		   pikerDataPagamento.setVisible(false);
+		   btnOK.setVisible(false);
+		   lblMSG.setVisible(false);
+	   }
 }

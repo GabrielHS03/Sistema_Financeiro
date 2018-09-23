@@ -23,7 +23,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Boleto;
-import model.Carro;
 import model.Cliente;
 import net.sf.jasperreports.engine.JRException;
 import util.Relatorio;
