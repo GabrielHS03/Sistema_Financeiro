@@ -2,12 +2,12 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioCarros" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1427715f-41a8-4235-a2ed-328e07fcd8bf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="127"/>
+	<property name="ireport.y" value="135"/>
 	<field name="codigo" class="java.lang.Integer"/>
 	<field name="nomeCliente" class="java.lang.String"/>
 	<field name="vencimento" class="java.util.Date"/>
 	<field name="valor" class="java.lang.Double"/>
-	<variable name="valor_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+	<variable name="valor_1" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
 	</variable>
 	<background>
@@ -93,17 +93,6 @@
 	</detail>
 	<columnFooter>
 		<band height="117" splitType="Stretch">
-			<staticText>
-				<reportElement x="417" y="15" width="64" height="17" uuid="af5e237d-963e-4cdd-8ed7-e23bd2d6d38b"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total:]]></text>
-			</staticText>
-			<textField pattern="#,##0.00">
-				<reportElement x="481" y="15" width="74" height="17" uuid="72c7104b-1654-43bb-abf2-aaf8eb2f2a9a"/>
-				<textFieldExpression><![CDATA[$V{valor_1}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="0" y="9" width="555" height="1" uuid="bb83e7b2-bf8d-46a8-8f90-c6bbbc13958d"/>
 			</line>
@@ -135,6 +124,18 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement x="481" y="17" width="74" height="17" uuid="72c7104b-1654-43bb-abf2-aaf8eb2f2a9a"/>
+				<textFieldExpression><![CDATA[$V{valor_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="437" y="17" width="38" height="17" uuid="af5e237d-963e-4cdd-8ed7-e23bd2d6d38b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>
