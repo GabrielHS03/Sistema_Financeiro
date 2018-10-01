@@ -154,8 +154,13 @@ public class BoletoController implements Initializable {
     	boolean controle = true; 	
     	for(Boleto b : boletoDAO.buscarTodos()) {
     		if(b.getCodigo() == Integer.parseInt(txtID.getText())) {
-				System.out.println("ID já existe, digite outro!");
+				Alert msg = new Alert(Alert.AlertType.ERROR);
+				msg.setTitle("ERRO");
+				msg.setContentText("O código digitado já existe, digite outro!");
+				msg.setHeaderText(null);
+				msg.showAndWait();
 				controle = false;
+				break;
     		}
     	}
     	//--------------------------------------------------------------

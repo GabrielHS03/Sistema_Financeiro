@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -232,8 +233,13 @@ public class ClientController implements Initializable {
 			int codigoEmString = clienteLista.getCodigo();
 
 			if (codigoEmString == codigoCliente) {
-				System.out.println("ID já existe, digite outro!");
+				Alert msg = new Alert(Alert.AlertType.ERROR);
+				msg.setTitle("ERRO");
+				msg.setContentText("O código digitado já existe, digite outro!");
+				msg.setHeaderText(null);
+				msg.showAndWait();
 				controle = false;
+				break;
 			}
 		}
 		//---------CLIENTE--------------------------------------------
@@ -269,32 +275,13 @@ public class ClientController implements Initializable {
 
 		cliente.setEndereco(endereco);
 		//------------------------------------------------------------
-		//---------BOLETO---------------------------------------------
-//		List<Boleto> listaDeBoletos = new ArrayList<>();
-//		Boleto boleto1 = new Boleto();
-//		Boleto boleto2 = new Boleto();	
-//		BoletoDAO boletoDAO = new BoletoDAO();
-//		
-//		boleto1.setValor(800.50);
-//		boleto1.setStatus("PAGO");
-//		boleto1.setCliente(cliente);
-//		
-//		boleto2.setValor(500.00);
-//		boleto2.setStatus("DEVENDO");
-//		boleto2.setCliente(cliente);
-//		
-//		listaDeBoletos.add(boleto1);
-//		listaDeBoletos.add(boleto2);
-//		cliente.setBoletos(listaDeBoletos);
-		//------------------------------------------------------------
 		
 		if (controle == true) {
 			clienteDAO.save(cliente);
+			enderecoDAO.save(endereco);
+			recarregarTela();	
 		}
-		enderecoDAO.save(endereco);
-//		boletoDAO.save(boleto1);
-//		boletoDAO.save(boleto2);
-		recarregarTela();				
+			
 	}
 
 	@FXML
