@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.mysql.fabric.xmlrpc.base.Array;
-
 import DAO.BoletoDAO;
 import DAO.ClienteDAO;
 import application.ClienteAlterar;
@@ -22,8 +20,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Boleto;
 import model.Cliente;
@@ -125,8 +121,8 @@ public class ClienteAlterarController implements Initializable {
 	private void FormatacaoCPF(){
 		TextFieldFormatter msk = new TextFieldFormatter();
 		
-		switch(comboBox.getValue()) {
-		case "CPF":
+		if(lblCPFCNPJ.getText().equals("CPF:")) {
+		
 		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("###.###.###-##");
 		//Aqui coloca oq pode ter na mascara!
@@ -135,15 +131,15 @@ public class ClienteAlterarController implements Initializable {
 		msk.setTf(txtCPFCNPJ);
 		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
-		break;
-		case "CNPJ":
+			}
+		
+		if (lblCPFCNPJ.getText().equals("CNPJ:")) {
 			msk.setMask("##.###.###/####-##");
 			msk.setCaracteresValidos("0123456789");
 			msk.setTf(txtCPFCNPJ);
 			msk.formatter();
 			
-			break;
-	}
+		}
 	}
 	@FXML
 	private void FormatacaoTel(){

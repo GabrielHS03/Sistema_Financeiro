@@ -31,7 +31,7 @@
             <TextField fx:id="txtEndereco" layoutX="110.0" layoutY="267.0" prefHeight="25.0" prefWidth="219.0" />
             <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="115.0" text="Cód. do Cliente:" textAlignment="RIGHT" />
             <Label fx:id="lblNome" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="16.0" layoutY="150.0" prefHeight="17.0" prefWidth="87.0" text="Nome:" textAlignment="RIGHT" />
-            <Label fx:id="lblCPFCNPJ" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="383.0" layoutY="116.0" text="CPF:" textAlignment="RIGHT" />
+            <Label fx:id="lblCPFCNPJ" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="383.0" layoutY="116.0" onKeyPressed="#FormatacaoCPF" text="CPF:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="358.0" layoutY="190.0" text="Telefone:" />
             <Label contentDisplay="RIGHT" layoutX="51.0" layoutY="271.0" text="Endereço:" textAlignment="RIGHT" />
             <TextField fx:id="txtBairro" layoutX="415.0" layoutY="266.0" />

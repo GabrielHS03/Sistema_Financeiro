@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import DAO.BoletoDAO;
 import DAO.CidadeDAO;
 import DAO.ClienteDAO;
 import DAO.EnderecoDAO;
@@ -35,7 +34,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.Boleto;
 import model.Cidade;
 import model.Cliente;
 import model.Endereco;
@@ -126,10 +124,10 @@ public class ClientController implements Initializable {
 	
 	@FXML
 	private void FormatacaoCPF(){
-		TextFieldFormatter msk = new TextFieldFormatter();
+TextFieldFormatter msk = new TextFieldFormatter();
 		
 		switch(comboBox.getValue()) {
-		case "CPF":
+		case "CPF:":
 		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("###.###.###-##");
 		//Aqui coloca oq pode ter na mascara!
@@ -139,7 +137,7 @@ public class ClientController implements Initializable {
 		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
 		break;
-		case "CNPJ":
+		case "CNPJ:":
 			msk.setMask("##.###.###/####-##");
 			msk.setCaracteresValidos("0123456789");
 			msk.setTf(txtCPFCNPJ);
@@ -324,15 +322,15 @@ public class ClientController implements Initializable {
 				txtCPFCNPJ.clear();
 				txtRazaoSocial.setVisible(false);
 				lblCNPJ.setVisible(false);
-				lblCPFCNPJ.setText("CPF:*");
-				lblNome.setText("Nome:*");
+				lblCPFCNPJ.setText("CPF:");
+				lblNome.setText("Nome:");
 				break; 
 			case "CNPJ":
 				txtCPFCNPJ.clear();
 				txtRazaoSocial.setVisible(true);
 				lblCNPJ.setVisible(true);
-				lblCPFCNPJ.setText("CNPJ:*");
-				lblNome.setText("Nome Fantasia:*");
+				lblCPFCNPJ.setText("CNPJ:");
+				lblNome.setText("Nome Fantasia:");
 				break;
 			}
 		});
