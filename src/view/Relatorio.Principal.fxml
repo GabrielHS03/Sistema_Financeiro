@@ -39,9 +39,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </DatePicker>
-            <Label fx:id="lblDataInicial" layoutX="159.0" layoutY="317.0" text="Data Inicial:" visible="false" />
-            <Label fx:id="lblDataFinal" layoutX="162.0" layoutY="376.0" text="Data Final:" textAlignment="RIGHT" visible="false" />
-            <Label fx:id="lblNome" layoutX="127.0" layoutY="273.0" text="Nome do Cliente:" visible="false" />
+            <Label fx:id="lblDataInicial" layoutX="153.0" layoutY="317.0" text="Data Inicial:" visible="false" />
+            <Label fx:id="lblDataFinal" layoutX="160.0" layoutY="376.0" text="Data Final:" textAlignment="RIGHT" visible="false" />
+            <Label fx:id="lblNome" layoutX="113.0" layoutY="273.0" text="Nome do Cliente:" visible="false" />
             <TextField fx:id="txtCliente" layoutX="233.0" layoutY="269.0" prefHeight="25.0" prefWidth="174.0" visible="false" />
             <Button fx:id="btnGerarRelatorio" layoutX="251.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnGerarRelatorio" prefHeight="37.0" prefWidth="138.0" stylesheets="@style.css" text="Gerar Relatório" textFill="WHITE">
                <font>
@@ -51,6 +51,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label layoutX="175.0" layoutY="221.0" prefHeight="21.0" prefWidth="69.0" text="Selecione" />
          </children>
       </Pane>
    </children>

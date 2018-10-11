@@ -124,10 +124,10 @@ public class ClientController implements Initializable {
 	
 	@FXML
 	private void FormatacaoCPF(){
-TextFieldFormatter msk = new TextFieldFormatter();
+		TextFieldFormatter msk = new TextFieldFormatter();
 		
-		switch(comboBox.getValue()) {
-		case "CPF:":
+		if(lblCPFCNPJ.getText().equals("CPF:")) {
+		
 		//Aqui coloca o formato que vai ser a mascara!
 		msk.setMask("###.###.###-##");
 		//Aqui coloca oq pode ter na mascara!
@@ -136,21 +136,21 @@ TextFieldFormatter msk = new TextFieldFormatter();
 		msk.setTf(txtCPFCNPJ);
 		//Aqui esta verificando a string e fazendo a formatacao!!
 		msk.formatter();
-		break;
-		case "CNPJ:":
+			}
+		
+		if (lblCPFCNPJ.getText().equals("CNPJ:")) {
 			msk.setMask("##.###.###/####-##");
 			msk.setCaracteresValidos("0123456789");
 			msk.setTf(txtCPFCNPJ);
 			msk.formatter();
 			
-			break;
-	}
+		}
 	}
 	@FXML
 	private void FormatacaoTel(){
 		TextFieldFormatter msk = new TextFieldFormatter();
 		//Aqui coloca o formato que vai ser a mascara!
-		msk.setMask("(##)#####-####");
+		msk.setMask("(##)####-####");
 		//Aqui coloca oq pode ter na mascara!
 		msk.setCaracteresValidos("0123456789");
 		//Aqui coloca o campo que a mascara vai entra!

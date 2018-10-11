@@ -145,7 +145,7 @@ public class ClienteAlterarController implements Initializable {
 	private void FormatacaoTel(){
 		TextFieldFormatter msk = new TextFieldFormatter();
 		//Aqui coloca o formato que vai ser a mascara!
-		msk.setMask("(##)#####-####");
+		msk.setMask("(##)####-####");
 		//Aqui coloca oq pode ter na mascara!
 		msk.setCaracteresValidos("0123456789");
 		//Aqui coloca o campo que a mascara vai entra!

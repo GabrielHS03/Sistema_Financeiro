@@ -104,7 +104,7 @@ public class BoletoController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		comboBox.getItems().addAll("Nota Fiscal", "Carne", "Recibo", "Deposito");
+		comboBox.getItems().addAll("Nota Fiscal", "Carne", "Recibo", "Boleto");
 		
 		
 		pesquisarCliente();		
