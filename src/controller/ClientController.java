@@ -78,7 +78,7 @@ public class ClientController implements Initializable {
 	private TextField txtNome;
 
 	@FXML
-	private TextField txtRazaoSocial;
+	private TextField txtNomeFantasia;
 
 	@FXML
 	private TextField txtCPFCNPJ;
@@ -255,7 +255,7 @@ public class ClientController implements Initializable {
 			break;
 		case "CNPJ":
 			cliente.setCNPJ((txtCPFCNPJ.getText()));
-			cliente.setRazaoSocial(txtRazaoSocial.getText());
+			cliente.setRazaoSocial(txtNomeFantasia.getText());
 			break;
 
 		}
@@ -320,17 +320,17 @@ public class ClientController implements Initializable {
 			switch (comboBox.getValue()) {
 			case "CPF":
 				txtCPFCNPJ.clear();
-				txtRazaoSocial.setVisible(false);
+				txtNomeFantasia.setVisible(false);
 				lblCNPJ.setVisible(false);
 				lblCPFCNPJ.setText("CPF:");
 				lblNome.setText("Nome:");
 				break; 
 			case "CNPJ":
 				txtCPFCNPJ.clear();
-				txtRazaoSocial.setVisible(true);
+				txtNomeFantasia.setVisible(true);
 				lblCNPJ.setVisible(true);
 				lblCPFCNPJ.setText("CNPJ:");
-				lblNome.setText("Nome Fantasia:");
+				lblNome.setText("Razão Social:");
 				break;
 			}
 		});

@@ -24,7 +24,7 @@
             <TextField fx:id="txtID" layoutX="110.0" layoutY="111.0" prefHeight="25.0" prefWidth="87.0" />
             <TextField fx:id="txtCPFCNPJ" layoutX="415.0" layoutY="113.0" onKeyReleased="#FormatacaoCPF" />
             <TextField fx:id="txtNome" layoutX="110.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" />
-            <TextField fx:id="txtRazaoSocial" layoutX="415.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" visible="false" />
+            <TextField fx:id="txtNomeFantasia" layoutX="415.0" layoutY="146.0" prefHeight="25.0" prefWidth="203.0" />
             <TextField fx:id="txtEmail" layoutX="110.0" layoutY="186.0" prefHeight="25.0" prefWidth="203.0" />
             <TextField fx:id="txtTelefone" layoutX="415.0" layoutY="186.0" onKeyReleased="#FormatacaoTel" />
             <TextField fx:id="txtCelular" layoutX="415.0" layoutY="221.0" onKeyReleased="#FormatacaoCel" />
@@ -44,7 +44,7 @@
             <Label contentDisplay="RIGHT" layoutX="370.0" layoutY="270.0" text="Bairro:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="78.0" layoutY="339.0" text="CEP:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="36.0" layoutY="397.0" text="Observação:" textAlignment="RIGHT" />
-            <Label fx:id="lblCNPJ" contentDisplay="RIGHT" layoutX="337.0" layoutY="150.0" text="Razão Social:" textAlignment="RIGHT" visible="false" />
+            <Label fx:id="lblCNPJ" contentDisplay="RIGHT" layoutX="336.0" layoutY="150.0" text="N. Fantasia:" textAlignment="RIGHT" />
             <Label contentDisplay="RIGHT" layoutX="68.0" layoutY="190.0" text="Email:" textAlignment="RIGHT" />
             <Label fx:id="lblCidade" alignment="CENTER_RIGHT" layoutX="363.0" layoutY="306.0" text="Cidade:" />
             <Label fx:id="lblEstado" alignment="CENTER_RIGHT" layoutX="365.0" layoutY="341.0" text="Estado:" />

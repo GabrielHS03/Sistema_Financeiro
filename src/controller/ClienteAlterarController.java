@@ -71,7 +71,7 @@ public class ClienteAlterarController implements Initializable {
 	private TextField txtNome;
 
 	@FXML
-	private TextField txtRazaoSocial;
+	private TextField txtNomeFantasia;
 
 	@FXML
 	private TextField txtCPFCNPJ;
@@ -204,7 +204,7 @@ public class ClienteAlterarController implements Initializable {
 		}
 		if (cpfEmString == "null") {
 			cliente.setCNPJ((txtCPFCNPJ.getText()));
-			cliente.setRazaoSocial(txtRazaoSocial.getText());
+			cliente.setRazaoSocial(txtNomeFantasia.getText());
 		}
 		// ----------------------
 		cliente.setTelefoneCel(txtCelular.getText());
@@ -253,7 +253,7 @@ public class ClienteAlterarController implements Initializable {
 		}
 		if (cpfEmString == "null") {
 			cliente.setCNPJ((txtCPFCNPJ.getText()));
-			cliente.setRazaoSocial(txtRazaoSocial.getText());
+			cliente.setRazaoSocial(txtNomeFantasia.getText());
 		}
 		// ----------------------
 		cliente.setTelefoneCel(txtCelular.getText());
@@ -293,11 +293,11 @@ public class ClienteAlterarController implements Initializable {
 		}
 		if (cpfEmString == "null") {
 			txtCPFCNPJ.setText(cnpjEmString);
-			txtRazaoSocial.setVisible(true);
+			txtNomeFantasia.setVisible(true);
 			lblCNPJ.setVisible(true);
 			lblCPFCNPJ.setText("CNPJ:");
-			lblNome.setText("Nome Fantasia:");
-			txtRazaoSocial.setText(ClientController.clienteSelecionado.getRazaoSocial());
+			lblNome.setText("Razão Social:");
+			txtNomeFantasia.setText(ClientController.clienteSelecionado.getRazaoSocial());
 		}
 
 		txtID.setText(codigoEmString);
