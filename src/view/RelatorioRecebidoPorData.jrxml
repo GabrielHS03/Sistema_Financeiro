@@ -9,7 +9,7 @@
 			<style backcolor="#FFCCFF"/>
 		</conditionalStyle>
 	</style>
-	<field name="codigo" class="java.lang.Integer"/>
+	<field name="codigoCliente" class="java.lang.Integer"/>
 	<field name="nomeCliente" class="java.lang.String"/>
 	<field name="dataPagamento" class="java.util.Date"/>
 	<field name="valor" class="java.lang.Double"/>
@@ -75,7 +75,7 @@
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{codigoCliente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="279" y="0" width="138" height="15" uuid="22d8ef4b-d3ed-4fae-b570-277eb367b3cb"/>

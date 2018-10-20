@@ -23,6 +23,9 @@ public class Boleto implements Comparable<Boleto> {
 	private String OBS;
 	private String tipoPagamento;
 	private String nomeCliente;
+	private Integer codigoCliente;
+	
+	
 	@ManyToOne
 	private Cliente cliente;
 	public Integer getID() {
@@ -79,6 +82,14 @@ public class Boleto implements Comparable<Boleto> {
 
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
+	}
+	
+	public Integer getCodigoCliente() {
+		return codigoCliente;
+	}
+
+	public void setCodigoCliente(Integer codigoCliente) {
+		this.codigoCliente = codigoCliente;
 	}
 
 	public Cliente getCliente() {

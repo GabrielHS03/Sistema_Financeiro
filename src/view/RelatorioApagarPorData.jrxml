@@ -9,10 +9,10 @@
 			<style backcolor="#FFCCFF"/>
 		</conditionalStyle>
 	</style>
-	<field name="codigo" class="java.lang.Integer"/>
 	<field name="nomeCliente" class="java.lang.String"/>
 	<field name="vencimento" class="java.util.Date"/>
 	<field name="valor" class="java.lang.Double"/>
+	<field name="codigoCliente" class="java.lang.String"/>
 	<variable name="valor_1" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
 	</variable>
@@ -69,14 +69,11 @@
 		<band height="20" splitType="Stretch">
 			<frame>
 				<reportElement style="row" mode="Opaque" x="0" y="0" width="555" height="20" uuid="a88625c7-9d04-426a-b94d-f2245d30b7ff"/>
+				<textField>
+					<reportElement x="0" y="0" width="76" height="20" uuid="8cc07f83-a336-48e8-a56f-da6f8e4fccc5"/>
+					<textFieldExpression><![CDATA[$F{codigoCliente}]]></textFieldExpression>
+				</textField>
 			</frame>
-			<textField>
-				<reportElement x="0" y="0" width="76" height="20" uuid="f64f986f-e319-4672-bbd9-566c91c29081"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
-			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="279" y="0" width="138" height="20" uuid="22d8ef4b-d3ed-4fae-b570-277eb367b3cb"/>
 				<textElement>

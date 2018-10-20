@@ -148,18 +148,18 @@ public class BoletoController implements Initializable {
     public void cadastrarBoleto() throws IOException {
 		BoletoDAO boletoDAO = new BoletoDAO();
     	//-------------CONTROLE-----------------------------------------
-    	boolean controle = true; 	
-    	for(Boleto b : boletoDAO.buscarTodos()) {
-    		if(b.getCodigo() == Integer.parseInt(txtID.getText())) {
-				Alert msg = new Alert(Alert.AlertType.ERROR);
-				msg.setTitle("ERRO");
-				msg.setContentText("O código digitado já existe, digite outro!");
-				msg.setHeaderText(null);
-				msg.showAndWait();
-				controle = false;
-				break;
-    		}
-    	}
+//    	boolean controle = true; 	
+//    	for(Boleto b : boletoDAO.buscarTodos()) {
+//    		if(b.getCodigo() == Integer.parseInt(txtID.getText())) {
+//				Alert msg = new Alert(Alert.AlertType.ERROR);
+//				msg.setTitle("ERRO");
+//				msg.setContentText("O código digitado já existe, digite outro!");
+//				msg.setHeaderText(null);
+//				msg.showAndWait();
+//				controle = false;
+//				break;
+//    		}
+//    	}
     	//--------------------------------------------------------------
     	List<Boleto> listaBoletos = new ArrayList<>();
 		Boleto boleto = new Boleto();	
@@ -174,14 +174,15 @@ public class BoletoController implements Initializable {
 		boleto.setCadastro(java.sql.Date.valueOf(horaCadastro));
 		boleto.setTipoPagamento(comboBox.getValue());
 		boleto.setNomeCliente(clienteSelecionado.getNome());
+		boleto.setCodigoCliente(clienteSelecionado.getCodigo());
 		listaBoletos.add(boleto);
 		clienteSelecionado.setBoletos(listaBoletos);
 		
 
 		
-		if(controle == true) {
+//		if(controle == true) {
 			boletoDAO.save(boleto);
-		}
+//		}
 		
 		setarTabelaBoletos();  
 
