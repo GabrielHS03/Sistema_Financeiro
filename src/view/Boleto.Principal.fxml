@@ -46,7 +46,7 @@
                      </cursor>
                   </TextField>
                   <Label layoutX="34.0" layoutY="82.0" text="Código do Boleto:" />
-                  <Label layoutX="217.0" layoutY="22.0" text="Cadastrar Boleto" textFill="INDIGO">
+                  <Label layoutX="194.0" layoutY="22.0" text="Cadastrar Pagamento" textFill="INDIGO">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

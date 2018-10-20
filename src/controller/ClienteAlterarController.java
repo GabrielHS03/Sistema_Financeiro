@@ -242,7 +242,7 @@ public class ClienteAlterarController implements Initializable {
 		cliente.setEndereco(new Endereco());
 		ClienteDAO clienteDAO = new ClienteDAO();
 		
-		cliente.setCodigo(null);
+		cliente.setCodigo(000000);
 		cliente.setNome(txtNome.getText());
 		// ----------------------
 		String cpfEmString = String.valueOf(ClientController.clienteSelecionado.getCPF());
