@@ -134,6 +134,7 @@ public class BoletoController implements Initializable {
 		for(Boleto b : listaDeBoletos) {
 			if(b.getCodigo() == codigoBoleto) {
 				b.setDataPagamento(java.sql.Date.valueOf(pikerDataPagamento.getValue()));
+				b.setStatus("PAGO");
 				boletoDAO.save(b);
 				
 			}
@@ -247,10 +248,10 @@ public class BoletoController implements Initializable {
 										e.printStackTrace();
 									}
 								}
-								b.setStatus(event.getNewValue());
+//								b.setStatus(event.getNewValue());
 								exibirDatePicker();
 								codigoBoleto = b.getCodigo();
-								boletoDAO.save(b);
+//								boletoDAO.save(b);
 							}
 	
 						}														
