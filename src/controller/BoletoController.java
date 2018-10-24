@@ -132,7 +132,7 @@ public class BoletoController implements Initializable {
 		listaDeBoletos = boletoDAO.buscarTodos();
 		
 		for(Boleto b : listaDeBoletos) {
-			if(b.getCodigo() == codigoBoleto) {
+			if(b.getCodigo().equals(codigoBoleto)) {
 				b.setDataPagamento(java.sql.Date.valueOf(pikerDataPagamento.getValue()));
 				b.setStatus("PAGO");
 				boletoDAO.save(b);
@@ -165,6 +165,7 @@ public class BoletoController implements Initializable {
     	List<Boleto> listaBoletos = new ArrayList<>();
 		Boleto boleto = new Boleto();	
 		
+		try {
 		boleto.setCodigo(Integer.parseInt(txtID.getText()));
 		boleto.setValor(Double.parseDouble(txtValor.getText()));
 		boleto.setStatus("A PAGAR");
@@ -186,7 +187,10 @@ public class BoletoController implements Initializable {
 //		}
 		
 		setarTabelaBoletos();  
-
+		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+		}
     }
 	
     public void pesquisarCliente() {
