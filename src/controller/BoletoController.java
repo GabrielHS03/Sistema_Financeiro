@@ -143,6 +143,11 @@ public class BoletoController implements Initializable {
 		ocultarDatePicker();
 		setarTabelaBoletos();
     }
+
+    @FXML
+    void btnPagamentos(ActionEvent event) {
+    	setarTabelaBoletos(); 
+    }
     
 	// =============================================================================================================
    
@@ -202,13 +207,13 @@ public class BoletoController implements Initializable {
 		}
 		
 		TextFields.bindAutoCompletion(txtCodigo, listaDeCodigos);
-		txtCodigo.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
-			for (Cliente cliente : clienteDAO.buscarTodos()) {
-				if(cliente.getCodigo() == Integer.parseInt(txtCodigo.getText())) {
-					setarTabelaBoletos();  
-				}
-			}
-		});
+//		txtCodigo.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
+//			for (Cliente cliente : clienteDAO.buscarTodos()) {
+//				if(cliente.getCodigo() == Integer.parseInt(txtCodigo.getText())) {
+//					setarTabelaBoletos();  
+//				}
+//			}
+//		});
 	}
 	
 	public void setarTabelaBoletos() {
