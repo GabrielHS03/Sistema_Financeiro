@@ -271,6 +271,15 @@ public class ClienteAlterarController implements Initializable {
 		cliente.setStatus(false);
 		
 		clienteDAO.save(cliente);
+
+		BoletoDAO boletoDAO = new BoletoDAO();
+		List<Boleto> listaBoletos = new ArrayList<>();
+		listaBoletos = ClientController.clienteSelecionado.getBoletos();
+		
+		for(Boleto b : listaBoletos) {
+			b.setCodigoCliente(0000);
+			boletoDAO.save(b);
+		}
 		
 		ClienteAlterar.getStage().close();
 		recarregarTelaClientePrincipal();
