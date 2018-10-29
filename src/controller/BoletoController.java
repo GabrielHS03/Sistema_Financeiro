@@ -149,6 +149,26 @@ public class BoletoController implements Initializable {
     	setarTabelaBoletos(); 
     }
     
+    @FXML
+    void btnExcluirBoleto(ActionEvent event) {
+    	try {
+    		BoletoDAO boletoDAO = new BoletoDAO();
+    			for (Boleto b : boletoDAO.buscarTodos()) {
+    				
+    				if(b.getCodigo() == codigoDoBoletoSelecionado){
+    					System.out.println("oi");
+    				//	boletoDAO.remove(b.getID());
+    					
+    				}
+    				else {
+    					System.out.println("Ola");
+    				}
+    			}
+    	}catch(Error e) {
+    		
+    	}
+    }
+    
 	// =============================================================================================================
    
     public void cadastrarBoleto() throws IOException {

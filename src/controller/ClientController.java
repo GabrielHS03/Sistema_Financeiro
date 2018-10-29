@@ -13,7 +13,6 @@ import DAO.CidadeDAO;
 import DAO.ClienteDAO;
 import DAO.EnderecoDAO;
 import application.ClienteAlterar;
-import application.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

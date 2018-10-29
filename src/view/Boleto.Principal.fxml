@@ -26,7 +26,10 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnPagamentos" layoutX="343.0" layoutY="59.0" mnemonicParsing="false" onAction="#btnPagamentos" text="Mostrar Pagamentos" />
+                  <Button fx:id="btnPagamentos" layoutX="343.0" layoutY="59.0" mnemonicParsing="false" onAction="#btnPagamentos" prefHeight="17.0" prefWidth="87.0" stylesheets="@style.css" text="Pesquisar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                </children></Pane>
             <TextField fx:id="txtCodigo" layoutX="159.0" layoutY="147.0" prefHeight="25.0" prefWidth="103.0">
                <cursor>
@@ -87,7 +90,7 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView fx:id="tbBoletos" layoutX="640.0" layoutY="82.0" prefHeight="518.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="82.0">
+      <TableView fx:id="tbBoletos" layoutX="640.0" layoutY="82.0" prefHeight="453.0" prefWidth="640.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="82.0">
         <columns>
           <TableColumn fx:id="columnID" prefWidth="62.0" text="ID" />
           <TableColumn fx:id="columnValor" prefWidth="78.0" text="Valor" />
@@ -103,5 +106,10 @@
             <Font name="System Bold" size="15.0" />
          </font></Button>
       <Label fx:id="lblMSG" layoutX="967.0" layoutY="14.0" prefHeight="21.0" prefWidth="218.0" text="Selecione a Data de Pagamento" visible="false" />
+      <Button fx:id="btnExcluir" layoutX="934.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnExcluirBoleto" style="-fx-background-color: red;" text="Excluir" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
