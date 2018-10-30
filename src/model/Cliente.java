@@ -28,7 +28,7 @@ public class Cliente implements Comparable<Cliente> {
     private String OBS;
     @OneToOne(cascade = CascadeType.ALL)
    	private Endereco endereco;
-    @OneToMany(targetEntity = Boleto.class, mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Boleto.class, mappedBy = "cliente", fetch = FetchType.EAGER)
     private List <Boleto> boletos;
     private boolean status = true;
     
